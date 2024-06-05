@@ -35,13 +35,13 @@ export const KEYRING_TYPE_TEXT = {
   [KEYRING_TYPE.HdKeyring]: 'Created by Mnemonic',
   [KEYRING_TYPE.SimpleKeyring]: 'Imported by Private Key',
   [KEYRING_TYPE.WatchAddressKeyring]: 'Watch Mode',
-  [KEYRING_TYPE.KeystoneKeyring]: 'Import from Keystone',
+  [KEYRING_TYPE.KeystoneKeyring]: 'Import from Keystone'
 };
 export const BRAND_ALIAN_TYPE_TEXT = {
   [KEYRING_TYPE.HdKeyring]: 'Account',
   [KEYRING_TYPE.SimpleKeyring]: 'Private Key',
   [KEYRING_TYPE.WatchAddressKeyring]: 'Watch',
-  [KEYRING_TYPE.KeystoneKeyring]: 'Account',
+  [KEYRING_TYPE.KeystoneKeyring]: 'Account'
 };
 
 export const KEYRING_TYPES: {
@@ -120,64 +120,63 @@ export const ADDRESS_TYPES: {
   hdPath: string;
   displayIndex: number;
   isUnisatLegacy?: boolean;
-}[] =
-  [
-    {
-      value: AddressType.P2PKH,
-      label: 'P2PKH',
-      name: 'Legacy (P2PKH)',
-      hdPath: "m/44'/0'/0'/0",
-      displayIndex: 3,
-      isUnisatLegacy: false
-    },
-    {
-      value: AddressType.P2WPKH,
-      label: 'P2WPKH',
-      name: 'Native Segwit (P2WPKH)',
-      hdPath: "m/84'/0'/0'/0",
-      displayIndex: 0,
-      isUnisatLegacy: false
-    },
-    {
-      value: AddressType.P2TR,
-      label: 'P2TR',
-      name: 'Taproot (P2TR)',
-      hdPath: "m/86'/0'/0'/0",
-      displayIndex: 2,
-      isUnisatLegacy: false
-    },
-    {
-      value: AddressType.P2SH_P2WPKH,
-      label: 'P2SH-P2WPKH',
-      name: 'Nested Segwit (P2SH-P2WPKH)',
-      hdPath: "m/49'/0'/0'/0",
-      displayIndex: 1,
-      isUnisatLegacy: false
-    },
-    {
-      value: AddressType.M44_P2WPKH,
-      label: 'P2WPKH',
-      name: 'Native SegWit (P2WPKH)',
-      hdPath: "m/44'/0'/0'/0",
-      displayIndex: 4,
-      isUnisatLegacy: true
-    },
-    {
-      value: AddressType.M44_P2TR,
-      label: 'P2TR',
-      name: 'Taproot (P2TR)',
-      hdPath: "m/44'/0'/0'/0",
-      displayIndex: 5,
-      isUnisatLegacy: true
-    }
-  ];
+}[] = [
+  {
+    value: AddressType.P2PKH,
+    label: 'P2PKH',
+    name: 'Legacy (P2PKH)',
+    hdPath: "m/44'/0'/0'/0",
+    displayIndex: 3,
+    isUnisatLegacy: false
+  },
+  {
+    value: AddressType.P2WPKH,
+    label: 'P2WPKH',
+    name: 'Native Segwit (P2WPKH)',
+    hdPath: "m/84'/0'/0'/0",
+    displayIndex: 0,
+    isUnisatLegacy: false
+  },
+  {
+    value: AddressType.P2TR,
+    label: 'P2TR',
+    name: 'Taproot (P2TR)',
+    hdPath: "m/86'/0'/0'/0",
+    displayIndex: 2,
+    isUnisatLegacy: false
+  },
+  {
+    value: AddressType.P2SH_P2WPKH,
+    label: 'P2SH-P2WPKH',
+    name: 'Nested Segwit (P2SH-P2WPKH)',
+    hdPath: "m/49'/0'/0'/0",
+    displayIndex: 1,
+    isUnisatLegacy: false
+  },
+  {
+    value: AddressType.M44_P2WPKH,
+    label: 'P2WPKH',
+    name: 'Native SegWit (P2WPKH)',
+    hdPath: "m/44'/0'/0'/0",
+    displayIndex: 4,
+    isUnisatLegacy: true
+  },
+  {
+    value: AddressType.M44_P2TR,
+    label: 'P2TR',
+    name: 'Taproot (P2TR)',
+    hdPath: "m/44'/0'/0'/0",
+    displayIndex: 5,
+    isUnisatLegacy: true
+  }
+];
 
 export const OW_HD_PATH = "m/86'/0'/0'";
 
 export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressTypes: AddressType[] }[] = [
   {
     value: RestoreWalletType.UNISAT,
-    name: 'UniSat Wallet',
+    name: 'Sat20 Wallet',
     addressTypes: [
       AddressType.P2WPKH,
       AddressType.P2SH_P2WPKH,
@@ -218,7 +217,8 @@ export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressT
 
 export const NETWORK_TYPES = [
   { value: NetworkType.MAINNET, label: 'LIVENET', name: 'livenet', validNames: [0, 'livenet', 'mainnet'] },
-  { value: NetworkType.TESTNET, label: 'TESTNET', name: 'testnet', validNames: ['testnet'] }
+  { value: NetworkType.TESTNET, label: 'TESTNET', name: 'testnet', validNames: ['testnet'] },
+  { value: NetworkType.TESTNET, label: 'TESTNET4', name: 'testnet4', validNames: ['testnet4'] }
 ];
 
 export const MINIMUM_GAS_LIMIT = 21000;
@@ -239,7 +239,7 @@ export const WALLETCONNECT_STATUS_MAP = {
 export const INTERNAL_REQUEST_ORIGIN = 'https://unisat.io';
 
 export const INTERNAL_REQUEST_SESSION = {
-  name: 'UniSat Wallet',
+  name: 'Sat20 Wallet',
   origin: INTERNAL_REQUEST_ORIGIN,
   icon: './images/logo/logo@128x.png'
 };
@@ -249,6 +249,8 @@ export const INTERNAL_REQUEST_SESSION = {
 
 export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';
 export const OPENAPI_URL_TESTNET = 'https://apidev.ordx.space/testnet/extension';
+
+export const OPENAPI_URL_TESTNET4 = 'https://apidev.ordx.space/testnet/extension';
 
 export const EVENTS = {
   broadcastToUI: 'broadcastToUI',

@@ -75,16 +75,17 @@ export default function Connect({ params: { session } }: Props) {
   const [checkState, setCheckState] = useState(WebsiteState.CHECKING);
   const [warning, setWarning] = useState('');
   useEffect(() => {
-    wallet.checkWebsite(session.origin).then((v) => {
-      if (v.isScammer) {
-        setCheckState(WebsiteState.SCAMMER);
-      } else {
-        setCheckState(WebsiteState.SAFE);
-      }
-      if (v.warning) {
-        setWarning(v.warning);
-      }
-    });
+    setCheckState(WebsiteState.SAFE);
+    // wallet.checkWebsite(session.origin).then((v) => {
+    //   if (v.isScammer) {
+    //     setCheckState(WebsiteState.SCAMMER);
+    //   } else {
+    //     setCheckState(WebsiteState.SAFE);
+    //   }
+    //   if (v.warning) {
+    //     setWarning(v.warning);
+    //   }
+    // });
   }, []);
 
   if (checkState === WebsiteState.CHECKING) {
@@ -157,7 +158,7 @@ export default function Connect({ params: { session } }: Props) {
       </Header>
       <Content>
         <Column>
-          <Text text="Connect with UniSat Wallet" preset="title-bold" textCenter mt="lg" />
+          <Text text="Connect with Sat20 Wallet" preset="title-bold" textCenter mt="lg" />
           <Text text="Select the account to use on this site" textCenter mt="md" />
           <Text text="Only connect with sites you trust." preset="sub" textCenter mt="md" />
 

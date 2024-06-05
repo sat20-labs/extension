@@ -124,7 +124,7 @@ export class OpenApiService {
       c++;
     }
     const headers = new Headers();
-    headers.append('X-Client', 'UniSat Wallet');
+    headers.append('X-Client', 'Sat20 Wallet');
     headers.append('X-Version', VERSION);
     headers.append('x-address', this.clientAddress);
     headers.append('x-flag', this.addressFlag + '');

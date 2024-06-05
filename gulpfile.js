@@ -23,7 +23,7 @@ var knownOptions = {
 var supported_envs = ['dev', 'pro'];
 var supported_browsers = ['chrome', 'firefox', 'edge', 'brave'];
 var supported_mvs = ['mv2', 'mv3'];
-var brandName = 'unisat';
+var brandName = 'sat20';
 var version = packageConfig.version;
 var validVersion = version.split('-beta')[0];
 var options = {
@@ -55,6 +55,7 @@ function task_prepare() {
 }
 
 function task_merge_manifest() {
+  console.log(`merge manifest for ${options.browser} with ${options.manifest}`);
   let baseFile = '_base_v3';
   if (options.manifest == 'mv2') {
     baseFile = '_base_v2';

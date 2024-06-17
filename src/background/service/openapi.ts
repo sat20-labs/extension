@@ -38,7 +38,6 @@ enum API_STATUS {
   FAILED = -1,
   SUCCESS = 0
 }
-
 export class OpenApiService {
   store!: OpenApiStore;
   clientAddress = '';
@@ -61,7 +60,6 @@ export class OpenApiService {
         deviceId: randomstring.generate(12)
       }
     });
-
     if (![OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET].includes(this.store.host)) {
       const networkType = preferenceService.getNetworkType();
       if (networkType === NetworkType.MAINNET) {

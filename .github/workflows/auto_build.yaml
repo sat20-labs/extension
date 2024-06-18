@@ -36,4 +36,3 @@ jobs:
         with:
           artifacts: "dist/sat20-chrome-mv3-${{steps.get-version.outputs.result}}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
-          allowUpdates: true

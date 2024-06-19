@@ -18,10 +18,9 @@ jobs:
 
       - name: Build Chrome
         run: |
-          # yarn build:chrome
           yarn build:chrome:mv3
 
-      - name: Get Version Name
+      - name: Get Version Name1
         uses: actions/github-script@v3
         id: get-version
         with:
@@ -36,4 +35,4 @@ jobs:
         with:
           artifacts: "dist/sat20-chrome-mv3-${{steps.get-version.outputs.result}}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
-          # allowUpdates: true
+          allowUpdates: true

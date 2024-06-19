@@ -20,8 +20,8 @@ jobs:
         run: |
           yarn build:chrome:mv3
 
-      - name: Get Version Name1
-        uses: actions/github-script@v3
+      - name: Get Version Name2
+        uses: actions/github-script@v7
         id: get-version
         with:
           script: |

@@ -19,5 +19,3 @@ runs:
     - if: steps.install-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile --ignore-scripts
       shell: bash
-
-    - uses: gradle/gradle-build-action@v3

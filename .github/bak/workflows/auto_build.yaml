@@ -1,0 +1,38 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - v*
+  pull_request:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Build Chrome
+        run: |
+          yarn build:chrome:mv3
+
+      - name: Get Version Name1
+        uses: actions/github-script@v3
+        id: get-version
+        with:
+          script: |
+            const str=process.env.GITHUB_REF;
+            return str.substring(str.indexOf("v"));
+          result-encoding: string
+
+      - name: Upload Asset
+        id: upload-asset1
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/sat20-chrome-mv3-${{steps.get-version.outputs.result}}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true

@@ -171,6 +171,12 @@ export class UnisatProvider extends EventEmitter {
     });
   };
 
+  genWalletAddress = async (index: number, count: number) => {
+    return this._request({
+      method: 'genWalletAddress'
+    });
+  };
+
   getNetwork = async () => {
     return this._request({
       method: 'getNetwork'

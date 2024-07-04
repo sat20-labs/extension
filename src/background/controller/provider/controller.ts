@@ -51,6 +51,11 @@ class ProviderController extends BaseController {
   };
 
   @Reflect.metadata('SAFE', true)
+  genWalletAddress = async (index: number, count: number) => {
+    return null
+  };
+
+  @Reflect.metadata('SAFE', true)
   getAccounts = async ({ session: { origin } }) => {
     if (!permissionService.hasPermission(origin)) {
       return [];

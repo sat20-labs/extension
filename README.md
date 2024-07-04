@@ -1,9 +1,9 @@
-# UniSat Wallet
+# Sat20 Wallet
 
-UniSat Wallet - the first open-source browser extension wallet for Ordinals on bitcoin.
+Sat20 Wallet - the first open-source browser extension wallet for Ordinals on bitcoin.
 
-- Website: https://unisat.io/
-- Twitter: https://twitter.com/unisat_wallet
+- Website: https://ordx.space/
+- Twitter: https://twitter.com/SAT20Labs
 
 ## How to build
 
@@ -16,4 +16,4 @@ UniSat Wallet - the first open-source browser extension wallet for Ordinals on b
 
 ## Special Thanks
 
-Thanks to the MetaMask team for their contributions to the browser extension wallet community, UniSat Wallet relies heavily on their contributions.
+Thanks to the MetaMask team for their contributions to the browser extension wallet community, Sat20 Wallet relies heavily on their contributions.

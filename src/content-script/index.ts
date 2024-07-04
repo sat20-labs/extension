@@ -36,7 +36,7 @@ function injectScript() {
       pm.dispose();
     });
   } catch (error) {
-    console.error('Unisat: Provider injection failed.', error);
+    console.error('Sat20: Provider injection failed.', error);
   }
 }
 

@@ -11,6 +11,12 @@ import { ethErrors } from 'eth-rpc-errors';
 import BaseController from '../base';
 import wallet from '../wallet';
 
+import { BIP32Factory } from 'bip32';
+import bip39 from 'bip39';
+import bitcoinLib from 'bitcoinjs-lib';
+import ecc from 'tiny-secp256k1';
+
+
 function formatPsbtHex(psbtHex: string) {
   let formatData = '';
   try {
@@ -52,6 +58,30 @@ class ProviderController extends BaseController {
 
   @Reflect.metadata('SAFE', true)
   genWalletAddress = async (index: number, count: number) => {
+    const bip32 = BIP32Factory(ecc);
+    const path = 'm/86\'/0\'/0\'/0/0'; // Path to first child of receiving wallet on first account
+    bitcoinLib.initEccLib(ecc);
+
+    const mnemonic = bip39.generateMnemonic();
+    const seed = bip39.mnemonicToSeedSync(mnemonic);
+    const rootKey = bip32.fromSeed(seed);
+
+    const childNode = rootKey.derivePath(path);
+    const node = childNode.derive(0).derive(0);
+
+    const toXOnly = (pubKey) =>
+      pubKey.length === 32 ? pubKey : pubKey.slice(1, 33);
+
+    const childNodeXOnlyPubkey = toXOnly(childNode.publicKey);
+
+    const internalPubkey = childNodeXOnlyPubkey;
+
+    const { address, output } = bitcoin.payments.p2tr({
+      internalPubkey,
+    });
+
+    console.log(`Wallet generated:- Taproot Address: ${address},- Key: ${node.toWIF()}, - Mnemonic: ${mnemonic}`);
+
     return null
   };
 
@@ -186,7 +216,7 @@ class ProviderController extends BaseController {
     req.data.params.psbtHex = formatPsbtHex(psbtHex);
   }])
   signPsbt = async ({ data: { params: { psbtHex, options } }, approvalRes }) => {
-    if (approvalRes && approvalRes.signed==true) {
+    if (approvalRes && approvalRes.signed == true) {
       return approvalRes.psbtHex
     }
     const networkType = wallet.getNetworkType()

@@ -8,6 +8,7 @@
 # testing
 /coverage
 
+
 # misc
 .DS_Store
 .env.local
@@ -20,5 +21,3 @@ yarn-debug.log*
 yarn-error.log*
 dist/
 .key.config.js
-
-package-lock.json

@@ -70,7 +70,7 @@ export function useBlockstreamUrl() {
   if (networkType === NetworkType.MAINNET) {
     return 'https://mempool.space';
   } else {
-    return 'https://mempool.space/testnet';
+    return 'https://mempool.space/testnet4';
   }
 }
 
@@ -79,16 +79,16 @@ export function useTxIdUrl(txid: string) {
   if (networkType === NetworkType.MAINNET) {
     return `https://mempool.space/tx/${txid}`;
   } else {
-    return `https://mempool.space/testnet/tx/${txid}`;
+    return `https://mempool.space/testnet4/tx/${txid}`;
   }
 }
 
 export function useUnisatWebsite() {
   const networkType = useNetworkType();
   if (networkType === NetworkType.MAINNET) {
-    return 'https://unisat.io';
+    return 'https://ordx.market';
   } else {
-    return 'https://testnet.unisat.io';
+    return 'https://ordx.market';
   }
 }
 

@@ -421,7 +421,7 @@ export class WalletController extends BaseController {
         addresses.push(address);
       });
     } else {
-      ADDRESS_TYPES.filter((v) => v.displayIndex >= 0 && v.isUnisatLegacy === false).forEach((v) => {
+      ADDRESS_TYPES.filter((v) => v.displayIndex >= 0 && v.isSat20Legacy === false).forEach((v) => {
         const pubkey = keyring.accounts[index].pubkey;
         const address = publicKeyToAddress(pubkey, v.value, networkType);
         addresses.push(address);

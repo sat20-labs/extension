@@ -91,7 +91,7 @@ function Step2({
       if (v.displayIndex < 0) {
         return false;
       }
-      if (v.isUnisatLegacy) {
+      if (v.isSat20Legacy) {
         return false;
       }
       return true;
@@ -102,7 +102,7 @@ function Step2({
           label: v.name,
           hdPath: v.hdPath,
           addressType: v.value,
-          isUnisatLegacy: v.isUnisatLegacy
+          isSat20Legacy: v.isSat20Legacy
         };
       });
   }, [contextData]);
@@ -178,7 +178,7 @@ function Step2({
           total_inscription: 0
         };
         const hasVault = assets.satoshis > 0;
-        if (item.isUnisatLegacy && !hasVault) {
+        if (item.isSat20Legacy && !hasVault) {
           return null;
         }
         return (

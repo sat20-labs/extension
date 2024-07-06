@@ -2,6 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_appName__",
   "version": "1.0",
+
   "default_locale": "en",
   "description": "__MSG_appDescription__",
   "icons": {
@@ -10,6 +11,7 @@
     "48": "/images/logo/logo@48x.png",
     "128": "/images/logo/logo@128x.png"
   },
+
   "browser_action": {
     "default_popup": "index.html",
     "default_icon": {
@@ -20,32 +22,24 @@
     },
     "default_title": "__MSG_appName__"
   },
+
   "author": "https://sat20.org",
   "background": {
     "page": "background.html",
     "persistent": true
   },
   "homepage_url": "https://sat20.org",
-  "permissions": [
-    "storage",
-    "unlimitedStorage",
-    "activeTab"
-  ],
+  "permissions": ["storage", "unlimitedStorage", "activeTab"],
   "short_name": "__MSG_appName__",
+
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content-script.js"
-      ],
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
       "run_at": "document_start",
       "all_frames": true
     }
   ],
   "content_security_policy": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'",
-  "web_accessible_resources": [
-    "pageProvider.js"
-  ]
+  "web_accessible_resources": ["pageProvider.js"]
 }

@@ -55,7 +55,6 @@ function task_prepare() {
 }
 
 function task_merge_manifest() {
-  console.log(`merge manifest for ${options.browser} with ${options.manifest}`);
   let baseFile = '_base_v3';
   if (options.manifest == 'mv2') {
     baseFile = '_base_v2';

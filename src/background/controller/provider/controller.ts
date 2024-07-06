@@ -16,7 +16,6 @@ import bip39 from 'bip39';
 import bitcoinLib from 'bitcoinjs-lib';
 import ecc from 'tiny-secp256k1';
 
-
 function formatPsbtHex(psbtHex: string) {
   let formatData = '';
   try {

@@ -38,6 +38,7 @@ enum API_STATUS {
   FAILED = -1,
   SUCCESS = 0
 }
+
 export class OpenApiService {
   store!: OpenApiStore;
   clientAddress = '';
@@ -60,6 +61,7 @@ export class OpenApiService {
         deviceId: randomstring.generate(12)
       }
     });
+
     if (![OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET].includes(this.store.host)) {
       const networkType = preferenceService.getNetworkType();
       if (networkType === NetworkType.MAINNET) {
@@ -141,7 +143,7 @@ export class OpenApiService {
   httpPost = async (route: string, params: any) => {
     const url = this.getHost() + route;
     const headers = new Headers();
-    headers.append('X-Client', 'UniSat Wallet');
+    headers.append('X-Client', 'Sat20 Wallet');
     headers.append('X-Version', VERSION);
     headers.append('x-address', this.clientAddress);
     headers.append('x-flag', this.addressFlag + '');

@@ -1,8 +1,8 @@
-# UniSat Wallet Release Notes
+# Sat20 Wallet Release Notes
 
 ## v1.3.4
 
-Compatible with partial token coloring for ARC20
+- Compatible with partial token coloring for ARC20
 
 ## v1.3.3
 
@@ -36,8 +36,8 @@ Compatible with partial token coloring for ARC20
 
 ## v1.2.9
 
-- Added `memos` parameter to `unisat.sendBitcoin` method, for constructing runes transactions (github #164 and #167)
-- Fixed a bug in the `unisat.sendInscription` method (github #159)
+- Added `memos` parameter to `sat20.sendBitcoin` method, for constructing runes transactions (github #164 and #167)
+- Fixed a bug in the `sat20.sendInscription` method (github #159)
 - Fixed the problem where an order could not succeed when the wallet balance and the payment amount were exactly equal when inscribe a TRANSFER inscription
 - Improved balance display, showing both available and unavailable balances
 - Improved the asset display during transaction signing, added BRC20 display
@@ -45,15 +45,15 @@ Compatible with partial token coloring for ARC20
 
 ## v1.2.8
 
-- The unisat.sendBitcoin method has added a memo parameter, increasing OP_RETURN output when sending btc.
-- A new unisat.getBitcoinUtxos method has been added, through which the developers can get users UTXO without inscription assets.
-- A new unisat.signData method has been added, through which the developers can have users participate in multi-signature.
+- The sat20.sendBitcoin method has added a memo parameter, increasing OP_RETURN output when sending btc.
+- A new sat20.getBitcoinUtxos method has been added, through which the developers can get users UTXO without inscription assets.
+- A new sat20.signData method has been added, through which the developers can have users participate in multi-signature.
 
 ## v1.2.7
 
 - Allowing decimal inputs when inscribing BRC20 TRANSFER.
 - Support more precise inscription outputValue, reduced to 294 for P2WPKH addresses.
-- Use deterministic ECDSA signatures in `unisat.signMessage`.
+- Use deterministic ECDSA signatures in `sat20.signMessage`.
 
 ## v1.2.6
 
@@ -91,7 +91,7 @@ Compatible with partial token coloring for ARC20
 ## v1.2.0
 
 - Added support for Atomicals.
-- Refactored underlying code using @unisat/wallet-sdk.
+- Refactored underlying code using @sat20/wallet-sdk.
 
 ## v1.1.33
 
@@ -221,7 +221,7 @@ In this version, we focused on security upgrades and introduced several new feat
 **Major changes**
 
 - Feature
-  - Add API unisat.inscribeTransfer(ticker:string, amount:string)
+  - Add API sat20.inscribeTransfer(ticker:string, amount:string)
 
 **Minor changes**
 
@@ -253,13 +253,13 @@ In this version, we focused on security upgrades and introduced several new feat
   - Add support for modifying account name
   - Display both BTC balance and inscription count of different address type.
 - Domain resolution related
-  - Add domain name resolution of .unisat
+  - Add domain name resolution of .sat20
   - After a domain name is resolved successfully, the corresponding inscription number will be displayed
   - Fixed the problem that the parsing of special symbols failed
 - Transaction related
   - Optimize the display of SignPSBT page
   - When the payment fails, a specific error message will be displayed
-- Unisat Api related
+- sat20 Api related
   - Add getInscriptions method
   - Add sendInscription method
 - Others
@@ -356,7 +356,7 @@ In this version, we focused on security upgrades and introduced several new feat
 
 **Major changes**
 
-- The displaying layout of NFTs in the extension is updated to match the layout on https://unisat.io/
+- The displaying layout of NFTs in the extension is updated to match the layout on https://sat20.org/
 - The default focus is set into the input field for easier keyboard input as needed
 
 **Minor changes**

@@ -2,7 +2,7 @@ import { max } from 'lodash';
 import LRU from 'lru-cache';
 
 import { createPersistStore } from '@/background/utils';
-import { CHAINS_ENUM, INTERNAL_REQUEST_ORIGIN } from '@/shared/constant';
+import { CHAINS_ENUM } from '@/shared/constant';
 
 export interface ConnectedSite {
   origin: string;
@@ -79,31 +79,32 @@ class PermissionService {
 
   touchConnectedSite = (origin) => {
     if (!this.lruCache) return;
-    if (origin === INTERNAL_REQUEST_ORIGIN) return;
-    this.lruCache.get(origin);
-    this.sync();
+    return;
+    // if (origin === INTERNAL_REQUEST_ORIGIN) return;
+    // this.lruCache.get(origin);
+    // this.sync();
   };
 
   updateConnectSite = (origin: string, value: Partial<ConnectedSite>, partialUpdate?: boolean) => {
     if (!this.lruCache || !this.lruCache.has(origin)) return;
-    if (origin === INTERNAL_REQUEST_ORIGIN) return;
+    return;
+    // if (origin === INTERNAL_REQUEST_ORIGIN) return;
+    // if (partialUpdate) {
+    //   const _value = this.lruCache.get(origin);
+    //   this.lruCache.set(origin, { ..._value, ...value } as ConnectedSite);
+    // } else {
+    //   this.lruCache.set(origin, value as ConnectedSite);
+    // }
 
-    if (partialUpdate) {
-      const _value = this.lruCache.get(origin);
-      this.lruCache.set(origin, { ..._value, ...value } as ConnectedSite);
-    } else {
-      this.lruCache.set(origin, value as ConnectedSite);
-    }
-
-    this.sync();
+    // this.sync();
   };
 
   hasPermission = (origin) => {
     if (!this.lruCache) return;
-    if (origin === INTERNAL_REQUEST_ORIGIN) return true;
-
-    const site = this.lruCache.get(origin);
-    return site && site.isConnected;
+    return true;
+    // if (origin === INTERNAL_REQUEST_ORIGIN) return true;
+    // const site = this.lruCache.get(origin);
+    // return site && site.isConnected;
   };
 
   setRecentConnectedSites = (sites: ConnectedSite[]) => {
@@ -184,7 +185,8 @@ class PermissionService {
   };
 
   isInternalOrigin = (origin: string) => {
-    return origin === INTERNAL_REQUEST_ORIGIN;
+    return true;
+    // return origin === INTERNAL_REQUEST_ORIGIN;
   };
 }
 

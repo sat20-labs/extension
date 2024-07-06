@@ -68,7 +68,7 @@ export default function AddressTypeScreen() {
         }
         const address = addresses[v.value];
         const balance = addressAssets[address];
-        if (v.isUnisatLegacy) {
+        if (v.isSat20Legacy) {
           if (!balance || balance.satoshis == 0) {
             return false;
           }
@@ -76,7 +76,7 @@ export default function AddressTypeScreen() {
         return true;
       }).sort((a, b) => a.displayIndex - b.displayIndex);
     } else {
-      return ADDRESS_TYPES.filter((v) => v.displayIndex >= 0 && v.isUnisatLegacy != true).sort(
+      return ADDRESS_TYPES.filter((v) => v.displayIndex >= 0 && v.isSat20Legacy != true).sort(
         (a, b) => a.displayIndex - b.displayIndex
       );
     }

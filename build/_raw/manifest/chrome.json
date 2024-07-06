@@ -1,11 +1,7 @@
 {
   "externally_connectable": {
-    "matches": [
-      "https://sat20.org/*"
-    ],
-    "ids": [
-      "*"
-    ]
+    "matches": ["https://sat20.org/*"],
+    "ids": ["*"]
   },
   "minimum_chrome_version": "88"
 }

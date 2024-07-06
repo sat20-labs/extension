@@ -545,8 +545,7 @@ export default function SignPsbt({
       setTxInfo(Object.assign({}, initTxInfo, { txError }));
       return;
     }
-    console.error(psbtHex);
-    console.error(session?.origin);
+
     const decodedPsbt = await wallet.decodePsbt(psbtHex, session?.origin || '');
 
     let toSignInputs: ToSignInput[] = [];

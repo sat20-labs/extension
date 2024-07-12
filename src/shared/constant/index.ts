@@ -236,16 +236,13 @@ export const WALLETCONNECT_STATUS_MAP = {
   FAILD: 6
 };
 
-// export const INTERNAL_REQUEST_ORIGIN = 'https://unisat.io';
+// export const INTERNAL_REQUEST_ORIGIN = 'https://sat20.org';
 
 // export const INTERNAL_REQUEST_SESSION = {
-//   name: 'UniSat Wallet',
+//   name: 'Sat20 Wallet',
 //   origin: INTERNAL_REQUEST_ORIGIN,
 //   icon: './images/logo/logo@128x.png'
 // };
-
-// export const OPENAPI_URL_MAINNET = 'https://wallet-api.unisat.io/v5';
-// export const OPENAPI_URL_TESTNET = 'https://wallet-api-testnet.unisat.io/v5';
 
 export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';
 export const OPENAPI_URL_TESTNET = 'https://apidev.ordx.space/testnet4/extension';

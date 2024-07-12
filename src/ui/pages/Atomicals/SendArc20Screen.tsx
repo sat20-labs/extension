@@ -8,14 +8,14 @@ import { FeeRateBar } from '@/ui/components/FeeRateBar';
 import { RBFBar } from '@/ui/components/RBFBar';
 import { useNavigate } from '@/ui/pages/MainRoute';
 import {
-  useAtomicalsTx,
-  useFetchAssetUtxosAtomicalsFTCallback,
-  useFetchUtxosCallback,
-  usePrepareSendArc20Callback
+    useAtomicalsTx,
+    useFetchAssetUtxosAtomicalsFTCallback,
+    useFetchUtxosCallback,
+    usePrepareSendArc20Callback
 } from '@/ui/state/transactions/hooks';
 import { colors } from '@/ui/theme/colors';
 import { isValidAddress } from '@/ui/utils';
-import { getAddressUtxoDust } from '@unisat/wallet-sdk/lib/transaction';
+import { getAddressUtxoDust } from '@sat20/wallet-sdk/lib/transaction';
 
 export default function SendArc20Screen() {
   const { state } = useLocation();

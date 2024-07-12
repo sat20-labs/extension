@@ -171,9 +171,12 @@ export class Sat20Provider extends EventEmitter {
     });
   };
 
-  genWalletAddress = async (index: number, count: number) => {
+  addAccounts = async (count: number) => {
     return this._request({
-      method: 'genWalletAddress'
+      method: 'addAccounts',
+      params: {
+        count
+      }
     });
   };
 

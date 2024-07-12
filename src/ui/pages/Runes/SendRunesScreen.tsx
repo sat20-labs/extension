@@ -11,14 +11,14 @@ import { OutputValueBar } from '@/ui/components/OutputValueBar';
 import { RBFBar } from '@/ui/components/RBFBar';
 import { useNavigate } from '@/ui/pages/MainRoute';
 import {
-  useFetchAssetUtxosRunesCallback,
-  useFetchUtxosCallback,
-  usePrepareSendRunesCallback,
-  useRunesTx
+    useFetchAssetUtxosRunesCallback,
+    useFetchUtxosCallback,
+    usePrepareSendRunesCallback,
+    useRunesTx
 } from '@/ui/state/transactions/hooks';
 import { colors } from '@/ui/theme/colors';
 import { isValidAddress } from '@/ui/utils';
-import { getAddressUtxoDust } from '@unisat/wallet-sdk/lib/transaction';
+import { getAddressUtxoDust } from '@sat20/wallet-sdk/lib/transaction';
 
 export default function SendRunesScreen() {
   const { state } = useLocation();

@@ -14,15 +14,15 @@ import { RefreshButton } from '@/ui/components/RefreshButton';
 import { TabBar } from '@/ui/components/TabBar';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import {
-  useFetchUtxosCallback,
-  usePrepareSendOrdinalsInscriptionCallback,
-  usePrepareSendOrdinalsInscriptionsCallback,
-  usePushOrdinalsTxCallback
+    useFetchUtxosCallback,
+    usePrepareSendOrdinalsInscriptionCallback,
+    usePrepareSendOrdinalsInscriptionsCallback,
+    usePushOrdinalsTxCallback
 } from '@/ui/state/transactions/hooks';
 import { colors } from '@/ui/theme/colors';
 import { fontSizes } from '@/ui/theme/font';
 import { useWallet } from '@/ui/utils';
-import { getAddressUtxoDust } from '@unisat/wallet-sdk/lib/transaction';
+import { getAddressUtxoDust } from '@sat20/wallet-sdk/lib/transaction';
 
 import { SignPsbt } from '../Approval/components';
 import { useNavigate } from '../MainRoute';

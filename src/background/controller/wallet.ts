@@ -37,18 +37,18 @@ import {
   WalletKeyring
 } from '@/shared/types';
 import { checkAddressFlag } from '@/shared/utils';
-import { UnspentOutput, txHelpers } from '@unisat/wallet-sdk';
-import { publicKeyToAddress, scriptPkToAddress } from '@unisat/wallet-sdk/lib/address';
-import { ECPair, bitcoin } from '@unisat/wallet-sdk/lib/bitcoin-core';
-import { KeystoneKeyring } from '@unisat/wallet-sdk/lib/keyring';
+import { UnspentOutput, txHelpers } from '@sat20/wallet-sdk';
+import { publicKeyToAddress, scriptPkToAddress } from '@sat20/wallet-sdk/lib/address';
+import { ECPair, bitcoin } from '@sat20/wallet-sdk/lib/bitcoin-core';
+import { KeystoneKeyring } from '@sat20/wallet-sdk/lib/keyring';
 import {
   genPsbtOfBIP322Simple,
   getSignatureFromPsbtOfBIP322Simple,
   signMessageOfBIP322Simple
-} from '@unisat/wallet-sdk/lib/message';
-import { toPsbtNetwork } from '@unisat/wallet-sdk/lib/network';
-import { getAddressUtxoDust } from '@unisat/wallet-sdk/lib/transaction';
-import { toXOnly } from '@unisat/wallet-sdk/lib/utils';
+} from '@sat20/wallet-sdk/lib/message';
+import { toPsbtNetwork } from '@sat20/wallet-sdk/lib/network';
+import { getAddressUtxoDust } from '@sat20/wallet-sdk/lib/transaction';
+import { toXOnly } from '@sat20/wallet-sdk/lib/utils';
 
 import { ContactBookItem } from '../service/contactBook';
 import { OpenApiService } from '../service/openapi';

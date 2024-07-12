@@ -13,7 +13,7 @@ import { useSetSpendUnavailableUtxosCallback } from '@/ui/state/transactions/hoo
 import { colors } from '@/ui/theme/colors';
 import { fontSizes } from '@/ui/theme/font';
 import { satoshisToAmount, shortUtxo, useWallet } from '@/ui/utils';
-import { UnspentOutput } from '@unisat/wallet-sdk';
+import { UnspentOutput } from '@sat20/wallet-sdk';
 
 type UnavailableUnspentOutput = UnspentOutput & {
   height?: number;

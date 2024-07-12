@@ -9,12 +9,12 @@ import InscriptionPreview from '@/ui/components/InscriptionPreview';
 import { OutputValueBar } from '@/ui/components/OutputValueBar';
 import { RBFBar } from '@/ui/components/RBFBar';
 import {
-  useFetchUtxosCallback,
-  useOrdinalsTx,
-  usePrepareSendOrdinalsInscriptionCallback
+    useFetchUtxosCallback,
+    useOrdinalsTx,
+    usePrepareSendOrdinalsInscriptionCallback
 } from '@/ui/state/transactions/hooks';
 import { isValidAddress, useWallet } from '@/ui/utils';
-import { getAddressUtxoDust } from '@unisat/wallet-sdk/lib/transaction';
+import { getAddressUtxoDust } from '@sat20/wallet-sdk/lib/transaction';
 
 import { useNavigate } from '../MainRoute';
 

@@ -10,7 +10,6 @@ import { AddressBar } from '@/ui/components/AddressBar';
 import { Button } from '@/ui/components/Button';
 import { DisableUnconfirmedsPopover } from '@/ui/components/DisableUnconfirmedPopover';
 import { NavTabBar } from '@/ui/components/NavTabBar';
-import { NoticePopover } from '@/ui/components/NoticePopover';
 import { UpgradePopover } from '@/ui/components/UpgradePopover';
 import { getCurrentTab } from '@/ui/features/browser/tabs';
 import { useAccountBalance, useAddressSummary, useCurrentAccount } from '@/ui/state/accounts/hooks';
@@ -32,9 +31,9 @@ import { amountToSatoshis, satoshisToAmount, useWallet } from '@/ui/utils';
 
 import { BuyBTCModal } from '../../BuyBTC/BuyBTCModal';
 import { useNavigate } from '../../MainRoute';
-import { AtomicalsTab } from './AtomicalsTab';
+// import { AtomicalsTab } from './AtomicalsTab';
 import { OrdinalsTab } from './OrdinalsTab';
-import { RunesList } from './RunesList';
+// import { RunesList } from './RunesList';
 
 const $noBreakStyle: CSSProperties = {
   whiteSpace: 'nowrap',
@@ -104,12 +103,18 @@ export default function WalletTabScreen() {
         }
       }
     }
+
   }, [addressSummary, currentAccount]);
 
   useEffect(() => {
     const run = async () => {
       const show = await wallet.getShowSafeNotice();
       setShowSafeNotice(show);
+
+      if (showSafeNotice) {
+        wallet.setShowSafeNotice(false);
+        setShowSafeNotice(false);
+      }
 
       const activeTab = await getCurrentTab();
       if (!activeTab) return;
@@ -127,16 +132,16 @@ export default function WalletTabScreen() {
       label: 'Ordinals',
       children: <OrdinalsTab />
     },
-    {
-      key: AssetTabKey.ATOMICALS,
-      label: 'Atomicals',
-      children: <AtomicalsTab />
-    },
-    {
-      key: AssetTabKey.RUNES,
-      label: 'Runes',
-      children: <RunesList />
-    }
+    // {
+    //   key: AssetTabKey.ATOMICALS,
+    //   label: 'Atomicals',
+    //   children: <AtomicalsTab />
+    // },
+    // {
+    //   key: AssetTabKey.RUNES,
+    //   label: 'Runes',
+    //   children: <RunesList />
+    // }
   ];
 
   const blockstreamUrl = useBlockstreamUrl();
@@ -289,14 +294,14 @@ export default function WalletTabScreen() {
 
           {/*{tabItems[assetTabKey].children}*/}
         </Column>
-        {showSafeNotice && (
+        {/* {showSafeNotice && (
           <NoticePopover
             onClose={() => {
               wallet.setShowSafeNotice(false);
               setShowSafeNotice(false);
             }}
           />
-        )}
+        )} */}
         {!versionInfo.skipped && (
           <UpgradePopover
             onClose={() => {

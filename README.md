@@ -2,7 +2,7 @@
 
 Sat20 Wallet - the first open-source browser extension wallet for Ordinals on bitcoin.
 
-- Website: https://ordx.space/
+- Website: https://sat20.org/
 - Twitter: https://twitter.com/SAT20Labs
 
 ## How to build

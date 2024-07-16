@@ -33,8 +33,9 @@ import { amountToSatoshis, satoshisToAmount, useWallet } from '@/ui/utils';
 import { BuyBTCModal } from '../../BuyBTC/BuyBTCModal';
 import { useNavigate } from '../../MainRoute';
 // import { AtomicalsTab } from './AtomicalsTab';
+import { useTools } from '@/ui/components/ActionComponent';
 import { OrdinalsTab } from './OrdinalsTab';
-// import { RunesList } from './RunesList';
+import { RunesList } from './RunesList';
 
 const $noBreakStyle: CSSProperties = {
   whiteSpace: 'nowrap',
@@ -43,7 +44,7 @@ const $noBreakStyle: CSSProperties = {
 
 export default function WalletTabScreen() {
   const navigate = useNavigate();
-
+  const tools = useTools();
   const accountBalance = useAccountBalance();
   const networkType = useNetworkType();
   const isTestNetwork = networkType === NetworkType.TESTNET;
@@ -138,11 +139,11 @@ export default function WalletTabScreen() {
     //   label: 'Atomicals',
     //   children: <AtomicalsTab />
     // },
-    // {
-    //   key: AssetTabKey.RUNES,
-    //   label: 'Runes',
-    //   children: <RunesList />
-    // }
+    {
+      key: AssetTabKey.RUNES,
+      label: 'Runes',
+      children: <RunesList />
+    }
   ];
 
   const blockstreamUrl = useBlockstreamUrl();
@@ -272,7 +273,7 @@ export default function WalletTabScreen() {
               }}
               full
             />
-            <Button
+            {/* <Button
               text="Buy"
               preset="default"
               icon="bitcoin"
@@ -280,7 +281,7 @@ export default function WalletTabScreen() {
                 setBuyBtcModalVisible(true);
               }}
               full
-            />
+            /> */}
           </Row>
 
           <Tabs
@@ -289,11 +290,19 @@ export default function WalletTabScreen() {
             activeKey={assetTabKey as unknown as string}
             items={tabItems as unknown as any[]}
             onTabClick={(key) => {
-              dispatch(uiActions.updateAssetTabScreen({ assetTabKey: key as unknown as AssetTabKey }));
+              const assetTabkey = key as unknown as AssetTabKey;
+              debugger
+              if (assetTabkey === AssetTabKey.ORDINALS) {
+                dispatch(uiActions.updateAssetTabScreen({ assetTabKey: assetTabkey }));
+                return
+              }
+
+              tools.toast('Coming soon');
+              // dispatch(uiActions.updateAssetTabScreen({ assetTabKey: assetTabkey }));
             }}
           />
 
-          {/*{tabItems[assetTabKey].children}*/}
+          {/* {tabItems[assetTabKey].children} */}
         </Column>
         {/* {showSafeNotice && (
           <NoticePopover

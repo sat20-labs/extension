@@ -282,7 +282,7 @@ export const SUPPORTED_DOMAINS = ['sats', 'ordx', 'sat20', 'x', 'btc'];
 export const SAFE_DOMAIN_CONFIRMATION = 3;
 
 export const GITHUB_URL = 'https://github.com/sat20-labs/extension';
-export const DISCORD_URL = 'https://discord.com/invite/xxxxxxxxxx';
+// export const DISCORD_URL = 'https://discord.com/invite/xxxxxxxxxx';
 export const TWITTER_URL = 'https://x.com/SAT20Labs';
 
 export const CHANNEL = process.env.channel!;

@@ -18,8 +18,8 @@ jobs:
 
       - name: Build Chrome
         run: |
-          yarn build:chrome
           yarn build:chrome:mv3
+          # yarn build:chrome
 
       - name: Create Release
         id: create_release
@@ -41,16 +41,16 @@ jobs:
             return str.substring(str.indexOf("v"));
           result-encoding: string
 
-      - name: Upload Asset
-        id: upload-asset1
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/sat20-chrome-mv2-${{steps.get-version.outputs.result}}.zip
-          asset_name: sat20-chrome-mv2-${{steps.get-version.outputs.result}}.zip
-          asset_content_type: application/zip
+      # - name: Upload Asset
+      #   id: upload-asset1
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: dist/sat20-chrome-mv2-${{steps.get-version.outputs.result}}.zip
+      #     asset_name: sat20-chrome-mv2-${{steps.get-version.outputs.result}}.zip
+      #     asset_content_type: application/zip
 
       - name: Upload Asset
         id: upload-asset2

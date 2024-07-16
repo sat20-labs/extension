@@ -10,6 +10,7 @@ import { AddressBar } from '@/ui/components/AddressBar';
 import { Button } from '@/ui/components/Button';
 import { DisableUnconfirmedsPopover } from '@/ui/components/DisableUnconfirmedPopover';
 import { NavTabBar } from '@/ui/components/NavTabBar';
+// import { NoticePopover } from '@/ui/components/NoticePopover';
 import { UpgradePopover } from '@/ui/components/UpgradePopover';
 import { getCurrentTab } from '@/ui/features/browser/tabs';
 import { useAccountBalance, useAddressSummary, useCurrentAccount } from '@/ui/state/accounts/hooks';

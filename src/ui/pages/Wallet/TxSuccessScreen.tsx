@@ -1,4 +1,4 @@
-import { Layout, Header, Content, Icon, Text, Column, Footer, Button, Row } from '@/ui/components';
+import { Button, Column, Content, Footer, Header, Icon, Layout, Row, Text } from '@/ui/components';
 import { useNavigate } from '@/ui/pages/MainRoute';
 import { useBlockstreamUrl } from '@/ui/state/settings/hooks';
 import { spacing } from '@/ui/theme/spacing';
@@ -9,7 +9,8 @@ interface LocationState {
 }
 
 export default function TxSuccessScreen() {
-  const { txid } = useLocationState<LocationState>();
+  let { txid } = useLocationState<LocationState>();
+  txid = txid.replace(/^"|"$/g, '');
   const navigate = useNavigate();
   const blockstreamUrl = useBlockstreamUrl();
 

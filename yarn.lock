@@ -2036,10 +2036,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@sat20/wallet-sdk@^1.7.3":
-  version "1.7.3"
-  resolved "https://registry.npmjs.org/@sat20/wallet-sdk/-/wallet-sdk-1.7.3.tgz"
-  integrity sha512-GT9oLxWJE2P8OYbNGtRpJtgGxZMbjnB07hDooHwle6KlzMzkDZupFm9o/kfqzsKF319BHahXluNEyQWrnQyVLg==
+"@sat20/wallet-sdk@^1.7.5":
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/@sat20/wallet-sdk/-/wallet-sdk-1.7.5.tgz#7e9fb7a34560f777e46140aa3499b20bdb22dfcc"
+  integrity sha512-QkmFXAfjm3YVZ0uKBHnRzB6aiB6BrBkPC4v+hVb3n5N0tuvWlfnsx9kXYdXwq09GUOYIfG2zERMW3SYxGsaAlw==
   dependencies:
     "@bitcoinerlab/secp256k1" "^1.0.5"
     "@keystonehq/keystone-sdk" "^0.3.0"

@@ -291,7 +291,6 @@ export default function WalletTabScreen() {
             items={tabItems as unknown as any[]}
             onTabClick={(key) => {
               const assetTabkey = key as unknown as AssetTabKey;
-              debugger
               if (assetTabkey === AssetTabKey.ORDINALS) {
                 dispatch(uiActions.updateAssetTabScreen({ assetTabKey: assetTabkey }));
                 return

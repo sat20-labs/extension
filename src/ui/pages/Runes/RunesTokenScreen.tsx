@@ -7,7 +7,7 @@ import { useTools } from '@/ui/components/ActionComponent';
 import { BRC20Ticker } from '@/ui/components/BRC20Ticker';
 import InscriptionPreview from '@/ui/components/InscriptionPreview';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
-import { useBlockstreamUrl, useOrdinalsWebsite, useUnisatWebsite } from '@/ui/state/settings/hooks';
+import { useBlockstreamUrl, useOrdinalsWebsite, useSat20Website } from '@/ui/state/settings/hooks';
 import { colors } from '@/ui/theme/colors';
 import { fontSizes } from '@/ui/theme/font';
 import { copyToClipboard, useLocationState, useWallet } from '@/ui/utils';
@@ -78,7 +78,7 @@ export default function RunesTokenScreen() {
 
   const navigate = useNavigate();
 
-  const unisatWebsite = useUnisatWebsite();
+  const sat20Website = useSat20Website();
 
   const enableMint = tokenSummary.runeInfo.mintable;
 
@@ -138,7 +138,7 @@ export default function RunesTokenScreen() {
                 disabled={!enableMint}
                 icon="pencil"
                 onClick={(e) => {
-                  window.open(`${unisatWebsite}/runes/inscribe?tab=mint&rune=${tokenSummary.runeInfo.rune}`);
+                  window.open(`${sat20Website}/runes/inscribe?tab=mint&rune=${tokenSummary.runeInfo.rune}`);
                 }}
                 full
               />

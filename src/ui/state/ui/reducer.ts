@@ -20,9 +20,13 @@ export interface UIState {
 }
 
 export enum AssetTabKey {
+  TOKEN,
+  NAME,
+  EXOTIC,
+  COLLECTION,
   ORDINALS, // ORDINALS
   // ATOMICALS,
-  RUNES
+  // RUNES
 }
 
 export enum OrdinalsAssetTabKey {

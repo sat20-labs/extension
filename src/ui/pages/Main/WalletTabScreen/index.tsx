@@ -35,7 +35,6 @@ import { useNavigate } from '../../MainRoute';
 // import { AtomicalsTab } from './AtomicalsTab';
 import { useTools } from '@/ui/components/ActionComponent';
 import { OrdinalsTab } from './OrdinalsTab';
-import { RunesList } from './RunesList';
 
 const $noBreakStyle: CSSProperties = {
   whiteSpace: 'nowrap',
@@ -131,7 +130,27 @@ export default function WalletTabScreen() {
   const tabItems = [
     {
       key: AssetTabKey.ORDINALS,
-      label: 'Ordinals',
+      label: 'Nft',
+      children: <OrdinalsTab />
+    },
+    {
+      key: AssetTabKey.TOKEN,
+      label: 'Token',
+      children: <OrdinalsTab />
+    },
+    {
+      key: AssetTabKey.NAME,
+      label: 'Name',
+      children: <OrdinalsTab />
+    },
+    {
+      key: AssetTabKey.EXOTIC,
+      label: 'Exotic',
+      children: <OrdinalsTab />
+    },
+    {
+      key: AssetTabKey.COLLECTION,
+      label: 'Collection',
       children: <OrdinalsTab />
     },
     // {
@@ -139,11 +158,11 @@ export default function WalletTabScreen() {
     //   label: 'Atomicals',
     //   children: <AtomicalsTab />
     // },
-    {
-      key: AssetTabKey.RUNES,
-      label: 'Runes',
-      children: <RunesList />
-    }
+    // {
+    //   key: AssetTabKey.RUNES,
+    //   label: 'Runes',
+    //   children: <RunesList />
+    // }
   ];
 
   const blockstreamUrl = useBlockstreamUrl();
@@ -291,13 +310,11 @@ export default function WalletTabScreen() {
             items={tabItems as unknown as any[]}
             onTabClick={(key) => {
               const assetTabkey = key as unknown as AssetTabKey;
-              if (assetTabkey === AssetTabKey.ORDINALS) {
-                dispatch(uiActions.updateAssetTabScreen({ assetTabKey: assetTabkey }));
+              if (assetTabkey === AssetTabKey.COLLECTION) {
+                tools.toast('Coming soon');
                 return
               }
-
-              tools.toast('Coming soon');
-              // dispatch(uiActions.updateAssetTabScreen({ assetTabKey: assetTabkey }));
+              dispatch(uiActions.updateAssetTabScreen({ assetTabKey: assetTabkey }));
             }}
           />
 

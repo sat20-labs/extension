@@ -83,7 +83,7 @@ export function useTxIdUrl(txid: string) {
   }
 }
 
-export function useUnisatWebsite() {
+export function useSat20Website() {
   const networkType = useNetworkType();
   if (networkType === NetworkType.MAINNET) {
     return 'https://ordx.market';

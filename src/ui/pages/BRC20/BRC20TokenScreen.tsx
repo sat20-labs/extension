@@ -9,7 +9,7 @@ import BRC20Preview from '@/ui/components/BRC20Preview';
 import { BRC20Ticker } from '@/ui/components/BRC20Ticker';
 import { Empty } from '@/ui/components/Empty';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
-import { useUnisatWebsite } from '@/ui/state/settings/hooks';
+import { useSat20Website } from '@/ui/state/settings/hooks';
 import { colors } from '@/ui/theme/colors';
 import { useLocationState, useWallet } from '@/ui/utils';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -79,7 +79,7 @@ export default function BRC20TokenScreen() {
 
   const navigate = useNavigate();
 
-  const unisatWebsite = useUnisatWebsite();
+  const sat20Website = useSat20Website();
 
   const enableMint = useMemo(() => {
     let enable = false;
@@ -129,7 +129,7 @@ export default function BRC20TokenScreen() {
                 disabled={!enableMint}
                 icon="pencil"
                 onClick={(e) => {
-                  window.open(`${unisatWebsite}/brc20/${encodeURIComponent(ticker)}`);
+                  window.open(`${sat20Website}/brc20/${encodeURIComponent(ticker)}`);
                 }}
                 full
               />

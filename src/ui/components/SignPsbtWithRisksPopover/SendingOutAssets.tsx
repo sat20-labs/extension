@@ -48,22 +48,22 @@ export const SendingOutAssets = ({ decodedPsbt, onClose }: { decodedPsbt: Decode
     inputInfo.inscriptions.forEach((ins) => {
       inscriptionMap[ins.inscriptionId].from = inputInfo.address;
       if (inputInfo.address === currentAccount?.address) {
-        const info = decodedPsbt.inscriptions[ins.inscriptionId];
-        if (info.brc20) {
-          const ticker = info.brc20.tick;
-          brc20BalanceIn[ticker] = brc20BalanceIn[ticker] || BigNumber(0);
-          brc20BalanceIn[ticker] = brc20BalanceIn[ticker].plus(new BigNumber(info.brc20.amt));
-        }
+        // const info = decodedPsbt.inscriptions[ins.inscriptionId];
+        // if (info.brc20) {
+        //   const ticker = info.brc20.tick;
+        //   brc20BalanceIn[ticker] = brc20BalanceIn[ticker] || BigNumber(0);
+        //   brc20BalanceIn[ticker] = brc20BalanceIn[ticker].plus(new BigNumber(info.brc20.amt));
+        // }
       }
     });
     if (inputInfo.address === currentAccount?.address) {
-      inputInfo.atomicals.forEach((v) => {
-        if (v.type === 'FT') {
-          const ticker = v.ticker || '';
-          arc20BalanceIn[ticker] = arc20BalanceIn[ticker] || 0;
-          arc20BalanceIn[ticker] += inputInfo.value;
-        }
-      });
+      // inputInfo.atomicals.forEach((v) => {
+      //   if (v.type === 'FT') {
+      //     const ticker = v.ticker || '';
+      //     arc20BalanceIn[ticker] = arc20BalanceIn[ticker] || 0;
+      //     arc20BalanceIn[ticker] += inputInfo.value;
+      //   }
+      // });
     }
   });
 
@@ -71,23 +71,23 @@ export const SendingOutAssets = ({ decodedPsbt, onClose }: { decodedPsbt: Decode
     outputInfo.inscriptions.forEach((ins) => {
       inscriptionMap[ins.inscriptionId].to = outputInfo.address;
       if (outputInfo.address === currentAccount?.address) {
-        const info = decodedPsbt.inscriptions[ins.inscriptionId];
-        if (info.brc20) {
-          const ticker = info.brc20.tick;
-          brc20BalanceOut[ticker] = brc20BalanceOut[ticker] || BigNumber(0);
-          brc20BalanceOut[ticker] = brc20BalanceOut[ticker].plus(new BigNumber(info.brc20.amt));
-        }
+        // const info = decodedPsbt.inscriptions[ins.inscriptionId];
+        // if (info.brc20) {
+        //   const ticker = info.brc20.tick;
+        //   brc20BalanceOut[ticker] = brc20BalanceOut[ticker] || BigNumber(0);
+        //   brc20BalanceOut[ticker] = brc20BalanceOut[ticker].plus(new BigNumber(info.brc20.amt));
+        // }
       }
     });
 
     if (outputInfo.address === currentAccount?.address) {
-      outputInfo.atomicals.forEach((v) => {
-        if (v.type === 'FT') {
-          const ticker = v.ticker || '';
-          arc20BalanceOut[ticker] = arc20BalanceOut[ticker] || 0;
-          arc20BalanceOut[ticker] += outputInfo.value;
-        }
-      });
+      // outputInfo.atomicals.forEach((v) => {
+      //   if (v.type === 'FT') {
+      //     const ticker = v.ticker || '';
+      //     arc20BalanceOut[ticker] = arc20BalanceOut[ticker] || 0;
+      //     arc20BalanceOut[ticker] += outputInfo.value;
+      //   }
+      // });
     }
   });
 

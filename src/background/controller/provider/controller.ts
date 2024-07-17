@@ -250,13 +250,13 @@ class ProviderController extends BaseController {
     return await wallet.pushTx(rawtx)
   }
 
-  @Reflect.metadata('APPROVAL', ['InscribeTransfer', (req) => {
-    const { data: { params: { ticker } } } = req;
-    // todo
-  }])
-  inscribeTransfer = async ({ approvalRes }) => {
-    return approvalRes
-  }
+  // @Reflect.metadata('APPROVAL', ['InscribeTransfer', (req) => {
+  //   const { data: { params: { ticker } } } = req;
+  //   // todo
+  // }])
+  // inscribeTransfer = async ({ approvalRes }) => {
+  //   return approvalRes
+  // }
 
   @Reflect.metadata('SAFE', true)
   getVersion = async () => {

@@ -6,7 +6,7 @@ import { updateVersion } from '../global/actions';
 export interface UIState {
   assetTabKey: AssetTabKey;
   ordinalsAssetTabKey: OrdinalsAssetTabKey;
-  atomicalsAssetTabKey: AtomicalsAssetTabKey;
+  // atomicalsAssetTabKey: AtomicalsAssetTabKey;
   uiTxCreateScreen: {
     toInfo: {
       address: string;
@@ -35,16 +35,16 @@ export enum OrdinalsAssetTabKey {
   BRC20_5BYTE
 }
 
-export enum AtomicalsAssetTabKey {
-  ALL,
-  ARC20,
-  OTHERS
-}
+// export enum AtomicalsAssetTabKey {
+//   ALL,
+//   ARC20,
+//   OTHERS
+// }
 
 export const initialState: UIState = {
   assetTabKey: AssetTabKey.ORDINALS,
   ordinalsAssetTabKey: OrdinalsAssetTabKey.ALL,
-  atomicalsAssetTabKey: AtomicalsAssetTabKey.ARC20,
+  // atomicalsAssetTabKey: AtomicalsAssetTabKey.ARC20,
   uiTxCreateScreen: {
     toInfo: {
       address: '',
@@ -70,7 +70,7 @@ const slice = createSlice({
         payload: {
           assetTabKey?: AssetTabKey;
           ordinalsAssetTabKey?: OrdinalsAssetTabKey;
-          atomicalsAssetTabKey?: AtomicalsAssetTabKey;
+          // atomicalsAssetTabKey?: AtomicalsAssetTabKey;
         };
       }
     ) {
@@ -81,9 +81,9 @@ const slice = createSlice({
       if (payload.ordinalsAssetTabKey !== undefined) {
         state.ordinalsAssetTabKey = payload.ordinalsAssetTabKey;
       }
-      if (payload.atomicalsAssetTabKey !== undefined) {
-        state.atomicalsAssetTabKey = payload.atomicalsAssetTabKey;
-      }
+      // if (payload.atomicalsAssetTabKey !== undefined) {
+      //   state.atomicalsAssetTabKey = payload.atomicalsAssetTabKey;
+      // }
       return state;
     },
     updateTxCreateScreen(
@@ -127,9 +127,9 @@ const slice = createSlice({
       if (!state.ordinalsAssetTabKey) {
         state.ordinalsAssetTabKey = OrdinalsAssetTabKey.ALL;
       }
-      if (!state.atomicalsAssetTabKey) {
-        state.atomicalsAssetTabKey = AtomicalsAssetTabKey.ARC20;
-      }
+      // if (!state.atomicalsAssetTabKey) {
+      //   state.atomicalsAssetTabKey = AtomicalsAssetTabKey.ARC20;
+      // }
       if (!state.uiTxCreateScreen) {
         state.uiTxCreateScreen = initialState.uiTxCreateScreen;
       }

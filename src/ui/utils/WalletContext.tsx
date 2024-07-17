@@ -291,23 +291,23 @@ export interface WalletController {
     pageSize: number
   ): Promise<{ currentPage: number; pageSize: number; total: number; list: Arc20Balance[] }>;
 
-  sendAtomicalsNFT(data: {
-    to: string;
-    atomicalId: string;
-    feeRate: number;
-    enableRBF: boolean;
-    btcUtxos: UnspentOutput[];
-  }): Promise<string>;
+  // sendAtomicalsNFT(data: {
+  //   to: string;
+  //   atomicalId: string;
+  //   feeRate: number;
+  //   enableRBF: boolean;
+  //   btcUtxos: UnspentOutput[];
+  // }): Promise<string>;
 
-  sendAtomicalsFT(data: {
-    to: string;
-    ticker: string;
-    amount: number;
-    feeRate: number;
-    enableRBF: boolean;
-    btcUtxos: UnspentOutput[];
-    assetUtxos: UnspentOutput[];
-  }): Promise<string>;
+  // sendAtomicalsFT(data: {
+  //   to: string;
+  //   ticker: string;
+  //   amount: number;
+  //   feeRate: number;
+  //   enableRBF: boolean;
+  //   btcUtxos: UnspentOutput[];
+  //   assetUtxos: UnspentOutput[];
+  // }): Promise<string>;
 
   getAddressSummary(address: string): Promise<AddressSummary>;
 

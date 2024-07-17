@@ -21,12 +21,12 @@ import SwitchKeyringScreen from './Account/SwitchKeyringScreen';
 import UnlockScreen from './Account/UnlockScreen';
 import ApprovalScreen from './Approval/ApprovalScreen';
 import ConnectedSitesScreen from './Approval/ConnectedSitesScreen';
-import { InscribeTransferScreen } from './Approval/components/InscribeTransfer';
-import AtomicalsNFTScreen from './Atomicals/AtomicalsNFTScreen';
-import SendArc20Screen from './Atomicals/SendArc20Screen';
-import SendAtomicalsInscriptionScreen from './Atomicals/SendAtomicalsNFTScreen';
-import BRC20SendScreen from './BRC20/BRC20SendScreen';
-import BRC20TokenScreen from './BRC20/BRC20TokenScreen';
+// import { InscribeTransferScreen } from './Approval/components/InscribeTransfer';
+// import AtomicalsNFTScreen from './Atomicals/AtomicalsNFTScreen';
+// import SendArc20Screen from './Atomicals/SendArc20Screen';
+// import SendAtomicalsInscriptionScreen from './Atomicals/SendAtomicalsNFTScreen';
+// import BRC20SendScreen from './BRC20/BRC20SendScreen';
+// import BRC20TokenScreen from './BRC20/BRC20TokenScreen';
 import AppTabScrren from './Main/AppTabScreen';
 import BoostScreen from './Main/BoostScreen';
 import DiscoverTabScreen from './Main/DiscoverTabScreen';
@@ -50,7 +50,6 @@ import NetworkTypeScreen from './Settings/NetworkTypeScreen';
 import UpgradeNoticeScreen from './Settings/UpgradeNoticeScreen';
 import TestScreen from './Test/TestScreen';
 import HistoryScreen from './Wallet/HistoryScreen';
-import KeystoneSignScreen from './Wallet/KeystoneSignScreen';
 import ReceiveScreen from './Wallet/ReceiveScreen';
 import TxConfirmScreen from './Wallet/TxConfirmScreen';
 import TxCreateScreen from './Wallet/TxCreateScreen';
@@ -141,20 +140,20 @@ const routes = {
     element: <SignOrdinalsTransactionScreen />
   },
 
-  AtomicalsInscriptionScreen: {
-    path: '/atomicals/inscription-detail',
-    element: <AtomicalsNFTScreen />
-  },
+  // AtomicalsInscriptionScreen: {
+  //   path: '/atomicals/inscription-detail',
+  //   element: <AtomicalsNFTScreen />
+  // },
 
-  SendAtomicalsInscriptionScreen: {
-    path: '/atomicals/send-inscription',
-    element: <SendAtomicalsInscriptionScreen />
-  },
+  // SendAtomicalsInscriptionScreen: {
+  //   path: '/atomicals/send-inscription',
+  //   element: <SendAtomicalsInscriptionScreen />
+  // },
 
-  SendArc20Screen: {
-    path: '/atomicals/send-arc20',
-    element: <SendArc20Screen />
-  },
+  // SendArc20Screen: {
+  //   path: '/atomicals/send-arc20',
+  //   element: <SendArc20Screen />
+  // },
 
   NetworkTypeScreen: {
     path: '/settings/network-type',
@@ -220,18 +219,18 @@ const routes = {
     path: '/settings/edit-account-name',
     element: <EditAccountNameScreen />
   },
-  InscribeTransferScreen: {
-    path: '/inscribe/transfer',
-    element: <InscribeTransferScreen />
-  },
-  BRC20SendScreen: {
-    path: '/brc20/send',
-    element: <BRC20SendScreen />
-  },
-  BRC20TokenScreen: {
-    path: '/brc20/token',
-    element: <BRC20TokenScreen />
-  },
+  // InscribeTransferScreen: {
+  //   path: '/inscribe/transfer',
+  //   element: <InscribeTransferScreen />
+  // },
+  // BRC20SendScreen: {
+  //   path: '/brc20/send',
+  //   element: <BRC20SendScreen />
+  // },
+  // BRC20TokenScreen: {
+  //   path: '/brc20/token',
+  //   element: <BRC20TokenScreen />
+  // },
   TestScreen: {
     path: '/test',
     element: <TestScreen />

@@ -74,37 +74,37 @@ export interface Inscription {
   contentBody: string;
   utxoHeight: number;
   utxoConfirmation: number;
-  brc20?: {
-    op: string;
-    tick: string;
-    lim: string;
-    amt: string;
-    decimal: string;
-  };
+  // brc20?: {
+  //   op: string;
+  //   tick: string;
+  //   lim: string;
+  //   amt: string;
+  //   decimal: string;
+  // };
 }
 
-export interface Atomical {
-  atomicalId: string;
-  atomicalNumber: number;
-  type: 'FT' | 'NFT';
-  ticker?: string;
+// export interface Atomical {
+//   atomicalId: string;
+//   atomicalNumber: number;
+//   type: 'FT' | 'NFT';
+//   ticker?: string;
 
-  // mint info
-  address: string;
-  outputValue: number;
-  preview: string;
-  content: string;
-  contentType: string;
-  contentLength: number;
-  timestamp: number;
-  genesisTransaction: string;
-  location: string;
-  output: string;
-  offset: number;
-  contentBody: string;
-  utxoHeight: number;
-  utxoConfirmation: number;
-}
+//   // mint info
+//   address: string;
+//   outputValue: number;
+//   preview: string;
+//   content: string;
+//   contentType: string;
+//   contentLength: number;
+//   timestamp: number;
+//   genesisTransaction: string;
+//   location: string;
+//   output: string;
+//   offset: number;
+//   contentBody: string;
+//   utxoHeight: number;
+//   utxoConfirmation: number;
+// }
 
 export interface InscriptionMintedItem {
   title: string;
@@ -317,7 +317,7 @@ export interface DecodedPsbt {
     address: string;
     value: number;
     inscriptions: Inscription[];
-    atomicals: Atomical[];
+    // atomicals: Atomical[];
     sighashType: number;
     runes: RuneBalance[];
   }[];
@@ -325,7 +325,7 @@ export interface DecodedPsbt {
     address: string;
     value: number;
     inscriptions: Inscription[];
-    atomicals: Atomical[];
+    // atomicals: Atomical[];
     runes: RuneBalance[];
   }[];
   inscriptions: { [key: string]: Inscription };

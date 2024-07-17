@@ -1563,128 +1563,128 @@ export class WalletController extends BaseController {
     };
   };
 
-  sendAtomicalsNFT = async ({
-    to,
-    atomicalId,
-    feeRate,
-    enableRBF,
-    btcUtxos
-  }: {
-    to: string;
-    atomicalId: string;
-    feeRate: number;
-    enableRBF: boolean;
-    btcUtxos?: UnspentOutput[];
-  }) => {
-    const account = preferenceService.getCurrentAccount();
-    if (!account) throw new Error('no current account');
+  // sendAtomicalsNFT = async ({
+  //   to,
+  //   atomicalId,
+  //   feeRate,
+  //   enableRBF,
+  //   btcUtxos
+  // }: {
+  //   to: string;
+  //   atomicalId: string;
+  //   feeRate: number;
+  //   enableRBF: boolean;
+  //   btcUtxos?: UnspentOutput[];
+  // }) => {
+  //   const account = preferenceService.getCurrentAccount();
+  //   if (!account) throw new Error('no current account');
 
-    const networkType = preferenceService.getNetworkType();
+  //   const networkType = preferenceService.getNetworkType();
 
-    const utxo = await openapiService.getAtomicalsUtxo(atomicalId);
-    if (!utxo) {
-      throw new Error('UTXO not found.');
-    }
+  //   const utxo = await openapiService.getAtomicalsUtxo(atomicalId);
+  //   if (!utxo) {
+  //     throw new Error('UTXO not found.');
+  //   }
 
-    if (utxo.inscriptions.length > 1) {
-      throw new Error('Multiple inscriptions are mixed together. Please split them first.');
-    }
+  //   if (utxo.inscriptions.length > 1) {
+  //     throw new Error('Multiple inscriptions are mixed together. Please split them first.');
+  //   }
 
-    const assetUtxo = Object.assign(utxo, { pubkey: account.pubkey });
+  //   const assetUtxo = Object.assign(utxo, { pubkey: account.pubkey });
 
-    if (!btcUtxos) {
-      btcUtxos = await this.getBTCUtxos();
-    }
+  //   if (!btcUtxos) {
+  //     btcUtxos = await this.getBTCUtxos();
+  //   }
 
-    if (btcUtxos.length == 0) {
-      throw new Error('Insufficient balance.');
-    }
+  //   if (btcUtxos.length == 0) {
+  //     throw new Error('Insufficient balance.');
+  //   }
 
-    const { psbt, toSignInputs } = await txHelpers.sendAtomicalsNFT({
-      assetUtxo,
-      btcUtxos,
-      toAddress: to,
-      networkType,
-      changeAddress: account.address,
-      feeRate,
-      enableRBF
-    });
+  //   const { psbt, toSignInputs } = await txHelpers.sendAtomicalsNFT({
+  //     assetUtxo,
+  //     btcUtxos,
+  //     toAddress: to,
+  //     networkType,
+  //     changeAddress: account.address,
+  //     feeRate,
+  //     enableRBF
+  //   });
 
-    this.setPsbtSignNonSegwitEnable(psbt, true);
-    await this.signPsbt(psbt, toSignInputs, true);
-    this.setPsbtSignNonSegwitEnable(psbt, false);
-    return psbt.toHex();
-  };
+  //   this.setPsbtSignNonSegwitEnable(psbt, true);
+  //   await this.signPsbt(psbt, toSignInputs, true);
+  //   this.setPsbtSignNonSegwitEnable(psbt, false);
+  //   return psbt.toHex();
+  // };
 
-  sendAtomicalsFT = async ({
-    to,
-    ticker,
-    amount,
-    feeRate,
-    enableRBF,
-    btcUtxos,
-    assetUtxos
-  }: {
-    to: string;
-    ticker: string;
-    amount: number;
-    feeRate: number;
-    enableRBF: boolean;
-    btcUtxos?: UnspentOutput[];
-    assetUtxos?: UnspentOutput[];
-  }) => {
-    const account = preferenceService.getCurrentAccount();
-    if (!account) throw new Error('no current account');
+  // sendAtomicalsFT = async ({
+  //   to,
+  //   ticker,
+  //   amount,
+  //   feeRate,
+  //   enableRBF,
+  //   btcUtxos,
+  //   assetUtxos
+  // }: {
+  //   to: string;
+  //   ticker: string;
+  //   amount: number;
+  //   feeRate: number;
+  //   enableRBF: boolean;
+  //   btcUtxos?: UnspentOutput[];
+  //   assetUtxos?: UnspentOutput[];
+  // }) => {
+  //   const account = preferenceService.getCurrentAccount();
+  //   if (!account) throw new Error('no current account');
 
-    const networkType = preferenceService.getNetworkType();
+  //   const networkType = preferenceService.getNetworkType();
 
-    if (!assetUtxos) {
-      assetUtxos = await this.getAssetUtxosAtomicalsFT(ticker);
-    }
+  //   if (!assetUtxos) {
+  //     assetUtxos = await this.getAssetUtxosAtomicalsFT(ticker);
+  //   }
 
-    if (!btcUtxos) {
-      btcUtxos = await this.getBTCUtxos();
-    }
+  //   if (!btcUtxos) {
+  //     btcUtxos = await this.getBTCUtxos();
+  //   }
 
-    const changeDust = getAddressUtxoDust(account.address);
+  //   const changeDust = getAddressUtxoDust(account.address);
 
-    const _assetUtxos: UnspentOutput[] = [];
-    let total = 0;
-    let change = 0;
-    for (let i = 0; i < assetUtxos.length; i++) {
-      const v = assetUtxos[i];
-      total += v.satoshis;
-      _assetUtxos.push(v);
-      if (total >= amount) {
-        change = total - amount;
-        if (change == 0 || change >= changeDust) {
-          break;
-        }
-      }
-    }
-    if (change != 0 && change < changeDust) {
-      throw new Error('The amount for change is too low, please adjust the sending amount.');
-    }
-    assetUtxos = _assetUtxos;
+  //   const _assetUtxos: UnspentOutput[] = [];
+  //   let total = 0;
+  //   let change = 0;
+  //   for (let i = 0; i < assetUtxos.length; i++) {
+  //     const v = assetUtxos[i];
+  //     total += v.satoshis;
+  //     _assetUtxos.push(v);
+  //     if (total >= amount) {
+  //       change = total - amount;
+  //       if (change == 0 || change >= changeDust) {
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   if (change != 0 && change < changeDust) {
+  //     throw new Error('The amount for change is too low, please adjust the sending amount.');
+  //   }
+  //   assetUtxos = _assetUtxos;
 
-    const { psbt, toSignInputs } = await txHelpers.sendAtomicalsFT({
-      assetUtxos,
-      btcUtxos,
-      toAddress: to,
-      networkType,
-      changeAddress: account.address,
-      changeAssetAddress: account.address,
-      feeRate,
-      enableRBF,
-      sendAmount: amount
-    });
+  //   const { psbt, toSignInputs } = await txHelpers.sendAtomicalsFT({
+  //     assetUtxos,
+  //     btcUtxos,
+  //     toAddress: to,
+  //     networkType,
+  //     changeAddress: account.address,
+  //     changeAssetAddress: account.address,
+  //     feeRate,
+  //     enableRBF,
+  //     sendAmount: amount
+  //   });
 
-    this.setPsbtSignNonSegwitEnable(psbt, true);
-    await this.signPsbt(psbt, toSignInputs, true);
-    this.setPsbtSignNonSegwitEnable(psbt, false);
+  //   this.setPsbtSignNonSegwitEnable(psbt, true);
+  //   await this.signPsbt(psbt, toSignInputs, true);
+  //   this.setPsbtSignNonSegwitEnable(psbt, false);
 
-    return psbt.toHex();
-  };
+  //   return psbt.toHex();
+  // };
 
   getAddressSummary = async (address: string) => {
     const data = await openapiService.getAddressSummary(address);

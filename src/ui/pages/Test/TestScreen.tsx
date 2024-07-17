@@ -5,7 +5,7 @@ import { Card, Column, Content, Input, Layout, Text } from '@/ui/components';
 import { AddressDetailPopover } from '@/ui/components/AddressDetailPopover';
 import { AddressText } from '@/ui/components/AddressText';
 import { AddressTypeCard2 } from '@/ui/components/AddressTypeCard';
-import BRC20BalanceCard from '@/ui/components/BRC20BalanceCard';
+// import BRC20BalanceCard from '@/ui/components/BRC20BalanceCard';
 import { RemoveWalletPopover } from '@/ui/components/RemoveWalletPopover';
 import { SignPsbtWithRisksPopover } from '@/ui/components/SignPsbtWithRisksPopover';
 import { useCurrentKeyring } from '@/ui/state/keyrings/hooks';
@@ -41,15 +41,15 @@ const tokenBalance: TokenBalance = {
   availableBalanceSafe: '',
   availableBalanceUnSafe: ''
 };
-function TestBRC20BalanceCard() {
-  return (
-    <Layout>
-      <Content>
-        <BRC20BalanceCard tokenBalance={tokenBalance} />
-      </Content>
-    </Layout>
-  );
-}
+// function TestBRC20BalanceCard() {
+//   return (
+//     <Layout>
+//       <Content>
+//         <BRC20BalanceCard tokenBalance={tokenBalance} />
+//       </Content>
+//     </Layout>
+//   );
+// }
 
 const testAddressInfo = {
   address: 'tb1q8h8s4zd9y0lkrx334aqnj4ykqs220ss7mjxzny',
@@ -278,7 +278,7 @@ function TestTxFailed() {
 
 function TestAddressTypeCard() {
   const items = [
-    { address: 'bc1qm72q6wrjy05h9fhu9gury67356nrcnvdd6853x', path: "m/84'/0'/0'/0/0", satoshis: 100 }
+    { address: 'bc1qm72q6wrjy05h9fhu9gury67356nrcnvdd6853x', path: 'm/84\'/0\'/0\'/0/0', satoshis: 100 }
     // { address: 'bc1qug97mq778xeusw66z559uuwcyt7kxsmarrvl90', path: "m/84'/0'/0'/0/1" }
   ];
   return (

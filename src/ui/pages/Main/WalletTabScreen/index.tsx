@@ -133,21 +133,21 @@ export default function WalletTabScreen() {
       label: 'Nft',
       children: <OrdinalsTab />
     },
-    {
-      key: AssetTabKey.TOKEN,
-      label: 'Token',
-      children: <OrdinalsTab />
-    },
-    {
-      key: AssetTabKey.NAME,
-      label: 'Name',
-      children: <OrdinalsTab />
-    },
-    {
-      key: AssetTabKey.EXOTIC,
-      label: 'Exotic',
-      children: <OrdinalsTab />
-    },
+    // {
+    //   key: AssetTabKey.TOKEN,
+    //   label: 'Token',
+    //   children: <OrdinalsTab />
+    // },
+    // {
+    //   key: AssetTabKey.NAME,
+    //   label: 'Name',
+    //   children: <OrdinalsTab />
+    // },
+    // {
+    //   key: AssetTabKey.EXOTIC,
+    //   label: 'Exotic',
+    //   children: <OrdinalsTab />
+    // },
     {
       key: AssetTabKey.COLLECTION,
       label: 'Collection',

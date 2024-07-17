@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { KEYRING_TYPE } from '@/shared/constant';
 import {
-  Atomical,
+  /*Atomical,*/
   DecodedPsbt,
   Inscription,
   RawTxInfo,
@@ -15,10 +15,10 @@ import {
 import { Button, Card, Column, Content, Footer, Header, Icon, Layout, Row, Text } from '@/ui/components';
 import { useTools } from '@/ui/components/ActionComponent';
 import { AddressText } from '@/ui/components/AddressText';
-import Arc20PreviewCard from '@/ui/components/Arc20PreviewCard';
+// import Arc20PreviewCard from '@/ui/components/Arc20PreviewCard';
 import AssetTag from '@/ui/components/AssetTag';
-import AtomicalsNFTPreview from '@/ui/components/AtomicalsNFTPreview';
-import BRC20Preview from '@/ui/components/BRC20Preview';
+// import AtomicalsNFTPreview from '@/ui/components/AtomicalsNFTPreview';
+// import BRC20Preview from '@/ui/components/BRC20Preview';
 import InscriptionPreview from '@/ui/components/InscriptionPreview';
 import RunesPreviewCard from '@/ui/components/RunesPreviewCard';
 import { SignPsbtWithRisksPopover } from '@/ui/components/SignPsbtWithRisksPopover';
@@ -26,7 +26,7 @@ import WebsiteBar from '@/ui/components/WebsiteBar';
 import KeystoneSignScreen from '@/ui/pages/Wallet/KeystoneSignScreen';
 import { useAccountAddress, useCurrentAccount } from '@/ui/state/accounts/hooks';
 import {
-  usePrepareSendAtomicalsNFTCallback,
+  /*usePrepareSendAtomicalsNFTCallback,*/
   usePrepareSendBTCCallback,
   usePrepareSendOrdinalsInscriptionCallback
 } from '@/ui/state/transactions/hooks';
@@ -151,47 +151,47 @@ function SignTxDetails({ txInfo, type, rawTxInfo }: { txInfo: TxInfo; rawTxInfo?
     (pre, cur) => cur.inscriptions?.length + pre,
     0
   );
-  const atomicalsNFTCount = txInfo.decodedPsbt.inputInfos.reduce(
-    (pre, cur) => cur.atomicals.filter((v) => v.type === 'NFT').length + pre,
-    0
-  );
-  const arc20Count = txInfo.decodedPsbt.inputInfos.reduce(
-    (pre, cur) => cur.atomicals.filter((v) => v.type === 'FT').length + pre,
-    0
-  );
+  // const atomicalsNFTCount = txInfo.decodedPsbt.inputInfos.reduce(
+  //   (pre, cur) => cur.atomicals.filter((v) => v.type === 'NFT').length + pre,
+  //   0
+  // );
+  // const arc20Count = txInfo.decodedPsbt.inputInfos.reduce(
+  //   (pre, cur) => cur.atomicals.filter((v) => v.type === 'FT').length + pre,
+  //   0
+  // );
 
   const runesCount = txInfo.decodedPsbt.inputInfos.reduce((pre, cur) => (cur.runes ? cur.runes.length : 0) + pre, 0);
 
-  const brc20Count = 0;
+  // const brc20Count = 0;
 
-  const atomicals_nft: Atomical[] = [];
-  const atomicals_ft: Atomical[] = [];
-  const arc20Map: { [ticker: string]: number } = {};
+  // const atomicals_nft: Atomical[] = [];
+  // const atomicals_ft: Atomical[] = [];
+  // const arc20Map: { [ticker: string]: number } = {};
   txInfo.decodedPsbt.inputInfos.forEach((v) => {
-    v.atomicals.forEach((w) => {
-      if (w.type === 'FT') {
-        atomicals_ft.push(w);
-        const ticker = w.ticker || '';
-        arc20Map[ticker] = (arc20Map[ticker] || 0) + v.value;
-      } else {
-        atomicals_nft.push(w);
-      }
-    });
+    // v.atomicals.forEach((w) => {
+    //   if (w.type === 'FT') {
+    //     atomicals_ft.push(w);
+    //     const ticker = w.ticker || '';
+    //     arc20Map[ticker] = (arc20Map[ticker] || 0) + v.value;
+    //   } else {
+    //     atomicals_nft.push(w);
+    //   }
+    // });
   });
   const inscriptionArray = Object.values(txInfo.decodedPsbt.inscriptions);
-  const arc20Array = Object.keys(arc20Map).map((v) => ({ ticker: v, amt: arc20Map[v] }));
+  // const arc20Array = Object.keys(arc20Map).map((v) => ({ ticker: v, amt: arc20Map[v] }));
 
-  const brc20Array: { tick: string; amt: string; inscriptionNumber: number }[] = [];
+  // const brc20Array: { tick: string; amt: string; inscriptionNumber: number }[] = [];
   txInfo.decodedPsbt.inputInfos.forEach((v) => {
     v.inscriptions.forEach((w) => {
-      const inscriptionInfo = txInfo.decodedPsbt.inscriptions[w.inscriptionId];
-      if (inscriptionInfo.brc20) {
-        brc20Array.push({
-          tick: inscriptionInfo.brc20.tick,
-          amt: inscriptionInfo.brc20.amt,
-          inscriptionNumber: w.inscriptionNumber
-        });
-      }
+      // const inscriptionInfo = txInfo.decodedPsbt.inscriptions[w.inscriptionId];
+      // if (inscriptionInfo.brc20) {
+      //   brc20Array.push({
+      //     tick: inscriptionInfo.brc20.tick,
+      //     amt: inscriptionInfo.brc20.amt,
+      //     inscriptionNumber: w.inscriptionNumber
+      //   });
+      // }
     });
   });
 
@@ -206,7 +206,7 @@ function SignTxDetails({ txInfo, type, rawTxInfo }: { txInfo: TxInfo; rawTxInfo?
 
   const involvedAssets = useMemo(() => {
     const involved =
-      ordinalsInscriptionCount > 0 || atomicalsNFTCount > 0 || arc20Count > 0 || brc20Count > 0 || runesCount > 0;
+      ordinalsInscriptionCount > 0 || /*atomicalsNFTCount > 0 || arc20Count > 0 ||  brc20Count > 0 ||*/ runesCount > 0;
     if (!involved) return;
     return (
       <Column>
@@ -236,7 +236,7 @@ function SignTxDetails({ txInfo, type, rawTxInfo }: { txInfo: TxInfo; rawTxInfo?
             </Column>
           ) : null}
 
-          {arc20Array.length > 0 ? (
+          {/* {arc20Array.length > 0 ? (
             <Column
               fullX
               px="md"
@@ -258,8 +258,8 @@ function SignTxDetails({ txInfo, type, rawTxInfo }: { txInfo: TxInfo; rawTxInfo?
                 })}
               </Row>
             </Column>
-          ) : null}
-
+          ) : null} */}
+{/*
           {brc20Array.length > 0 ? (
             <Column
               fullX
@@ -291,7 +291,7 @@ function SignTxDetails({ txInfo, type, rawTxInfo }: { txInfo: TxInfo; rawTxInfo?
                 })}
               </Row>
             </Column>
-          ) : null}
+          ) : null} */}
 
           {runesArray.length > 0 ? (
             <Column
@@ -475,7 +475,7 @@ export default function SignPsbt({
 
   const prepareSendBTC = usePrepareSendBTCCallback();
   const prepareSendOrdinalsInscription = usePrepareSendOrdinalsInscriptionCallback();
-  const prepareSendAtomicalsInscription = usePrepareSendAtomicalsNFTCallback;
+  // const prepareSendAtomicalsInscription = usePrepareSendAtomicalsNFTCallback;
 
   const wallet = useWallet();
   const [loading, setLoading] = useState(true);
@@ -764,8 +764,8 @@ export default function SignPsbt({
                     {txInfo.decodedPsbt.inputInfos.map((v, index) => {
                       const isToSign = txInfo.toSignInputs.find((v) => v.index === index) ? true : false;
                       const inscriptions = v.inscriptions;
-                      const atomicals_nft = v.atomicals.filter((v) => v.type === 'NFT');
-                      const atomicals_ft = v.atomicals.filter((v) => v.type === 'FT');
+                      // const atomicals_nft = v.atomicals.filter((v) => v.type === 'NFT');
+                      // const atomicals_ft = v.atomicals.filter((v) => v.type === 'FT');
                       const runes = v.runes || [];
                       return (
                         <Row
@@ -813,7 +813,7 @@ export default function SignPsbt({
                               </Row>
                             )}
 
-                            {atomicals_nft.length > 0 && (
+                            {/* {atomicals_nft.length > 0 && (
                               <Row>
                                 <Column justifyCenter>
                                   <Text
@@ -834,9 +834,9 @@ export default function SignPsbt({
                                   </Row>
                                 </Column>
                               </Row>
-                            )}
+                            )} */}
 
-                            {atomicals_ft.length > 0 && (
+                            {/* {atomicals_ft.length > 0 && (
                               <Row>
                                 <Column justifyCenter>
                                   <Text text={'ARC20'} color={isToSign ? 'white' : 'textDim'} />
@@ -847,7 +847,7 @@ export default function SignPsbt({
                                   </Row>
                                 </Column>
                               </Row>
-                            )}
+                            )} */}
 
                             {runes.length > 0 && (
                               <Row>
@@ -876,8 +876,8 @@ export default function SignPsbt({
                     {txInfo.decodedPsbt.outputInfos.map((v, index) => {
                       const isMyAddress = v.address == currentAccount.address;
                       const inscriptions = v.inscriptions;
-                      const atomicals_nft = v.atomicals.filter((v) => v.type === 'NFT');
-                      const atomicals_ft = v.atomicals.filter((v) => v.type === 'FT');
+                      // const atomicals_nft = v.atomicals.filter((v) => v.type === 'NFT');
+                      // const atomicals_ft = v.atomicals.filter((v) => v.type === 'FT');
                       const runes = v.runes || [];
                       return (
                         <Column
@@ -916,7 +916,7 @@ export default function SignPsbt({
                             </Row>
                           )}
 
-                          {atomicals_nft.length > 0 && (
+                          {/* {atomicals_nft.length > 0 && (
                             <Row>
                               <Column justifyCenter>
                                 <Text
@@ -937,9 +937,9 @@ export default function SignPsbt({
                                 </Row>
                               </Column>{' '}
                             </Row>
-                          )}
+                          )} */}
 
-                          {atomicals_ft.length > 0 && (
+                          {/* {atomicals_ft.length > 0 && (
                             <Row>
                               <Column justifyCenter>
                                 <Text text={'ARC20'} color={isMyAddress ? 'white' : 'textDim'} />
@@ -950,7 +950,7 @@ export default function SignPsbt({
                                 </Row>
                               </Column>
                             </Row>
-                          )}
+                          )} */}
 
                           {runes.length > 0 && (
                             <Row>

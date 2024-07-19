@@ -1,7 +1,7 @@
 import randomstring from 'randomstring';
 
 import { createPersistStore } from '@/background/utils';
-import { CHANNEL, OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET, VERSION } from '@/shared/constant';
+import { CHANNEL, ENV_TYPE_PROD, NETWORK_TYPE_MAINNET, OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET, VERSION } from '@/shared/constant';
 import {
   AddressRunesTokenSummary,
   AddressSummary,
@@ -15,6 +15,7 @@ import {
   Inscription,
   InscriptionSummary,
   NetworkType,
+  OrdinalsName,
   RuneBalance,
   TokenBalance,
   TokenTransfer,
@@ -28,6 +29,8 @@ import { preferenceService } from '.';
 
 interface OpenApiStore {
   host: string;
+  env: string;
+  network: string;
   deviceId: string;
   config?: WalletConfig;
 }
@@ -58,6 +61,8 @@ export class OpenApiService {
       name: 'openapi',
       template: {
         host: OPENAPI_URL_MAINNET,
+        env: ENV_TYPE_PROD,
+        network: NETWORK_TYPE_MAINNET,
         deviceId: randomstring.generate(12)
       }
     });
@@ -375,6 +380,10 @@ export class OpenApiService {
     return this.httpGet('/version/detail', {
       version
     });
+  }
+
+  async getOrdinalsNameList(address: string, cursor: number, size: number): Promise<{ list: OrdinalsName[]; total: number }> {
+    return this.httpGet('/name/list', { address, cursor, size });
   }
 
   async getRunesList(address: string, cursor: number, size: number): Promise<{ list: RuneBalance[]; total: number }> {

@@ -34,6 +34,7 @@ import { BuyBTCModal } from '../../BuyBTC/BuyBTCModal';
 import { useNavigate } from '../../MainRoute';
 // import { AtomicalsTab } from './AtomicalsTab';
 import { useTools } from '@/ui/components/ActionComponent';
+import { NameList } from './NameList';
 import { OrdinalsTab } from './OrdinalsTab';
 
 const $noBreakStyle: CSSProperties = {
@@ -130,19 +131,19 @@ export default function WalletTabScreen() {
   const tabItems = [
     {
       key: AssetTabKey.ORDINALS,
-      label: 'Nft',
+      label: 'Ordinals',
       children: <OrdinalsTab />
     },
-    // {
-    //   key: AssetTabKey.TOKEN,
-    //   label: 'Token',
-    //   children: <OrdinalsTab />
-    // },
-    // {
-    //   key: AssetTabKey.NAME,
-    //   label: 'Name',
-    //   children: <OrdinalsTab />
-    // },
+    {
+      key: AssetTabKey.NAME,
+      label: 'Name',
+      children: <NameList />
+    },
+    {
+      key: AssetTabKey.TOKEN,
+      label: 'Token',
+      children: <OrdinalsTab />
+    },
     // {
     //   key: AssetTabKey.EXOTIC,
     //   label: 'Exotic',

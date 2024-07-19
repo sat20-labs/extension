@@ -29,6 +29,7 @@ import {
   AddressType,
   AddressUserToSignInput,
   BitcoinBalance,
+  EnvironmentType,
   NetworkType,
   PublicKeyUserToSignInput,
   SignPsbtOptions,
@@ -754,6 +755,24 @@ export class WalletController extends BaseController {
     const keyring = await this.getCurrentKeyring();
     if (!keyring) throw new Error('no current keyring');
     this.changeKeyring(keyring, currentAccount?.index);
+  };
+
+  getEnvironmentType = () => {
+    const environmentType = preferenceService.getEnvironmentType();
+    return environmentType;
+  };
+
+  setEnvironmentType = async (environmentType: EnvironmentType) => {
+    preferenceService.setEnvironmentType(environmentType);
+    if (environmentType === EnvironmentType.PROD) {
+      this.openapi.setHost(OPENAPI_URL_MAINNET);
+    } else {
+      this.openapi.setHost(OPENAPI_URL_TESTNET);
+    }
+    const network = this.getNetworkName();
+    sessionService.broadcastEvent('environmentChanged', {
+      network
+    });
   };
 
   getNetworkName = () => {
@@ -1783,6 +1802,19 @@ export class WalletController extends BaseController {
 
   setEnableSignData = async (enable: boolean) => {
     return preferenceService.setEnableSignData(enable);
+  };
+
+  getOrdinalsNameList = async (address: string, currentPage: number, pageSize: number) => {
+    const cursor = (currentPage - 1) * pageSize;
+    const size = pageSize;
+    const { total, list } = await openapiService.getOrdinalsNameList(address, cursor, size);
+
+    return {
+      currentPage,
+      pageSize,
+      total,
+      list
+    };
   };
 
   getRunesList = async (address: string, currentPage: number, pageSize: number) => {

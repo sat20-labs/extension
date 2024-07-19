@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ADDRESS_TYPES, /*DISCORD_URL,*/ GITHUB_URL, KEYRING_TYPE, NETWORK_TYPES, TWITTER_URL } from '@/shared/constant';
+import { ADDRESS_TYPES, ENVIROMENT_TYPES, /*DISCORD_URL,*/ GITHUB_URL, KEYRING_TYPE, NETWORK_TYPES, TWITTER_URL } from '@/shared/constant';
 import { Card, Column, Content, Footer, Header, Layout, Row, Text } from '@/ui/components';
 import { useTools } from '@/ui/components/ActionComponent';
 import { Button } from '@/ui/components/Button';
@@ -70,7 +70,14 @@ const SettingList: Setting[] = [
     route: '/settings/network-type',
     right: true
   },
-
+  {
+    label: 'Environment',
+    value: 'PROD',
+    desc: '',
+    action: 'environmentType',
+    route: '/settings/network-type',
+    right: true
+  },
   {
     label: 'Change Password',
     value: 'Change your lockscreen password',
@@ -138,6 +145,10 @@ export default function SettingsTabScreen() {
 
     if (v.action == 'networkType') {
       v.value = NETWORK_TYPES[networkType].label;
+    }
+
+    if (v.action == 'environmentType') {
+      v.value = ENVIROMENT_TYPES[networkType].label;
     }
 
     if (v.action == 'addressType') {

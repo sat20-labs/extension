@@ -1,6 +1,7 @@
 import compareVersions from 'compare-versions';
 import cloneDeep from 'lodash/cloneDeep';
 
+
 import { createPersistStore } from '@/background/utils';
 import { AddressFlagType, EVENTS } from '@/shared/constant';
 import eventBus from '@/shared/eventBus';
@@ -10,6 +11,7 @@ import {
   AddressType,
   AppSummary,
   BitcoinBalance,
+  EnvironmentType,
   Inscription,
   NetworkType,
   TokenBalance,
@@ -42,6 +44,7 @@ export interface PreferenceStore {
   currency: string;
   addressType: AddressType;
   networkType: NetworkType;
+  environmentType: EnvironmentType;
   keyringAlianNames: {
     [key: string]: string;
   };
@@ -117,6 +120,7 @@ class PreferenceService {
         currency: 'USD',
         addressType: AddressType.P2WPKH,
         networkType: NetworkType.MAINNET,
+        environmentType: EnvironmentType.PROD,
         keyringAlianNames: {},
         accountAlianNames: {},
         uiCachedData: {},
@@ -357,6 +361,15 @@ class PreferenceService {
 
   setNetworkType = (networkType: NetworkType) => {
     this.store.networkType = networkType;
+  };
+
+  // environment type
+  getEnvironmentType = () => {
+    return this.store.environmentType;
+  };
+
+  setEnvironmentType = (enviromentType: EnvironmentType) => {
+    this.store.environmentType = enviromentType;
   };
 
   // currentKeyringIndex

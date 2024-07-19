@@ -2,7 +2,7 @@ import compareVersions from 'compare-versions';
 import { useCallback } from 'react';
 
 import { VERSION } from '@/shared/constant';
-import { NetworkType } from '@/shared/types';
+import { EnvironmentType, NetworkType } from '@/shared/types';
 import { useWallet } from '@/ui/utils';
 import i18n, { addResourceBundle } from '@/ui/utils/i18n';
 
@@ -49,6 +49,11 @@ export function useNetworkType() {
   return accountsState.networkType;
 }
 
+export function useEnvironmentType() {
+  const accountsState = useSettingsState();
+  return accountsState.environmentType;
+}
+
 export function useChangeNetworkTypeCallback() {
   const dispatch = useAppDispatch();
   const wallet = useWallet();
@@ -58,6 +63,22 @@ export function useChangeNetworkTypeCallback() {
       dispatch(
         settingsActions.updateSettings({
           networkType: type
+        })
+      );
+    },
+    [dispatch]
+  );
+}
+
+export function useChangeEnvironmentTypeCallback() {
+  const dispatch = useAppDispatch();
+  const wallet = useWallet();
+  return useCallback(
+    async (type: EnvironmentType) => {
+      await wallet.setEnvironmentType(type);
+      dispatch(
+        settingsActions.updateSettings({
+          environmentType: type
         })
       );
     },

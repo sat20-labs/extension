@@ -14,11 +14,13 @@ import {
   Arc20Balance,
   BitcoinBalance,
   DecodedPsbt,
+  EnvironmentType,
   FeeSummary,
   InscribeOrder,
   Inscription,
   InscriptionSummary,
   NetworkType,
+  OrdinalsName,
   RuneBalance,
   SignPsbtOptions,
   TokenBalance,
@@ -193,6 +195,7 @@ export interface WalletController {
 
   getNetworkType(): Promise<NetworkType>;
   setNetworkType(type: NetworkType): Promise<void>;
+  setEnvironmentType(type: EnvironmentType): Promise<void>;
 
   getConnectedSites(): Promise<ConnectedSite[]>;
   removeConnectedSite(origin: string): Promise<void>;
@@ -338,6 +341,12 @@ export interface WalletController {
 
   getEnableSignData(): Promise<boolean>;
   setEnableSignData(enable: boolean): Promise<void>;
+
+  getOrdinalsNameList(
+    address: string,
+    currentPage: number,
+    pageSize: number
+  ): Promise<{ currentPage: number; pageSize: number; total: number; list: OrdinalsName[] }>;
 
   getRunesList(
     address: string,

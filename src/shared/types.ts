@@ -14,6 +14,12 @@ export enum NetworkType {
   TESTNET
 }
 
+export enum EnvironmentType {
+  PROD,
+  TEST,
+  DEV
+}
+
 export enum RestoreWalletType {
   SAT20,
   SPARROW,
@@ -430,4 +436,18 @@ export interface AddressRunesTokenSummary {
   runeInfo: RuneInfo;
   runeBalance: RuneBalance;
   runeLogo?: Inscription;
+}
+
+export interface OrdinalsName {
+  inscriptionNumber: number;
+  name: string;
+  sat: number;
+  address: string;
+  inscriptionId: string;
+  utxo: string;
+  value?: number;
+  height: number;
+  timestamp: number;
+  inscriptionAddress: string;
+  preview: string;
 }

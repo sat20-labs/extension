@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 
 /* constants pool */
-import { AddressType, Chain, NetworkType, RestoreWalletType } from '../types';
+import { AddressType, Chain, EnvironmentType, NetworkType, RestoreWalletType } from '../types';
 
 export enum CHAINS_ENUM {
   BTC = 'BTC'
@@ -221,6 +221,12 @@ export const NETWORK_TYPES = [
   { value: NetworkType.TESTNET, label: 'TESTNET', name: 'testnet', validNames: ['testnet'] }
 ];
 
+export const ENVIROMENT_TYPES = [
+  { value: EnvironmentType.PROD, label: 'PROD', name: 'prd' },
+  { value: EnvironmentType.DEV, label: 'DEV', name: 'dev' },
+  { value: EnvironmentType.TEST, label: 'TEST', name: 'test' }
+];
+
 export const MINIMUM_GAS_LIMIT = 21000;
 
 export enum WATCH_ADDRESS_CONNECT_TYPE {
@@ -243,6 +249,16 @@ export const WALLETCONNECT_STATUS_MAP = {
 //   origin: INTERNAL_REQUEST_ORIGIN,
 //   icon: './images/logo/logo@128x.png'
 // };
+
+export const ENV_TYPE_DEV = 'dev';
+export const ENV_TYPE_PROD = 'prd';
+export const ENV_TYPE_TEST = 'test';
+export const NETWORK_TYPE_MAINNET = 'mainnet';
+export const NETWORK_TYPE_TESTNET4 = 'testnet4';
+
+export function getOpenApiHost(env: string, network: string): string {
+  return `https://api${env}.ordx.space/${network}/extension`;
+}
 
 export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';
 export const OPENAPI_URL_TESTNET = 'https://apidev.ordx.space/testnet4/extension';

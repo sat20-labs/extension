@@ -1,5 +1,6 @@
 import { AddressType, NetworkType, WalletConfig } from '@/shared/types';
 import { createSlice } from '@reduxjs/toolkit';
+import { EnvironmentType } from './../../../shared/types';
 
 import { updateVersion } from '../global/actions';
 
@@ -7,6 +8,7 @@ export interface SettingsState {
   locale: string;
   addressType: AddressType;
   networkType: NetworkType;
+  environmentType: EnvironmentType,
   walletConfig: WalletConfig;
   skippedVersion: string;
 }
@@ -15,6 +17,7 @@ export const initialState: SettingsState = {
   locale: 'English',
   addressType: AddressType.P2TR,
   networkType: NetworkType.MAINNET,
+  environmentType: EnvironmentType.PROD,
   walletConfig: {
     version: '',
     moonPayEnabled: true,
@@ -37,6 +40,7 @@ const slice = createSlice({
           locale?: string;
           addressType?: AddressType;
           networkType?: NetworkType;
+          environmentType?: EnvironmentType;
           walletConfig?: WalletConfig;
           skippedVersion?: string;
         };

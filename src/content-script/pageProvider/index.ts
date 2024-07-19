@@ -11,6 +11,9 @@ import { $, domReadyCall } from './utils';
 
 const log = (event, ...args) => {
   if (process.env.NODE_ENV !== 'production') {
+    if (args[0]?.includes('keepAlive') && !process.env.SHOW_KEEPER_ALIVE_LOG) {
+      return
+    }
     console.log(
       `%c [sat20] (${new Date().toTimeString().slice(0, 8)}) ${event}`,
       'font-weight: 600; background-color: #7d6ef9; color: white;',
@@ -37,6 +40,7 @@ const EXTENSION_CONTEXT_INVALIDATED_CHROMIUM_ERROR = 'Extension context invalida
 export class Sat20Provider extends EventEmitter {
   _selectedAddress: string | null = null;
   _network: string | null = null;
+  _environment: string | null = null;
   _isConnected = false;
   _initialized = false;
   _isUnlocked = false;
@@ -83,7 +87,7 @@ export class Sat20Provider extends EventEmitter {
     });
 
     try {
-      const { network, accounts, isUnlocked }: any = await this._request({
+      const { network, environment, accounts, isUnlocked }: any = await this._request({
         method: 'getProviderState'
       });
       if (isUnlocked) {
@@ -94,6 +98,10 @@ export class Sat20Provider extends EventEmitter {
       this._pushEventHandlers.networkChanged({
         network
       });
+
+      // this._pushEventHandlers.environmentChanged({
+      //   environment
+      // });
 
       this._pushEventHandlers.accountsChanged(accounts);
     } catch {

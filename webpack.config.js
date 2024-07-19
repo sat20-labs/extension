@@ -10,10 +10,12 @@ const config = (env) => {
   if (env.config == 'dev') {
     process.env.NODE_ENV = 'development';
     process.env.BABEL_ENV = 'development';
+    process.env.SHOW_KEEPER_ALIVE_LOG = false;
   } else {
     process.env.NODE_ENV = 'production';
     process.env.BABEL_ENV = 'production';
     process.env.TAILWIND_MODE = 'watch';
+    process.env.SHOW_KEEPER_ALIVE_LOG = true;
   }
 
   if (env.config) {

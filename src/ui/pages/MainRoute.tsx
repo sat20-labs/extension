@@ -37,6 +37,7 @@ import OrdinalsInscriptionScreen from './Ordinals/OrdinalsInscriptionScreen';
 import SendOrdinalsInscriptionScreen from './Ordinals/SendOrdinalsInscriptionScreen';
 import SignOrdinalsTransactionScreen from './Ordinals/SignOrdinalsTransactionScreen';
 import SplitOrdinalsInscriptionScreen from './Ordinals/SplitOrdinalsInscriptionScreen';
+import OrdinalsNameScreen from './OrdinalsName/OrdinalsNameScreen';
 import RunesTokenScreen from './Runes/RunesTokenScreen';
 import SendRunesScreen from './Runes/SendRunesScreen';
 import AddressTypeScreen from './Settings/AddressTypeScreen';
@@ -44,6 +45,7 @@ import AdvancedScreen from './Settings/AdvancedScreen';
 import ChangePasswordScreen from './Settings/ChangePasswordScreen';
 import EditAccountNameScreen from './Settings/EditAccountNameScreen';
 import EditWalletNameScreen from './Settings/EditWalletNameScreen';
+import EnviromentTypeScreen from './Settings/EnviromentTypeScreen';
 import ExportMnemonicsScreen from './Settings/ExportMnemonicsScreen';
 import ExportPrivateKeyScreen from './Settings/ExportPrivateKeyScreen';
 import NetworkTypeScreen from './Settings/NetworkTypeScreen';
@@ -155,6 +157,10 @@ const routes = {
   //   element: <SendArc20Screen />
   // },
 
+  EnvironmentTypeScreen: {
+    path: '/settings/environment-type',
+    element: <EnviromentTypeScreen />
+  },
   NetworkTypeScreen: {
     path: '/settings/network-type',
     element: <NetworkTypeScreen />
@@ -243,7 +249,6 @@ const routes = {
     path: '/wallet/unavailable-utxo',
     element: <UnavailableUtxoScreen />
   },
-
   SendRunesScreen: {
     path: '/runes/send-runes',
     element: <SendRunesScreen />
@@ -251,7 +256,12 @@ const routes = {
   RunesTokenScreen: {
     path: '/runes/token',
     element: <RunesTokenScreen />
+  },
+  OrdinalsNameScreen: {
+    path: '/name/token',
+    element: <OrdinalsNameScreen />
   }
+
 };
 
 type RouteTypes = keyof typeof routes;

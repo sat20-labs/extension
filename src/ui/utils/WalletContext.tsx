@@ -195,6 +195,7 @@ export interface WalletController {
 
   getNetworkType(): Promise<NetworkType>;
   setNetworkType(type: NetworkType): Promise<void>;
+  getEnvironmentType(): Promise<EnvironmentType>;
   setEnvironmentType(type: EnvironmentType): Promise<void>;
 
   getConnectedSites(): Promise<ConnectedSite[]>;

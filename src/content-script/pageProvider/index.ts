@@ -99,9 +99,9 @@ export class Sat20Provider extends EventEmitter {
         network
       });
 
-      // this._pushEventHandlers.environmentChanged({
-      //   environment
-      // });
+      this._pushEventHandlers.environmentChanged({
+        environment
+      });
 
       this._pushEventHandlers.accountsChanged(accounts);
     } catch {

@@ -1,7 +1,7 @@
 import randomstring from 'randomstring';
 
 import { createPersistStore } from '@/background/utils';
-import { CHANNEL, ENV_TYPE_PROD, NETWORK_TYPE_MAINNET, OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET, VERSION } from '@/shared/constant';
+import { CHANNEL, ENVIROMENT_TYPES, GET_OPEN_API_HOST, NETWORK_TYPES, VERSION } from '@/shared/constant';
 import {
   AddressRunesTokenSummary,
   AddressSummary,
@@ -10,6 +10,7 @@ import {
   Arc20Balance,
   BitcoinBalance,
   DecodedPsbt,
+  EnvironmentType,
   FeeSummary,
   InscribeOrder,
   Inscription,
@@ -35,7 +36,7 @@ interface OpenApiStore {
   config?: WalletConfig;
 }
 
-const maxRPS = 100;
+// const maxRPS = 100;
 
 enum API_STATUS {
   FAILED = -1,
@@ -57,24 +58,23 @@ export class OpenApiService {
   };
 
   init = async () => {
+    const prdEnvType = ENVIROMENT_TYPES[EnvironmentType.PROD].name;
+    const mainnetNetworkType = NETWORK_TYPES[NetworkType.MAINNET].name;
+    const prdMainnetHost = GET_OPEN_API_HOST(prdEnvType, mainnetNetworkType);
+
     this.store = await createPersistStore({
       name: 'openapi',
       template: {
-        host: OPENAPI_URL_MAINNET,
-        env: ENV_TYPE_PROD,
-        network: NETWORK_TYPE_MAINNET,
-        deviceId: randomstring.generate(12)
+        host: prdMainnetHost,
+        env: prdEnvType,
+        network: mainnetNetworkType,
+        deviceId: randomstring.generate(12),
       }
     });
 
-    if (![OPENAPI_URL_MAINNET, OPENAPI_URL_TESTNET].includes(this.store.host)) {
-      const networkType = preferenceService.getNetworkType();
-      if (networkType === NetworkType.MAINNET) {
-        this.store.host = OPENAPI_URL_MAINNET;
-      } else {
-        this.store.host = OPENAPI_URL_TESTNET;
-      }
-    }
+    const networkType = NETWORK_TYPES[preferenceService.getNetworkType()].name;
+    const envType = ENVIROMENT_TYPES[preferenceService.getEnvironmentType()].name;
+    this.store.host = GET_OPEN_API_HOST(envType, networkType);
 
     if (!this.store.deviceId) {
       this.store.deviceId = randomstring.generate(12);

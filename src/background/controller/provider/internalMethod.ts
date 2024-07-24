@@ -26,6 +26,7 @@ const getProviderState = async (req) => {
   }
   return {
     network: wallet.getNetworkName(),
+    environment: wallet.getEnvironmentName(),
     isUnlocked,
     accounts
   };

@@ -7,7 +7,7 @@ import {
   preferenceService,
   sessionService
 } from '@/background/service';
-import i18n from '@/background/service/i18n';
+// import i18n from '@/background/service/i18n';
 import { DisplayedKeyring, Keyring } from '@/background/service/keyring';
 import {
   ADDRESS_TYPES,
@@ -16,11 +16,11 @@ import {
   CHAINS_ENUM,
   COIN_NAME,
   COIN_SYMBOL,
+  ENVIROMENT_TYPES,
+  GET_OPEN_API_HOST,
   KEYRING_TYPE,
   KEYRING_TYPES,
   NETWORK_TYPES,
-  OPENAPI_URL_MAINNET,
-  OPENAPI_URL_TESTNET,
   UNCONFIRMED_HEIGHT
 } from '@/shared/constant';
 import { runesUtils } from '@/shared/lib/runes-utils';
@@ -161,12 +161,12 @@ export class WalletController extends BaseController {
     return preferenceService.getAddressBalance(address) || defaultBalance;
   };
 
-  getAddressHistory = async (address: string) => {
-    // const data = await openapiService.getAddressRecentHistory(address);
-    // preferenceService.updateAddressHistory(address, data);
-    // return data;
-    //   todo
-  };
+  // getAddressHistory = async (address: string) => {
+  //   // const data = await openapiService.getAddressRecentHistory(address);
+  //   // preferenceService.updateAddressHistory(address, data);
+  //   // return data;
+  //   //   todo
+  // };
 
   getAddressInscriptions = async (address: string, cursor: number, size: number) => {
     const data = await openapiService.getAddressInscriptions(address, cursor, size);
@@ -233,7 +233,7 @@ export class WalletController extends BaseController {
   };
 
   createKeyringWithPrivateKey = async (data: string, addressType: AddressType, alianName?: string) => {
-    const error = new Error(i18n.t('The private key is invalid'));
+    // const error = new Error(i18n.t('The private key is invalid'));
 
     let originKeyring: Keyring;
     try {
@@ -359,7 +359,7 @@ export class WalletController extends BaseController {
         }
       });
     }
-    const account = await originKeyring.getAccounts();
+    // const account = await originKeyring.getAccounts();
     const displayedKeyring = await keyringService.displayForKeyring(
       originKeyring,
       addressType,
@@ -492,15 +492,15 @@ export class WalletController extends BaseController {
           : (_psbt as bitcoin.Psbt);
       psbt.data.inputs.forEach((v, index) => {
         let script: any = null;
-        let value = 0;
+        // let value = 0;
         if (v.witnessUtxo) {
           script = v.witnessUtxo.script;
-          value = v.witnessUtxo.value;
+          // value = v.witnessUtxo.value;
         } else if (v.nonWitnessUtxo) {
           const tx = bitcoin.Transaction.fromBuffer(v.nonWitnessUtxo);
           const output = tx.outs[psbt.txInputs[index].index];
           script = output.script;
-          value = output.value;
+          // value = output.value;
         }
         const isSigned = v.finalScriptSig || v.finalScriptWitness;
         if (script && !isSigned) {
@@ -730,25 +730,55 @@ export class WalletController extends BaseController {
     return assets;
   };
 
-  reportErrors = (error: string) => {
-    console.error('report not implemented');
-  };
+  // reportErrors = (error: string) => {
+  //   console.error('report not implemented');
+  // };
 
   getNetworkType = () => {
     const networkType = preferenceService.getNetworkType();
     return networkType;
   };
 
+  getHost = (environmentType: EnvironmentType, networkType: NetworkType) => {
+    let environment = ENVIROMENT_TYPES[EnvironmentType.PROD].name;
+    const prdEnvType = ENVIROMENT_TYPES[EnvironmentType.PROD].name;
+    const testEnvType = ENVIROMENT_TYPES[EnvironmentType.TEST].name;
+    const devEnvType = ENVIROMENT_TYPES[EnvironmentType.DEV].name;
+    const mainnetNetworkType = NETWORK_TYPES[NetworkType.MAINNET].name;
+    const testnet4NetworkType = NETWORK_TYPES[NetworkType.TESTNET].name;
+
+    switch (environmentType) {
+      case EnvironmentType.PROD:
+        environment = prdEnvType;
+        break;
+      case EnvironmentType.TEST:
+        environment = testEnvType;
+        break;
+      case EnvironmentType.DEV:
+        environment = devEnvType;
+        break;
+    }
+    let network = mainnetNetworkType;
+    switch (networkType) {
+      case NetworkType.MAINNET:
+        network = mainnetNetworkType;
+        break;
+      case NetworkType.TESTNET:
+        network = testnet4NetworkType;
+        break;
+    }
+    return GET_OPEN_API_HOST(environment, network);
+  };
+
   setNetworkType = async (networkType: NetworkType) => {
     preferenceService.setNetworkType(networkType);
-    if (networkType === NetworkType.MAINNET) {
-      this.openapi.setHost(OPENAPI_URL_MAINNET);
-    } else {
-      this.openapi.setHost(OPENAPI_URL_TESTNET);
-    }
-    const network = this.getNetworkName();
+    const environmentType = preferenceService.getEnvironmentType();
+    const host = this.getHost(environmentType, networkType);
+    this.openapi.setHost(host);
+
+    const networkName = this.getNetworkName();
     sessionService.broadcastEvent('networkChanged', {
-      network
+      networkName
     });
 
     const currentAccount = await this.getCurrentAccount();
@@ -764,20 +794,23 @@ export class WalletController extends BaseController {
 
   setEnvironmentType = async (environmentType: EnvironmentType) => {
     preferenceService.setEnvironmentType(environmentType);
-    if (environmentType === EnvironmentType.PROD) {
-      this.openapi.setHost(OPENAPI_URL_MAINNET);
-    } else {
-      this.openapi.setHost(OPENAPI_URL_TESTNET);
-    }
-    const network = this.getNetworkName();
+    const networkType = preferenceService.getNetworkType();
+    const host = this.getHost(environmentType, networkType);
+    this.openapi.setHost(host);
+
     sessionService.broadcastEvent('environmentChanged', {
-      network
+      environmentType
     });
   };
 
   getNetworkName = () => {
     const networkType = preferenceService.getNetworkType();
     return NETWORK_TYPES[networkType].name;
+  };
+
+  getEnvironmentName = () => {
+    const environmentType = preferenceService.getEnvironmentType();
+    return ENVIROMENT_TYPES[environmentType].name;
   };
 
   getBTCUtxos = async () => {

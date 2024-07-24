@@ -1,6 +1,5 @@
-import { AddressType, NetworkType, WalletConfig } from '@/shared/types';
+import { AddressType, EnvironmentType, NetworkType, WalletConfig } from '@/shared/types';
 import { createSlice } from '@reduxjs/toolkit';
-import { EnvironmentType } from './../../../shared/types';
 
 import { updateVersion } from '../global/actions';
 
@@ -56,6 +55,9 @@ const slice = createSlice({
       // todo
       if (!state.networkType) {
         state.networkType = NetworkType.MAINNET;
+      }
+      if (!state.environmentType) {
+        state.environmentType = EnvironmentType.PROD;
       }
     });
   }

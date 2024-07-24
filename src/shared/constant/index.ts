@@ -217,14 +217,14 @@ export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressT
 ];
 
 export const NETWORK_TYPES = [
-  { value: NetworkType.MAINNET, label: 'LIVENET', name: 'livenet', validNames: [0, 'livenet', 'mainnet'] },
-  { value: NetworkType.TESTNET, label: 'TESTNET', name: 'testnet', validNames: ['testnet'] }
+  { value: NetworkType.MAINNET, label: 'MAINNET', name: 'mainnet', validNames: ['mainnet'] },
+  { value: NetworkType.TESTNET, label: 'TESTNET4', name: 'testnet4', validNames: ['testnet4'] }
 ];
 
 export const ENVIROMENT_TYPES = [
   { value: EnvironmentType.PROD, label: 'PROD', name: 'prd' },
+  { value: EnvironmentType.TEST, label: 'TEST', name: 'test' },
   { value: EnvironmentType.DEV, label: 'DEV', name: 'dev' },
-  { value: EnvironmentType.TEST, label: 'TEST', name: 'test' }
 ];
 
 export const MINIMUM_GAS_LIMIT = 21000;
@@ -250,18 +250,19 @@ export const WALLETCONNECT_STATUS_MAP = {
 //   icon: './images/logo/logo@128x.png'
 // };
 
-export const ENV_TYPE_DEV = 'dev';
-export const ENV_TYPE_PROD = 'prd';
-export const ENV_TYPE_TEST = 'test';
-export const NETWORK_TYPE_MAINNET = 'mainnet';
-export const NETWORK_TYPE_TESTNET4 = 'testnet4';
 
-export function getOpenApiHost(env: string, network: string): string {
+// export const ENV_TYPE_DEV = 'dev';
+// export const ENV_TYPE_PROD = 'prd';
+// export const ENV_TYPE_TEST = 'test';
+// export const NETWORK_TYPE_MAINNET = 'mainnet';
+// export const NETWORK_TYPE_TESTNET4 = 'testnet4';
+
+export function GET_OPEN_API_HOST(env: string, network: string): string {
   return `https://api${env}.ordx.space/${network}/extension`;
 }
 
-export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';
-export const OPENAPI_URL_TESTNET = 'https://apidev.ordx.space/testnet4/extension';
+// export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';
+// export const OPENAPI_URL_TESTNET = 'https://apidev.ordx.space/testnet4/extension';
 
 export const EVENTS = {
   broadcastToUI: 'broadcastToUI',

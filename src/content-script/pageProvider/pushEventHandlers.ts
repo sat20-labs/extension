@@ -63,12 +63,12 @@ class PushEventHandlers {
     }
   };
 
-  // environmentChanged = ({ environment }) => {
-  //   if (environment !== this.provider._environment) {
-  //     this.provider._environment = environment;
-  //     this._emit('environmentChanged', environment);
-  //   }
-  // };
+  environmentChanged = ({ environment }) => {
+    if (environment !== this.provider._environment) {
+      this.provider._environment = environment;
+      this._emit('environmentChanged', environment);
+    }
+  };
 }
 
 export default PushEventHandlers;

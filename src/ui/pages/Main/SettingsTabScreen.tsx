@@ -10,7 +10,7 @@ import { NavTabBar } from '@/ui/components/NavTabBar';
 import { getCurrentTab, useExtensionIsInTab, useOpenExtensionInTab } from '@/ui/features/browser/tabs';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import { useCurrentKeyring } from '@/ui/state/keyrings/hooks';
-import { useNetworkType, useVersionInfo } from '@/ui/state/settings/hooks';
+import { useEnvironmentType, useNetworkType, useVersionInfo } from '@/ui/state/settings/hooks';
 import { fontSizes } from '@/ui/theme/font';
 import { spacing } from '@/ui/theme/spacing';
 import { useWallet } from '@/ui/utils';
@@ -75,7 +75,7 @@ const SettingList: Setting[] = [
     value: 'PROD',
     desc: '',
     action: 'environmentType',
-    route: '/settings/network-type',
+    route: '/settings/environment-type',
     right: true
   },
   {
@@ -108,6 +108,7 @@ export default function SettingsTabScreen() {
   const navigate = useNavigate();
 
   const networkType = useNetworkType();
+  const environmentType = useEnvironmentType();
 
   const isInTab = useExtensionIsInTab();
 
@@ -148,7 +149,7 @@ export default function SettingsTabScreen() {
     }
 
     if (v.action == 'environmentType') {
-      v.value = ENVIROMENT_TYPES[networkType].label;
+      v.value = ENVIROMENT_TYPES[environmentType].label;
     }
 
     if (v.action == 'addressType') {

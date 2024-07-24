@@ -314,6 +314,13 @@ const Main = () => {
           })
         );
 
+        const environmentType = await wallet.getEnvironmentType()
+        dispatch(
+          settingsActions.updateSettings({
+            environmentType
+          })
+        );
+
         const _locale = await wallet.getLocale();
         dispatch(settingsActions.updateSettings({ locale: _locale }));
         self.settingsLoaded = true;

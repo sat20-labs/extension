@@ -18,7 +18,7 @@ export default function EnviromentTypeScreen() {
         onBack={() => {
           window.history.go(-1);
         }}
-        title="Switch Network"
+        title="Switch Environment"
       />
       <Content>
         <Column>
@@ -31,9 +31,9 @@ export default function EnviromentTypeScreen() {
                     return;
                   }
                   await changeEnvironmentType(item.value);
-                  reloadAccounts();
+                  // reloadAccounts();
                   navigate('MainScreen');
-                  tools.toastSuccess('Network type changed');
+                  tools.toastSuccess('Environment changed');
                 }}>
                 <Row full justifyBetween itemsCenter>
                   <Row itemsCenter>

@@ -63,7 +63,7 @@ export interface WalletController {
   getAddressCacheBalance(address: string): Promise<BitcoinBalance>;
   getMultiAddressAssets(addresses: string): Promise<AddressSummary[]>;
   findGroupAssets(
-    groups: { type: number; address_arr: string[]; pubkey_arr: string[] }[]
+    groups: { type: number; address_arr: string[] }[]
   ): Promise<{ type: number; address_arr: string[]; pubkey_arr: string[]; satoshis_arr: number[] }[]>;
 
   getAddressInscriptions(

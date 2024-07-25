@@ -140,7 +140,7 @@ export class WalletController extends BaseController {
     return openapiService.getMultiAddressAssets(addresses);
   };
 
-  findGroupAssets = (groups: { type: number; address_arr: string[]; pubkey_arr: string[] }[]) => {
+  findGroupAssets = (groups: { type: number; address_arr: string[] }[]) => {
     return openapiService.findGroupAssets(groups);
   };
 

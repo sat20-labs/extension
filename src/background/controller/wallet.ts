@@ -744,8 +744,8 @@ export class WalletController extends BaseController {
     const prdEnvType = ENVIROMENT_TYPES[EnvironmentType.PROD].name;
     const testEnvType = ENVIROMENT_TYPES[EnvironmentType.TEST].name;
     const devEnvType = ENVIROMENT_TYPES[EnvironmentType.DEV].name;
-    const mainnetNetworkType = NETWORK_TYPES[NetworkType.MAINNET].name;
-    const testnet4NetworkType = NETWORK_TYPES[NetworkType.TESTNET].name;
+    const mainnetNetworkPrefix = NETWORK_TYPES[NetworkType.MAINNET].prefix;
+    const testnet4NetworkPrefix = NETWORK_TYPES[NetworkType.TESTNET].prefix;
 
     switch (environmentType) {
       case EnvironmentType.PROD:
@@ -758,16 +758,16 @@ export class WalletController extends BaseController {
         environment = devEnvType;
         break;
     }
-    let network = mainnetNetworkType;
+    let prefix = mainnetNetworkPrefix;
     switch (networkType) {
       case NetworkType.MAINNET:
-        network = mainnetNetworkType;
+        prefix = mainnetNetworkPrefix;
         break;
       case NetworkType.TESTNET:
-        network = testnet4NetworkType;
+        prefix = testnet4NetworkPrefix;
         break;
     }
-    return GET_OPEN_API_HOST(environment, network);
+    return GET_OPEN_API_HOST(environment, prefix);
   };
 
   setNetworkType = async (networkType: NetworkType) => {

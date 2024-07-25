@@ -217,8 +217,8 @@ export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressT
 ];
 
 export const NETWORK_TYPES = [
-  { value: NetworkType.MAINNET, label: 'MAINNET', name: 'mainnet', validNames: ['mainnet'] },
-  { value: NetworkType.TESTNET, label: 'TESTNET4', name: 'testnet4', validNames: ['testnet4'] }
+  { value: NetworkType.MAINNET, label: 'MAINNET', name: 'mainnet', validNames: ['mainnet'], prefix: 'mainnet', },
+  { value: NetworkType.TESTNET, label: 'TESTNET4', name: 'testnet', validNames: ['testnet'], prefix: 'testnet4', }
 ];
 
 export const ENVIROMENT_TYPES = [
@@ -257,8 +257,8 @@ export const WALLETCONNECT_STATUS_MAP = {
 // export const NETWORK_TYPE_MAINNET = 'mainnet';
 // export const NETWORK_TYPE_TESTNET4 = 'testnet4';
 
-export function GET_OPEN_API_HOST(env: string, network: string): string {
-  return `https://api${env}.ordx.space/${network}/extension`;
+export function GET_OPEN_API_HOST(env: string, prefix: string): string {
+  return `https://api${env}.ordx.space/${prefix}/extension`;
 }
 
 // export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';

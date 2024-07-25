@@ -67,7 +67,7 @@ export function NameList() {
             data={name}
             preset="medium"
             onClick={() => {
-              navigate('OrdinalsInscriptionScreen', { name: name });
+              navigate('OrdinalsNameScreen', { name: name });
             }}
           />
         ))}

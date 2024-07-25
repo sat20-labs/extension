@@ -5,6 +5,7 @@ import { useTools } from '@/ui/components/ActionComponent';
 import OrdinalsNamePreview from '@/ui/components/OrdinalsNamePreview';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import { useAppDispatch } from '@/ui/state/hooks';
+import { useTxIdUrl } from '@/ui/state/settings/hooks';
 import { transactionsActions } from '@/ui/state/transactions/reducer';
 import { copyToClipboard, useLocationState } from '@/ui/utils';
 import { useNavigate } from '../MainRoute';
@@ -17,7 +18,7 @@ export default function OrdinalsNameScreen() {
   const withSend = currentAccount.address === name.address;
   const dispatch = useAppDispatch();
   const isUnconfirmed = name.timestamp == 0;
-
+  const txUrl = useTxIdUrl(name.utxo);
   return (
     <Layout>
       <Header
@@ -57,7 +58,7 @@ export default function OrdinalsNameScreen() {
             <Section title="id" value={name.inscriptionId} />
             <Section title="sat" value={name.sat} />
             <Section title="preview" value={name.preview} link={name.preview} />
-            <Section title="utxo" value={name.utxo} link={name.utxo} />
+            <Section title="utxo" value={name.utxo} link={txUrl} />
             <Section title="address" value={name.address} />
           </Column>
         </Column>

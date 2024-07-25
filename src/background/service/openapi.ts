@@ -59,22 +59,22 @@ export class OpenApiService {
 
   init = async () => {
     const prdEnvType = ENVIROMENT_TYPES[EnvironmentType.PROD].name;
-    const mainnetNetworkType = NETWORK_TYPES[NetworkType.MAINNET].name;
-    const prdMainnetHost = GET_OPEN_API_HOST(prdEnvType, mainnetNetworkType);
+    const mainnetPrefix = NETWORK_TYPES[NetworkType.MAINNET].prefix;
+    const prdMainnetHost = GET_OPEN_API_HOST(prdEnvType, mainnetPrefix);
 
     this.store = await createPersistStore({
       name: 'openapi',
       template: {
         host: prdMainnetHost,
         env: prdEnvType,
-        network: mainnetNetworkType,
+        network: mainnetPrefix,
         deviceId: randomstring.generate(12),
       }
     });
 
-    const networkType = NETWORK_TYPES[preferenceService.getNetworkType()].name;
+    const prefix = NETWORK_TYPES[preferenceService.getNetworkType()].prefix;
     const envType = ENVIROMENT_TYPES[preferenceService.getEnvironmentType()].name;
-    this.store.host = GET_OPEN_API_HOST(envType, networkType);
+    this.store.host = GET_OPEN_API_HOST(envType, prefix);
 
     if (!this.store.deviceId) {
       this.store.deviceId = randomstring.generate(12);

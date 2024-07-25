@@ -94,7 +94,7 @@ export default function WalletTabScreen() {
 
   useEffect(() => {
     if (currentAccount.address === addressSummary.address) {
-      if (addressSummary.arc20Count > 0 || addressSummary.runesCount > 0) {
+      if (/*addressSummary.arc20Count > 0 || */ addressSummary.runesCount > 0) {
         if (!checkAddressFlag(currentAccount.flag, AddressFlagType.CONFIRMED_UTXO_MODE)) {
           if (!checkAddressFlag(currentAccount.flag, AddressFlagType.DISABLE_AUTO_SWITCH_CONFIRMED)) {
             wallet.addAddressFlag(currentAccount, AddressFlagType.CONFIRMED_UTXO_MODE).then((account) => {

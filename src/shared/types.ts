@@ -377,10 +377,10 @@ export interface AddressSummary {
   btcSatoshis: number;
   assetSatoshis: number;
   inscriptionCount: number;
-  atomicalsCount: number;
-  brc20Count: number;
-  brc20Count5Byte: number;
-  arc20Count: number;
+  // atomicalsCount: number;
+  // brc20Count: number;
+  // brc20Count5Byte: number;
+  // arc20Count: number;
   runesCount: number;
   loading?: boolean;
 }

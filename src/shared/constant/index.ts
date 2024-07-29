@@ -217,7 +217,7 @@ export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressT
 ];
 
 export const NETWORK_TYPES = [
-  { value: NetworkType.MAINNET, label: 'MAINNET', name: 'mainnet', validNames: ['mainnet'], prefix: 'mainnet', },
+  { value: NetworkType.MAINNET, label: 'MAINNET', name: 'mainnet', validNames: [0, 'livenet', 'mainnet'], prefix: 'mainnet', },
   { value: NetworkType.TESTNET, label: 'TESTNET4', name: 'testnet', validNames: ['testnet'], prefix: 'testnet4', }
 ];
 

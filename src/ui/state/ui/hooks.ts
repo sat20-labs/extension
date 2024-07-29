@@ -18,10 +18,10 @@ export function useOrdinalsAssetTabKey() {
   return uiState.ordinalsAssetTabKey;
 }
 
-export function useAtomicalsAssetTabKey() {
-  const uiState = useUIState();
-  return uiState.atomicalsAssetTabKey;
-}
+// export function useAtomicalsAssetTabKey() {
+//   const uiState = useUIState();
+//   return uiState.atomicalsAssetTabKey;
+// }
 
 export function useUiTxCreateScreen() {
   const uiState = useUIState();

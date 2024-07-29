@@ -378,7 +378,6 @@ export interface OrdxFtSummary {
 
 export interface OrdinalsSummary {
   count: number;
-  balance: number;
 }
 
 export interface NameSummary {
@@ -397,7 +396,7 @@ export interface AddressSummary {
   totalSatoshis: number;
   btcSatoshis: number;
   assetSatoshis: number;
-  inscriptionCount: number;
+  // inscriptionCount: number;
   // atomicalsCount: number;
   // brc20Count: number;
   // brc20Count5Byte: number;

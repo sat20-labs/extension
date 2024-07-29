@@ -69,7 +69,6 @@ export const initialState: AccountsState = {
     ordxFt: [],
     ordinals: {
       count: 0,
-      balance: 0,
     },
     name: [],
     exotic: [],
@@ -236,7 +235,6 @@ const slice = createSlice({
           ordxFt: [],
           ordinals: {
             count: 0,
-            balance: 0,
           },
           name: [],
           exotic: [],

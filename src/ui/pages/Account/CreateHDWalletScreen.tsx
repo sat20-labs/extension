@@ -443,7 +443,7 @@ function Step2({
       addressAssets[address] = {
         total_btc: satoshisToAmount(balance.totalSatoshis),
         satoshis,
-        total_inscription: balance.inscriptionCount
+        total_inscription: balance.ordinals.count
       };
       if (satoshis > maxSatoshis) {
         maxSatoshis = satoshis;

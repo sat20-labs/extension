@@ -371,6 +371,27 @@ export enum WebsiteState {
   SAFE
 }
 
+export interface OrdxFtSummary {
+  name: string;
+  balance: number;
+}
+
+export interface OrdinalsSummary {
+  count: number;
+  balance: number;
+}
+
+export interface NameSummary {
+  name: string;
+  count: number;
+  balance: number;
+}
+
+export interface ExoticSummary {
+  name: string;
+  balance: number;
+}
+
 export interface AddressSummary {
   address: string;
   totalSatoshis: number;
@@ -382,6 +403,10 @@ export interface AddressSummary {
   // brc20Count5Byte: number;
   // arc20Count: number;
   runesCount: number;
+  ordxFt: OrdxFtSummary[];
+  ordinals: OrdinalsSummary;
+  name: NameSummary[];
+  exotic: ExoticSummary[];
   loading?: boolean;
 }
 

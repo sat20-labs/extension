@@ -14,7 +14,7 @@ export function OrdinalsTab() {
   const tabItems = [
     {
       key: OrdinalsAssetTabKey.ALL,
-      label: `ALL (${addressSummary.inscriptionCount})`,
+      label: `ALL (${addressSummary.ordinals.count})`,
       children: <InscriptionList />
     },
     // {

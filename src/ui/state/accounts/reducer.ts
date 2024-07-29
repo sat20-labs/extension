@@ -65,7 +65,14 @@ export const initialState: AccountsState = {
     totalSatoshis: 0,
     btcSatoshis: 0,
     assetSatoshis: 0,
-    inscriptionCount: 0,
+    // inscriptionCount: 0,
+    ordxFt: [],
+    ordinals: {
+      count: 0,
+      balance: 0,
+    },
+    name: [],
+    exotic: [],
     // atomicalsCount: 0,
     // brc20Count: 0,
     // brc20Count5Byte: 0,
@@ -220,12 +227,19 @@ const slice = createSlice({
           totalSatoshis: 0,
           btcSatoshis: 0,
           assetSatoshis: 0,
-          inscriptionCount: 0,
+          // inscriptionCount: 0,
           // atomicalsCount: 0,
           // brc20Count: 0,
           // brc20Count5Byte: 0,
           // arc20Count: 0,
-          runesCount: 0
+          runesCount: 0,
+          ordxFt: [],
+          ordinals: {
+            count: 0,
+            balance: 0,
+          },
+          name: [],
+          exotic: [],
         };
       }
     });

@@ -2,7 +2,7 @@ import { Column, Row } from '@/ui/components';
 import { TabBar } from '@/ui/components/TabBar';
 import { useAddressSummary } from '@/ui/state/accounts/hooks';
 import { useAppDispatch } from '@/ui/state/hooks';
-import { useOrdinalsAssetTabKey } from '@/ui/state/ui/hooks';
+import { useOrdxFtAssetTabKey } from '@/ui/state/ui/hooks';
 import { OrdinalsAssetTabKey, uiActions } from '@/ui/state/ui/reducer';
 
 // import { BRC20List5Byte } from './BRC20List5Byte';
@@ -29,7 +29,7 @@ export function TokenTab() {
     // }
   ];
 
-  const tabKey = useOrdinalsAssetTabKey();
+  const tabKey = useOrdxFtAssetTabKey();
   const dispatch = useAppDispatch();
   return (
     <Column>

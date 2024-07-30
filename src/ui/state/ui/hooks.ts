@@ -18,6 +18,11 @@ export function useOrdinalsAssetTabKey() {
   return uiState.ordinalsAssetTabKey;
 }
 
+export function useOrdxFtAssetTabKey() {
+  const uiState = useUIState();
+  return uiState.ordxFtAssetTabKey;
+}
+
 // export function useAtomicalsAssetTabKey() {
 //   const uiState = useUIState();
 //   return uiState.atomicalsAssetTabKey;

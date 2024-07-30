@@ -6,6 +6,7 @@ import { updateVersion } from '../global/actions';
 export interface UIState {
   assetTabKey: AssetTabKey;
   ordinalsAssetTabKey: OrdinalsAssetTabKey;
+  ordxFtAssetTabKey: number;
   // atomicalsAssetTabKey: AtomicalsAssetTabKey;
   uiTxCreateScreen: {
     toInfo: {
@@ -44,6 +45,7 @@ export enum OrdinalsAssetTabKey {
 export const initialState: UIState = {
   assetTabKey: AssetTabKey.ORDINALS,
   ordinalsAssetTabKey: OrdinalsAssetTabKey.ALL,
+  ordxFtAssetTabKey: 0,
   // atomicalsAssetTabKey: AtomicalsAssetTabKey.ARC20,
   uiTxCreateScreen: {
     toInfo: {
@@ -70,6 +72,7 @@ const slice = createSlice({
         payload: {
           assetTabKey?: AssetTabKey;
           ordinalsAssetTabKey?: OrdinalsAssetTabKey;
+          ordxFtAssetTabKey?: string;
           // atomicalsAssetTabKey?: AtomicalsAssetTabKey;
         };
       }

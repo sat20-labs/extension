@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // this script is injected into webpage's context
 import { ethErrors, serializeError } from 'eth-rpc-errors';
 import { EventEmitter } from 'events';

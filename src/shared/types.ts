@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { CHAINS_ENUM } from './constant';
 
 export enum AddressType {

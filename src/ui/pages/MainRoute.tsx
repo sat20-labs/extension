@@ -266,7 +266,6 @@ const routes = {
     path: '/raresat/token',
     element: <RareSatScreen />
   }
-
 };
 
 type RouteTypes = keyof typeof routes;
@@ -274,7 +273,7 @@ type RouteTypes = keyof typeof routes;
 export function useNavigate() {
   const navigate = useNavigateOrigin();
   return useCallback(
-    (routKey: RouteTypes, state?: any) => {
+    (routKey: RouteTypes, state?) => {
       navigate(routes[routKey].path, { state });
     },
     [useNavigateOrigin]

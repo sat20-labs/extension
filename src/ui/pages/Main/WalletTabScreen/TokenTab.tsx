@@ -1,51 +1,68 @@
 import { Column, Row } from '@/ui/components';
-import { TabBar } from '@/ui/components/TabBar';
+import { TabBar, TabProps } from '@/ui/components/TabBar';
 import { useAddressSummary } from '@/ui/state/accounts/hooks';
 import { useAppDispatch } from '@/ui/state/hooks';
 import { useOrdxFtAssetTabKey } from '@/ui/state/ui/hooks';
-import { OrdinalsAssetTabKey, uiActions } from '@/ui/state/ui/reducer';
+import { uiActions } from '@/ui/state/ui/reducer';
+import React, { useEffect, useState } from 'react';
+import { TokenList } from './TokenList';
 
-// import { BRC20List5Byte } from './BRC20List5Byte';
-// import { BRC20List } from './Brc20List';
-import { InscriptionList } from './InscriptionList';
 
 export function TokenTab() {
   const addressSummary = useAddressSummary();
-  const tabItems = [
-    {
-      key: OrdinalsAssetTabKey.ALL,
-      label: `ALL (${addressSummary.ordinals.count})`,
-      children: <InscriptionList />
-    },
-    // {
-    //   key: OrdinalsAssetTabKey.BRC20,
-    //   label: `BRC-20 (${addressSummary.brc20Count})`,
-    //   children: <BRC20List />
-    // },
-    // {
-    //   key: OrdinalsAssetTabKey.BRC20_5BYTE,
-    //   label: `BRC-20[5-byte] (${addressSummary.brc20Count5Byte || 0})`,
-    //   children: <BRC20List5Byte />
-    // }
-  ];
-
-  const tabKey = useOrdxFtAssetTabKey();
   const dispatch = useAppDispatch();
+  const ordxFtTabKey = useOrdxFtAssetTabKey();
+
+  const [tabItems, setTabItems] = useState<{ key: string; label: string, children: React.ReactNode }[]>([]);
+
+  useEffect(() => {
+    const items: { key: string; label: string, children: React.ReactNode }[] = [];
+    if (addressSummary.ordxFt.length === 0) {
+      return;
+    }
+    addressSummary.ordxFt.forEach((ft) => {
+      items.push({
+        key: ft.name,
+        label: `${ft.name}(${ft.balance})`,
+        children: <TokenList />
+      })
+    })
+    items.sort((a, b) => a.key.localeCompare(b.key));
+    setTabItems(items);
+    console.log('tokentab: tabitems:', items);
+
+    if (!ordxFtTabKey && items.length > 0) {
+      console.log('tokentab: set default tab key:', items[0].key);
+      dispatch(uiActions.updateAssetTabScreen({ ordxFtAssetTabKey: items[0].key }));
+    }
+    console.log('tokentab: tabKey:', ordxFtTabKey);
+  }, [addressSummary]);
+
   return (
     <Column>
       <Row justifyBetween>
         <TabBar
-          defaultActiveKey={tabKey}
-          activeKey={tabKey}
-          items={tabItems}
+          defaultActiveKey={ordxFtTabKey}
+          activeKey={ordxFtTabKey}
+          items={tabItems as TabProps[]}
           preset="style2"
           onTabClick={(key) => {
-            dispatch(uiActions.updateAssetTabScreen({ ordinalsAssetTabKey: key }));
+            if (key) {
+              console.log('tokentab: click, key:', key);
+              dispatch(uiActions.updateAssetTabScreen({ ordxFtAssetTabKey: key }));
+              console.log('tokentab: tabKey2:', ordxFtTabKey);
+              // dispatch(uiActions.updateAssetTabScreen({ assetTabKey: AssetTabKey.EXOTIC }));
+              // console.log('tokentab: tabKey3:', assetTabKey);
+            }
           }}
         />
       </Row>
-
-      {tabItems[tabKey].children}
+      {tabItems.map((item) => {
+        if (item.key === ordxFtTabKey) {
+          return item.children
+        }
+      })}
+      {/* {tabItems[ordxFtTabKey] && <div>test</div>} */}
     </Column>
   );
 }

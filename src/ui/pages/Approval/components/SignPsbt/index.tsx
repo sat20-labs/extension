@@ -259,7 +259,7 @@ function SignTxDetails({ txInfo, type, rawTxInfo }: { txInfo: TxInfo; rawTxInfo?
               </Row>
             </Column>
           ) : null} */}
-{/*
+          {/*
           {brc20Array.length > 0 ? (
             <Column
               fullX

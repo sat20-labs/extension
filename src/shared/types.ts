@@ -487,3 +487,19 @@ export interface RareSat {
     block: number;
   }[];
 }
+
+export interface OrdxFtToken {
+  ticker: string;
+  utxo: string;
+  amount: number;
+  assetAmount: number;
+  assets: {
+    inscriptionId: string;
+    inscriptionNumber: number;
+    assetAmount: number;
+    ranges: {
+      start: number;
+      size: number;
+    }[]
+  }[];
+}

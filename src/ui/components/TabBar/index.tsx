@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import { useEffect, useState } from 'react';
 
@@ -8,7 +9,7 @@ import { Row } from '../Row';
 import { Text } from '../Text';
 import './index.less';
 
-interface TabProps {
+export interface TabProps {
   key: string | number;
   label: string;
   hidden?: boolean;
@@ -47,7 +48,7 @@ export function TabBar(props: TabBarProps) {
   if (preset == 'number-page') {
     return (
       <Row>
-        {items.map((v, index) => {
+        {items.map((v, /*index*/) => {
           const isSelected = v.key === tabKey;
           const reach = isSelected; //index <= (tabKey as number);
           return (
@@ -57,11 +58,11 @@ export function TabBar(props: TabBarProps) {
                 { width: 20, height: 20 },
                 reach
                   ? {
-                      backgroundColor: colors.gold
-                    }
+                    backgroundColor: colors.gold
+                  }
                   : {
-                      backgroundColor: colors.bg2
-                    }
+                    backgroundColor: colors.bg2
+                  }
               )}
               justifyCenter
               itemsCenter

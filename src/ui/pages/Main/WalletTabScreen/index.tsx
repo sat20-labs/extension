@@ -37,6 +37,7 @@ import { useTools } from '@/ui/components/ActionComponent';
 import { NameList } from './NameList';
 import { OrdinalsTab } from './OrdinalsTab';
 import { RareSatList } from './RareSatList';
+import { TokenTab } from './TokenTab';
 
 
 const $noBreakStyle: CSSProperties = {
@@ -141,11 +142,11 @@ export default function WalletTabScreen() {
       label: 'Name',
       children: <NameList />
     },
-    // {
-    //   key: AssetTabKey.TOKEN,
-    //   label: 'Token',
-    //   children: <OrdinalsTab />
-    // },
+    {
+      key: AssetTabKey.TOKEN,
+      label: 'Token',
+      children: <TokenTab />
+    },
     {
       key: AssetTabKey.EXOTIC,
       label: 'Exotic',
@@ -243,7 +244,7 @@ export default function WalletTabScreen() {
                 </>
               )
             }
-            onOpenChange={(v) => {
+            onOpenChange={() => {
               if (!ref.current.fetchedUtxo[currentAccount.address]) {
                 ref.current.fetchedUtxo[currentAccount.address] = { loading: true };
                 setLoadingFetch(true);
@@ -279,7 +280,7 @@ export default function WalletTabScreen() {
               text="Receive"
               preset="default"
               icon="receive"
-              onClick={(e) => {
+              onClick={() => {
                 navigate('ReceiveScreen');
               }}
               full
@@ -289,7 +290,7 @@ export default function WalletTabScreen() {
               text="Send"
               preset="default"
               icon="send"
-              onClick={(e) => {
+              onClick={() => {
                 resetUiTxCreateScreen();
                 navigate('TxCreateScreen');
               }}
@@ -310,6 +311,7 @@ export default function WalletTabScreen() {
             size={'small'}
             defaultActiveKey={assetTabKey as unknown as string}
             activeKey={assetTabKey as unknown as string}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             items={tabItems as unknown as any[]}
             onTabClick={(key) => {
               const assetTabkey = key as unknown as AssetTabKey;

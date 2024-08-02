@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createContext, ReactNode, useContext } from 'react';
 
 import { AccountAsset } from '@/background/controller/wallet';
@@ -21,6 +22,7 @@ import {
   InscriptionSummary,
   NetworkType,
   OrdinalsName,
+  OrdxFtToken,
   RareSat,
   RuneBalance,
   SignPsbtOptions,
@@ -355,6 +357,13 @@ export interface WalletController {
     currentPage: number,
     pageSize: number
   ): Promise<{ currentPage: number; pageSize: number; total: number; list: RareSat[] }>;
+
+  getTokenList(
+    address: string,
+    ticker: string,
+    currentPage: number,
+    pageSize: number
+  ): Promise<{ currentPage: number; pageSize: number; total: number; list: OrdxFtToken[] }>;
 
   getRunesList(
     address: string,

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Inscription } from '@/shared/types';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -6,7 +7,7 @@ import { updateVersion } from '../global/actions';
 export interface UIState {
   assetTabKey: AssetTabKey;
   ordinalsAssetTabKey: OrdinalsAssetTabKey;
-  ordxFtAssetTabKey: number;
+  ordxFtAssetTabKey: string;
   // atomicalsAssetTabKey: AtomicalsAssetTabKey;
   uiTxCreateScreen: {
     toInfo: {
@@ -45,7 +46,7 @@ export enum OrdinalsAssetTabKey {
 export const initialState: UIState = {
   assetTabKey: AssetTabKey.ORDINALS,
   ordinalsAssetTabKey: OrdinalsAssetTabKey.ALL,
-  ordxFtAssetTabKey: 0,
+  ordxFtAssetTabKey: '',
   // atomicalsAssetTabKey: AtomicalsAssetTabKey.ARC20,
   uiTxCreateScreen: {
     toInfo: {
@@ -63,7 +64,7 @@ const slice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    reset(state) {
+    reset(/*state*/) {
       return initialState;
     },
     updateAssetTabScreen(
@@ -83,6 +84,9 @@ const slice = createSlice({
       }
       if (payload.ordinalsAssetTabKey !== undefined) {
         state.ordinalsAssetTabKey = payload.ordinalsAssetTabKey;
+      }
+      if (payload.ordxFtAssetTabKey !== undefined) {
+        state.ordxFtAssetTabKey = payload.ordxFtAssetTabKey;
       }
       // if (payload.atomicalsAssetTabKey !== undefined) {
       //   state.atomicalsAssetTabKey = payload.atomicalsAssetTabKey;

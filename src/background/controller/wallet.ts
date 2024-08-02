@@ -1863,6 +1863,21 @@ export class WalletController extends BaseController {
     };
   };
 
+  getTokenList = async (address: string, ticker: string, currentPage: number, pageSize: number) => {
+    const cursor = (currentPage - 1) * pageSize;
+    const size = pageSize;
+    const { total, list } = await openapiService.getTokenList(address, ticker, cursor, size);
+
+    return {
+      currentPage,
+      pageSize,
+      total,
+      list
+    };
+  };
+
+
+
   getRunesList = async (address: string, currentPage: number, pageSize: number) => {
     const cursor = (currentPage - 1) * pageSize;
     const size = pageSize;

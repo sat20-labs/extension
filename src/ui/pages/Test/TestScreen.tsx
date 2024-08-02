@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { NetworkType, TokenBalance, /*TxType*/ } from '@/shared/types';
+import { NetworkType, TokenBalance, TxType } from '@/shared/types';
 import { Card, Column, Content, Input, Layout, Text } from '@/ui/components';
 import { AddressDetailPopover } from '@/ui/components/AddressDetailPopover';
 import { AddressText } from '@/ui/components/AddressText';
@@ -10,14 +10,14 @@ import { RemoveWalletPopover } from '@/ui/components/RemoveWalletPopover';
 import { SignPsbtWithRisksPopover } from '@/ui/components/SignPsbtWithRisksPopover';
 import { useCurrentKeyring } from '@/ui/state/keyrings/hooks';
 
-import { Connect, /*SignPsbt, SignText,*/ SwitchNetwork } from '../Approval/components';
+import { Connect, SignPsbt, /* SignText,*/ SwitchNetwork } from '../Approval/components';
 // import MultiSignPsbt from '../Approval/components/MultiSignPsbt';
 import { useNavigate } from '../MainRoute';
 import { testDecodedTx } from './testDecodedTx';
 
-// export default function TestScreen() {
-//   return <TestApprovalSignPsbt />;
-// }
+export default function TestScreen() {
+  return <TestApprovalSignPsbt />;
+}
 
 function TestSignPsbtWithRisksPopover() {
   return (
@@ -134,24 +134,25 @@ function TestApprovalConnect() {
   );
 }
 
-// function TestApprovalSignPsbt() {
-//   return (
-//     <SignPsbt
-//       params={{
-//         data: {
-//           psbtHex:
-//             '70736274ff01007d0200000001d0baba4fd7980fe2c29b1efc4eb9eb2aa43aa1a4dbe2d9f8f38facef3446f5900100000000fdffffff02a086010000000000225120517aaf863dcf93a135664bbede4dc219c054a63fdd5b8b10a7c2b61bd8d3e28f3fc95500000000001600143dcf0a89a523ff619a31af413954960414a7c21e000000000001011f79505700000000001600143dcf0a89a523ff619a31af413954960414a7c21e01086c024830450221008b3706ec6cff7e882fe6dbcbeacc09195f3f10f8b268acce6367bf4f37058edd02203ca6b1c8f6efdad8f6aa63cfe091d5871e1f19d44e3e267d311c31e51cb81f1c0121026887958bcc4cb6f8c04ea49260f0d10e312c41baf485252953b14724db552aac000000',
-//           type: TxType.SIGN_TX
-//         },
-//         session: {
-//           origin: 'https://mail.google.com/',
-//           icon: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico',
-//           name: 'GMAIL'
-//         }
-//       }}
-//     />
-//   );
-// }
+function TestApprovalSignPsbt() {
+  return (
+    <SignPsbt
+      params={{
+        data: {
+          psbtHex:
+            '70736274ff01007d0200000001d0baba4fd7980fe2c29b1efc4eb9eb2aa43aa1a4dbe2d9f8f38facef3446f5900100000000fdffffff02a086010000000000225120517aaf863dcf93a135664bbede4dc219c054a63fdd5b8b10a7c2b61bd8d3e28f3fc95500000000001600143dcf0a89a523ff619a31af413954960414a7c21e000000000001011f79505700000000001600143dcf0a89a523ff619a31af413954960414a7c21e01086c024830450221008b3706ec6cff7e882fe6dbcbeacc09195f3f10f8b268acce6367bf4f37058edd02203ca6b1c8f6efdad8f6aa63cfe091d5871e1f19d44e3e267d311c31e51cb81f1c0121026887958bcc4cb6f8c04ea49260f0d10e312c41baf485252953b14724db552aac000000',
+          type: TxType.SIGN_TX,
+          options: { autoFinalized: false },
+        },
+        session: {
+          origin: 'https://mail.google.com/',
+          icon: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico',
+          name: 'GMAIL'
+        }
+      }}
+    />
+  );
+}
 
 // function TestApprovalSignPsbtB() {
 //   // const psbtHex = '70736274ff01009a020000000229c48c873d924f44e91c0c68350f56ac4a91f7d8e3ce53f611b7bbc6d74e94490000000000fdffffffd0baba4fd7980fe2c29b1efc4eb9eb2aa43aa1a4dbe2d9f8f38facef3446f5900100000000fdffffff0288130000000000001600143dcf0a89a523ff619a31af413954960414a7c21ea74f5700000000001600143dcf0a89a523ff619a31af413954960414a7c21e000000000001011f88130000000000001600143dcf0a89a523ff619a31af413954960414a7c21e01086c02483045022100aa1d2d11a259766c383a3c0d98031e4d22a941d221d7f08a4eef688717aa2fa90220550c1be8139bddb2ff359ad96fcccfd130bfcd300ac6eb8999c1771668671f0d0121026887958bcc4cb6f8c04ea49260f0d10e312c41baf485252953b14724db552aac0001011f79505700000000001600143dcf0a89a523ff619a31af413954960414a7c21e01086c02483045022100e8bd3cbd51dd33fc082dd40f43255860bd5c5af0f2b3e4078cfa34d45f137cfa022021bf8c56c0fc03e50e5ca85cfb38613febcc5f2aabe27c53e0c8846996a241a40121026887958bcc4cb6f8c04ea49260f0d10e312c41baf485252953b14724db552aac000000';

@@ -47,10 +47,42 @@ export const svgRegistry = {
   warning: '/images/icons/warning.svg',
   alert: '/images/icons/alert.svg',
   burn: ' /images/icons/burn.svg',
-  risk: '/images/icons/risk.svg'
+  risk: '/images/icons/risk.svg',
+
+  // raresat
+  raresat_rare: '/images/icons/raresat/rare.svg',
+  raresat_common: '/images/icons/raresat/common.svg',
+  raresat_uncommon: '/images/icons/raresat/uncommon.svg',
+  raresat_legendary: '/images/icons/raresat/legendary.svg',
+  raresat_mythical: '/images/icons/raresat/mythical.svg',
+  raresat_alpha: '/images/icons/raresat/alpha.svg',
+  raresat_black: '/images/icons/raresat/black.svg',
+  raresat_block78: '/images/icons/raresat/block78.svg',
+  raresat_block9: '/images/icons/raresat/block9.svg',
+  raresat_hitman: '/images/icons/raresat/hitman.svg',
+  raresat_jpeg: '/images/icons/raresat/jpeg.svg',
+  raresat_nakamoto: '/images/icons/raresat/nakamoto.svg',
+  raresat_omega: '/images/icons/raresat/omega.svg',
+  raresat_palindromes_paliblock: '/images/icons/raresat/palindromes_paliblock.svg',
+  raresat_palindromes_integer: '/images/icons/raresat/palindromes_integer.svg',
+  raresat_palindromes_integer_2d: '/images/icons/raresat/palindromes_integer_2d.svg',
+  raresat_palindromes_integer_3d: '/images/icons/raresat/palindromes_integer_3d.svg',
+  raresat_palindromes_name: '/images/icons/raresat/palindromes_name.svg',
+  raresat_alindromes_name_2c: '/images/icons/raresat/alindromes_name_2c.svg',
+  raresat_palindromes_name_3c: '/images/icons/raresat/palindromes_name_3c.svg',
+  raresat_pizza: '/images/icons/raresat/pizza.svg',
+  raresat_silk_road_first_auction: '/images/icons/raresat/silk_road_first_auction.svg',
+  raresat_first_transaction: '/images/icons/raresat/first_transaction.svg',
+  raresat_vintage: '/images/icons/raresat/vintage.svg',
+  raresat_customized: '/images/icons/raresat/customized.svg',
 };
 
 const iconImgList: Array<IconTypes> = ['success', 'delete', 'btc'];
+Object.keys(svgRegistry).forEach((key) => {
+  if (key.startsWith('raresat_')) {
+    iconImgList.push(key as IconTypes);
+  }
+});
 
 export type IconTypes = keyof typeof svgRegistry;
 interface IconProps {
@@ -159,3 +191,36 @@ export function Icon(props: IconProps) {
     return <div />;
   }
 }
+
+export const getRareSatIcon = (rareSatType: string) : IconTypes => {
+  switch (rareSatType) {
+      case 'rare':
+      case 'common':
+      case 'legendary':
+      case 'mythical':
+      case 'alpha':
+      case 'black':
+      case 'block78':
+      case 'block9':
+      case 'hitman':
+      case 'jpeg':
+      case 'nakamoto':
+      case 'omega':
+      case 'palindromes_paliblock':
+      case 'palindromes_integer':
+      case 'palindromes_integer_2d':
+      case 'palindromes_integer_3d':
+      case 'palindromes_name':
+      case 'palindromes_name_2c':
+      case 'palindromes_name_3c':
+      case 'pizza':
+      case 'silk_road_first_auction':
+      case 'first_transaction':
+      case 'vintage':
+      case 'customized':
+          return ('raresat_' + rareSatType) as IconTypes;
+      case 'uncommon':
+      default:
+          return 'raresat_uncommon';
+  }
+};

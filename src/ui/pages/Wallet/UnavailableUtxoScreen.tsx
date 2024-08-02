@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { UNCONFIRMED_HEIGHT } from '@/shared/constant';
 import { Button, Card, Column, Content, Footer, Header, Layout, Row, Text } from '@/ui/components';
 import { Loading } from '@/ui/components/ActionComponent/Loading';
-import Arc20PreviewCard from '@/ui/components/Arc20PreviewCard';
+// import Arc20PreviewCard from '@/ui/components/Arc20PreviewCard';
 import AssetTag from '@/ui/components/AssetTag';
 import { Empty } from '@/ui/components/Empty';
 import InscriptionPreview from '@/ui/components/InscriptionPreview';
@@ -79,7 +79,7 @@ export default function UnavailableUtxoScreen() {
 
                       <Row>
                         {item.inscriptions.length > 0 ? <AssetTag type="Inscription" /> : null}
-                        {item.atomicals.length > 0 ? <AssetTag type="ARC20" /> : null}
+                        {/* {item.atomicals.length > 0 ? <AssetTag type="ARC20" /> : null} */}
                         {item.height === UNCONFIRMED_HEIGHT ? <AssetTag type="Unconfirmed" /> : null}
                       </Row>
                     </Row>
@@ -103,16 +103,16 @@ export default function UnavailableUtxoScreen() {
                       <Row full style={{ borderBottomWidth: 1, borderColor: colors.border }}></Row>
                     ) : null}
 
-                    {item.atomicals.length > 0 ? (
+                    {/* {item.atomicals.length > 0 ? (
                       <Row overflowX fullX>
                         {item.atomicals.map((w) => (
                           <Arc20PreviewCard key={w.ticker} ticker={w.ticker || ''} amt={item.satoshis} />
                         ))}
                       </Row>
-                    ) : null}
-                    {item.atomicals.length > 0 ? (
+                    ) : null} */}
+                    {/* {item.atomicals.length > 0 ? (
                       <Row full style={{ borderBottomWidth: 1, borderColor: colors.border }}></Row>
-                    ) : null}
+                    ) : null} */}
 
                     <Row full justifyBetween>
                       <Row itemsCenter>

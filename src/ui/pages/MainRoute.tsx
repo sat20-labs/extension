@@ -38,6 +38,7 @@ import SendOrdinalsInscriptionScreen from './Ordinals/SendOrdinalsInscriptionScr
 import SignOrdinalsTransactionScreen from './Ordinals/SignOrdinalsTransactionScreen';
 import SplitOrdinalsInscriptionScreen from './Ordinals/SplitOrdinalsInscriptionScreen';
 import OrdinalsNameScreen from './OrdinalsName/OrdinalsNameScreen';
+import RareSatScreen from './RareSatScreen/RareSatScreen';
 import RunesTokenScreen from './Runes/RunesTokenScreen';
 import SendRunesScreen from './Runes/SendRunesScreen';
 import AddressTypeScreen from './Settings/AddressTypeScreen';
@@ -260,6 +261,10 @@ const routes = {
   OrdinalsNameScreen: {
     path: '/name/token',
     element: <OrdinalsNameScreen />
+  },
+  RareSatScreen: {
+    path: '/raresat/token',
+    element: <RareSatScreen />
   }
 
 };

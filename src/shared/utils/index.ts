@@ -21,7 +21,7 @@ const format = (str, ...args) => {
   return args.reduce((m, n) => m.replace('_s_', n), str);
 };
 
-export { Message, t, format };
+export { format, Message, t };
 
 const chainsDict = keyBy(CHAINS, 'serverId');
 export const getChain = (chainId?: string) => {
@@ -36,3 +36,27 @@ export const getChain = (chainId?: string) => {
 export const checkAddressFlag = (currentFlag: number, flag: AddressFlagType): boolean => {
   return Boolean(currentFlag & flag);
 };
+
+
+// export const shortUtxo = (
+//   str?: string,
+//   num = 6,
+//   placeholder = '*****',
+// ) => {
+//   let ret = '';
+//   if (typeof str === 'string' && str) {
+//     if (str?.length <= num) {
+//       ret = str;
+//     } else if (str.includes(':')) {
+//       const index = str.indexOf(':');
+//       ret = `${str?.substring(0, num)}${placeholder}${str?.substring(
+//         index - num,
+//       )}`;
+//     } else {
+//       ret = `${str?.substring(0, num)}${placeholder}${str?.substring(
+//         str?.length - num,
+//       )}`;
+//     }
+//   }
+//   return ret;
+// };

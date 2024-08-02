@@ -17,6 +17,7 @@ import {
   InscriptionSummary,
   NetworkType,
   OrdinalsName,
+  RareSat,
   RuneBalance,
   TokenBalance,
   TokenTransfer,
@@ -384,6 +385,10 @@ export class OpenApiService {
 
   async getOrdinalsNameList(address: string, cursor: number, size: number): Promise<{ list: OrdinalsName[]; total: number }> {
     return this.httpGet('/name/list', { address, cursor, size });
+  }
+
+  async getRareSatList(address: string, cursor: number, size: number): Promise<{ list: RareSat[]; total: number }> {
+    return this.httpGet('/raresat/list', { address, cursor, size });
   }
 
   async getRunesList(address: string, cursor: number, size: number): Promise<{ list: RuneBalance[]; total: number }> {

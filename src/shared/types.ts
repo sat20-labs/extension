@@ -475,3 +475,15 @@ export interface OrdinalsName {
   inscriptionAddress: string;
   preview: string;
 }
+
+export interface RareSat {
+  utxo: string;
+  value: number;
+  sats: {
+    start: number;
+    size: number;
+    offset: number;
+    satributes: string[];
+    block: number;
+  }[];
+}

@@ -36,6 +36,8 @@ import { useNavigate } from '../../MainRoute';
 import { useTools } from '@/ui/components/ActionComponent';
 import { NameList } from './NameList';
 import { OrdinalsTab } from './OrdinalsTab';
+import { RareSatList } from './RareSatList';
+
 
 const $noBreakStyle: CSSProperties = {
   whiteSpace: 'nowrap',
@@ -139,21 +141,21 @@ export default function WalletTabScreen() {
       label: 'Name',
       children: <NameList />
     },
-    {
-      key: AssetTabKey.TOKEN,
-      label: 'Token',
-      children: <OrdinalsTab />
-    },
     // {
-    //   key: AssetTabKey.EXOTIC,
-    //   label: 'Exotic',
+    //   key: AssetTabKey.TOKEN,
+    //   label: 'Token',
     //   children: <OrdinalsTab />
     // },
     {
-      key: AssetTabKey.COLLECTION,
-      label: 'Collection',
-      children: <OrdinalsTab />
+      key: AssetTabKey.EXOTIC,
+      label: 'Exotic',
+      children: <RareSatList />
     },
+    // {
+    //   key: AssetTabKey.COLLECTION,
+    //   label: 'Collection',
+    //   children: <OrdinalsTab />
+    // },
     // {
     //   key: AssetTabKey.ATOMICALS,
     //   label: 'Atomicals',

@@ -148,11 +148,11 @@ export default function BRC20TokenScreen() {
                     (pre, cur) => new BigNumber(cur.amount).plus(pre),
                     new BigNumber(0)
                   );
-                //   navigate('BRC20SendScreen', {
-                //     tokenBalance: tokenSummary.tokenBalance,
-                //     selectedInscriptionIds,
-                //     selectedAmount: selectedAmount.toString()
-                //   });
+                  //   navigate('BRC20SendScreen', {
+                  //     tokenBalance: tokenSummary.tokenBalance,
+                  //     selectedInscriptionIds,
+                  //     selectedAmount: selectedAmount.toString()
+                  //   });
                 }}
                 full
               />

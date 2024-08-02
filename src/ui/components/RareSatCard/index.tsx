@@ -1,66 +1,39 @@
-import { useState } from 'react';
 
-import { AddressTokenSummary, TokenBalance } from '@/shared/types';
-import { useCurrentAccount } from '@/ui/state/accounts/hooks';
-import { useWallet } from '@/ui/utils';
-import { LoadingOutlined } from '@ant-design/icons';
+import { RareSat } from '@/shared/types';
 
-import { BRC20Ticker } from '../BRC20Ticker';
+import { useTools } from '@/ui/components/ActionComponent';
+import { copyToClipboard, shortUtxo } from '@/ui/utils';
 import { Card } from '../Card';
 import { Column } from '../Column';
-import { Icon } from '../Icon';
+import { Icon, getRareSatIcon } from '../Icon';
 import { Row } from '../Row';
 import { Text } from '../Text';
 
 export interface RareSatCardProps {
-  tokenBalance: TokenBalance;
+  data: RareSat;
   onClick?: () => void;
 }
 
 export default function RareSatCard(props: RareSatCardProps) {
   const {
-    tokenBalance: {
-      ticker,
-      overallBalance,
-      transferableBalance,
+    data: {
+      utxo,
+      value,
+      sats,
     },
     onClick
   } = props;
+  const [txid, voutString] = utxo.split(':');
+  const vout = parseInt(voutString, 10);
 
-  const account = useCurrentAccount();
-  const [detailVisible, setDetailVisible] = useState(false);
-  const [tokenSummary, setTokenSummary] = useState<AddressTokenSummary>();
-  const [loading, setLoading] = useState(false);
-  const wallet = useWallet();
+  const tools = useTools();
 
-  const deploy_count = tokenSummary ? (tokenSummary.tokenInfo.holder == account.address ? 1 : 0) : 0;
-  let _names: string[] = [];
-  const _amounts: string[] = [];
-  if (deploy_count > 0) {
-    _names.push('Deploy');
-    _amounts.push('');
-  }
-  if (tokenSummary) {
-    tokenSummary.transferableList.forEach((v) => {
-      _names.push('Transfer');
-      _amounts.push(v.amount);
+  const rareSatList: Map<string, number> = new Map();
+  sats.forEach((item) => {
+    item.satributes.forEach((satribute) => {
+      rareSatList.set(satribute, rareSatList.get(satribute) ?? 0 + 1);
     });
-  }
-
-  for (let i = 0; i < _names.length; i++) {
-    if (i == 3) {
-      if (_names.length > 4) {
-        if (deploy_count > 0) {
-          _names[i] = `${_names.length - 3}+`;
-        } else {
-          _names[i] = `${_names.length - 2}+`;
-        }
-        _amounts[i] = '';
-      }
-      break;
-    }
-  }
-  _names = _names.splice(0, 4);
+  });
 
   return (
     <Card
@@ -75,73 +48,40 @@ export default function RareSatCard(props: RareSatCardProps) {
       }}>
       <Column full py="zero" gap="zero">
         <Row fullY justifyBetween justifyCenter>
-          <Column fullY justifyCenter>
-            <BRC20Ticker tick={ticker} />
-          </Column>
-
-          <Row itemsCenter fullY gap="zero">
-            <Text text={overallBalance} size="xs" />
-            <Row style={{ width: 30, height: 20 }} itemsCenter justifyCenter>
-              <Icon
-                icon={detailVisible ? 'up' : 'down'}
-                onClick={(e) => {
-                  setDetailVisible(!detailVisible);
+          <Column>
+            <Row>
+              {/* <Text text={'utxo:'} color="textDim" size="md" preset='title' /> */}
+              <Text text={shortUtxo(txid, vout)} color="blue" size="md" />
+              <Icon icon="copy" color="textDim" onClick={
+                (e) => {
                   e.stopPropagation();
                   e.nativeEvent.stopImmediatePropagation();
-
-                  if (loading) {
-                    return;
-                  }
-                  if (!tokenSummary) {
-                    setLoading(true);
-                    wallet
-                      .getBRC20Summary(account.address, ticker)
-                      .then((tokenSummary) => {
-                        setTokenSummary(tokenSummary);
-                      })
-                      .finally(() => {
-                        setLoading(false);
-                      });
-                  }
-                }}
-                size={10}
-                color="textDim"></Icon>
+                  copyToClipboard(utxo).then(() => {
+                    tools.toastSuccess('Copied');
+                  });
+                }
+              } />
             </Row>
+          </Column>
+          <Row itemsCenter fullY gap="zero">
+            <Text text={value + ' sats'} size="md" />
           </Row>
         </Row>
-
-        {detailVisible ? (
-          loading ? (
-            <Column style={{ minHeight: 130 }} itemsCenter justifyCenter>
-              <Icon>
-                <LoadingOutlined />
-              </Icon>
-            </Column>
-          ) : (
-            <Column>
-              <Row style={{ borderTopWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }} mt="sm" />
-              <Row justifyBetween>
-                <Text text="Transferable:" color="textDim" size="xs" />
-                <Text text={transferableBalance} size="xs" />
-              </Row>
-              <Column>
-                <Row>
-                  {_names.map((v, index) => (
-                    <Card
-                      key={'transfer_' + index}
-                      style={{ width: 68, height: 68 }}
-                      bg={v === 'Transfer' ? 'brc20_transfer' : v === 'Deploy' ? 'brc20_deploy' : 'brc20_other'}>
-                      <Column gap="zero">
-                        <Text text={v} size={v === 'Transfer' ? 'sm' : v === 'Deploy' ? 'sm' : 'md'} />
-                        {v === 'Transfer' ? <Text text={`(${_amounts[index]})`} size="xxs" textCenter wrap /> : null}
-                      </Column>
-                    </Card>
-                  ))}
-                </Row>
-              </Column>
-            </Column>
-          )
-        ) : null}
+        <Column>
+          <Row style={{ borderTopWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }} mt="sm" />
+          {Array.from(rareSatList.entries()).map(([satName, count], index) => (
+            <Row key={index} itemsCenter fullY gap="zero">
+              <Icon icon={getRareSatIcon(satName)} size={20} />
+              <Text
+                key={index}
+                text={`${satName} x${count}`}
+                size="md"
+                color="textDim"
+                style={{ marginLeft: 5, marginRight: 10 }}
+              />
+            </Row>
+          ))}
+        </Column>
       </Column>
     </Card>
   );

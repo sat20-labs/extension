@@ -1,35 +1,35 @@
 import { useEffect, useState } from 'react';
 
-import { OrdinalsName } from '@/shared/types';
+import { RareSat } from '@/shared/types';
 import { Column, Row } from '@/ui/components';
 import { useTools } from '@/ui/components/ActionComponent';
 import { Empty } from '@/ui/components/Empty';
-import OrdinalsNamePreview from '@/ui/components/OrdinalsNamePreview';
 import { Pagination } from '@/ui/components/Pagination';
+import RareSatCard from '@/ui/components/RareSatCard';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import { useWallet } from '@/ui/utils';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import { useNavigate } from '../../MainRoute';
 
-export function RareSatsList() {
+export function RareSatList() {
   const navigate = useNavigate();
   const wallet = useWallet();
   const currentAccount = useCurrentAccount();
 
-  const [names, setNames] = useState<OrdinalsName[]>([]);
+  const [rareSats, setRareSats] = useState<RareSat[]>([]);
   const [total, setTotal] = useState(-1);
   const [pagination, setPagination] = useState({ currentPage: 1, pageSize: 100 });
 
   const tools = useTools();
   const fetchData = async () => {
     try {
-      const { list, total } = await wallet.getOrdinalsNameList(
+      const { list, total } = await wallet.getRareSatList(
         currentAccount.address,
         pagination.currentPage,
         pagination.pageSize
       );
-      setNames(list);
+      setRareSats(list);
       setTotal(total);
     } catch (e) {
       tools.toastError((e as Error).message);
@@ -61,13 +61,12 @@ export function RareSatsList() {
   return (
     <Column>
       <Row style={{ flexWrap: 'wrap' }} gap="sm">
-        {names.map((name, index) => (
-            <OrdinalsNamePreview
+        {rareSats.map((rareSat, index) => (
+            <RareSatCard
             key={index}
-            data={name}
-            preset="medium"
+            data={rareSat}
             onClick={() => {
-              navigate('OrdinalsNameScreen', { name: name });
+              navigate('RareSatScreen', { rareSat: rareSat });
             }}
           />
         ))}

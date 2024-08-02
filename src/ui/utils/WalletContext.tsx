@@ -21,6 +21,7 @@ import {
   InscriptionSummary,
   NetworkType,
   OrdinalsName,
+  RareSat,
   RuneBalance,
   SignPsbtOptions,
   TokenBalance,
@@ -348,6 +349,12 @@ export interface WalletController {
     currentPage: number,
     pageSize: number
   ): Promise<{ currentPage: number; pageSize: number; total: number; list: OrdinalsName[] }>;
+
+  getRareSatList(
+    address: string,
+    currentPage: number,
+    pageSize: number
+  ): Promise<{ currentPage: number; pageSize: number; total: number; list: RareSat[] }>;
 
   getRunesList(
     address: string,

@@ -1,8 +1,8 @@
 import BigNumber from 'bignumber.js';
 import { useLocation } from 'react-router-dom';
 
-export * from './WalletContext';
 export * from './hooks';
+export * from './WalletContext';
 const UI_TYPE = {
   Tab: 'index',
   Pop: 'popup',
@@ -100,8 +100,8 @@ export function shortDesc(desc?: string, len = 50) {
   return desc.slice(0, len) + '...';
 }
 
-export function shortUtxo(txid: string, vout: number) {
-  return txid.slice(0, 8) + '...:' + vout;
+export function shortUtxo(txid: string, vout: number, len = 8) {
+  return txid.slice(0, len) + '...:' + vout;
 }
 
 export async function sleep(timeSec: number) {

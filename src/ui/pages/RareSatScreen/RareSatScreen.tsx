@@ -5,11 +5,11 @@ import { useTools } from '@/ui/components/ActionComponent';
 // import OrdinalsNamePreview from '@/ui/components/OrdinalsNamePreview';
 import { useAppDispatch } from '@/ui/state/hooks';
 // import { useTxIdUrl } from '@/ui/state/settings/hooks';
-import { Icon } from '@/ui/components/Icon';
+import { Icon, getRareSatIcon } from '@/ui/components/Icon';
+import { useTxIdUrl } from '@/ui/state/settings/hooks';
 import { transactionsActions } from '@/ui/state/transactions/reducer';
 import { colors } from '@/ui/theme/colors';
 import { copyToClipboard, shortUtxo, useLocationState } from '@/ui/utils';
-
 
 export default function RareSatScreen() {
   // const navigate = useNavigate();
@@ -22,6 +22,7 @@ export default function RareSatScreen() {
 
   const [txid, voutString] = rareSat.utxo.split(':');
   const vout = parseInt(voutString, 10);
+  const txUrl = useTxIdUrl(rareSat.utxo);
   const tools = useTools();
 
   return (
@@ -48,7 +49,7 @@ export default function RareSatScreen() {
                 wrap
                 style={{ textDecorationLine: 'underline' }}
                 onClick={() => {
-                  window.open('link');
+                  window.open(txUrl);
                 }} />
               <Icon icon="copy" color="textDim" onClick={
                 (e) => {
@@ -77,7 +78,7 @@ export default function RareSatScreen() {
                   preset="default"
                   disabled={true}
                   full
-                  onClick={(e) => {
+                  onClick={() => {
                     dispatch(transactionsActions.reset());
                     // navigate('SendOrdinalsInscriptionScreen', { inscription: name.inscriptionId });
                   }}
@@ -87,14 +88,13 @@ export default function RareSatScreen() {
           )}
           {rareSat.sats.map((item, index) => (
             <Column key={index} gap="lg" style={{ borderTopWidth: 1, borderColor: colors.white_muted }}>
-              <Section title="start" value={item.start} firstRow={true} />
-              <Section title="size" value={item.size} />
-              <Section title="offset" value={item.offset} />
-              <Section title="satritutes" value={item.satributes.join(', ')} />
-              <Section title="block" value={item.block} />
+              <Section title="start:" value={item.start} firstRow={true} />
+              <Section title="size:" value={item.size} />
+              <Section title="offset:" value={item.offset} />
+              <SatritutesSection title="satritutes:" satritutes={item.satributes} />
+              <Section title="block:" value={item.block} />
             </Column>
           ))}
-
         </Column>
       </Content>
     </Layout>
@@ -104,7 +104,7 @@ export default function RareSatScreen() {
 function Section({ value, title, link, firstRow }: { value: string | number; title: string; link?: string, firstRow?: boolean }) {
   const tools = useTools();
   return (
-    <Column fullX justifyBetween justifyCenter style={{ marginTop: firstRow ? 10 : 0 }}>
+    <Column style={{ marginTop: firstRow ? 10 : 0 }}>
       <Row>
         <Text text={title} preset="sub" />
         <Text
@@ -122,6 +122,33 @@ function Section({ value, title, link, firstRow }: { value: string | number; tit
             }
           }}
         />
+      </Row>
+    </Column>
+  );
+}
+
+function SatritutesSection({ satritutes, title }: { satritutes: string[]; title: string }) {
+  const tools = useTools();
+  return (
+    <Column>
+      <Row gap='md'>
+        <Text text={title} preset="sub" />
+        {satritutes.map((item, index) => (
+          <Row key={index} gap="sm">
+            <Icon icon={getRareSatIcon(item)} size={15} />
+            <Text
+              text={item}
+              preset={'regular'}
+              size="xs"
+              wrap
+              onClick={() => {
+                copyToClipboard(item).then(() => {
+                  tools.toastSuccess('Copied');
+                });
+              }}
+            />
+          </Row>
+        ))}
       </Row>
     </Column>
   );

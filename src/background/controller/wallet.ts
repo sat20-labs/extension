@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   contactBookService,
@@ -834,7 +836,7 @@ export class WalletController extends BaseController {
         addressType: v.addressType,
         pubkey: account.pubkey,
         inscriptions: v.inscriptions,
-        atomicals: v.atomicals
+        // atomicals: v.atomicals
       };
     });
     return btcUtxos;
@@ -853,7 +855,7 @@ export class WalletController extends BaseController {
         addressType: v.addressType,
         pubkey: account.pubkey,
         inscriptions: v.inscriptions,
-        atomicals: v.atomicals
+        // atomicals: v.atomicals
       };
     });
     return unavailableUtxos;
@@ -1903,7 +1905,7 @@ export class WalletController extends BaseController {
 
     assetUtxos.forEach((v) => {
       v.inscriptions = [];
-      v.atomicals = [];
+      // v.atomicals = [];
     });
 
     assetUtxos.sort((a, b) => {

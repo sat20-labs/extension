@@ -19,9 +19,9 @@ import {
   InscriptionSummary,
   NetworkType,
   OrdinalsName,
-  OrdxFtToken,
   RareSat,
   RuneBalance,
+  Token,
   TokenBalance,
   TokenTransfer,
   UTXO,
@@ -394,7 +394,7 @@ export class OpenApiService {
     return this.httpGet('/raresat/list', { address, cursor, size });
   }
 
-  async getTokenList(address: string, ticker: string, cursor: number, size: number): Promise<{ list: OrdxFtToken[]; total: number }> {
+  async getTokenList(address: string, ticker: string, cursor: number, size: number): Promise<{ list: Token[]; total: number }> {
     return this.httpGet('/token/list', { address, ticker, cursor, size });
   }
 

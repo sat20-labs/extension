@@ -7,7 +7,6 @@ import { uiActions } from '@/ui/state/ui/reducer';
 import React, { useEffect, useState } from 'react';
 import { TokenList } from './TokenList';
 
-
 export function TokenTab() {
   const addressSummary = useAddressSummary();
   const dispatch = useAppDispatch();
@@ -17,25 +16,23 @@ export function TokenTab() {
 
   useEffect(() => {
     const items: { key: string; label: string, children: React.ReactNode }[] = [];
-    if (addressSummary.ordxFt.length === 0) {
+    if (addressSummary.token.length === 0) {
       return;
     }
-    addressSummary.ordxFt.forEach((ft) => {
+    addressSummary.token.forEach((ft) => {
       items.push({
         key: ft.name,
         label: `${ft.name}(${ft.balance})`,
-        children: <TokenList />
+        children: <TokenList key={ft.name} ticker={ft.name} />
       })
     })
     items.sort((a, b) => a.key.localeCompare(b.key));
     setTabItems(items);
-    console.log('tokentab: tabitems:', items);
 
     if (!ordxFtTabKey && items.length > 0) {
-      console.log('tokentab: set default tab key:', items[0].key);
       dispatch(uiActions.updateAssetTabScreen({ ordxFtAssetTabKey: items[0].key }));
     }
-    console.log('tokentab: tabKey:', ordxFtTabKey);
+
   }, [addressSummary]);
 
   return (
@@ -47,13 +44,7 @@ export function TokenTab() {
           items={tabItems as TabProps[]}
           preset="style2"
           onTabClick={(key) => {
-            if (key) {
-              console.log('tokentab: click, key:', key);
-              dispatch(uiActions.updateAssetTabScreen({ ordxFtAssetTabKey: key }));
-              console.log('tokentab: tabKey2:', ordxFtTabKey);
-              // dispatch(uiActions.updateAssetTabScreen({ assetTabKey: AssetTabKey.EXOTIC }));
-              // console.log('tokentab: tabKey3:', assetTabKey);
-            }
+            dispatch(uiActions.updateAssetTabScreen({ ordxFtAssetTabKey: key }));
           }}
         />
       </Row>
@@ -62,7 +53,6 @@ export function TokenTab() {
           return item.children
         }
       })}
-      {/* {tabItems[ordxFtTabKey] && <div>test</div>} */}
     </Column>
   );
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { Checkbox } from 'antd';
 import BigNumber from 'bignumber.js';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -14,10 +16,10 @@ import { RefreshButton } from '@/ui/components/RefreshButton';
 import { TabBar } from '@/ui/components/TabBar';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import {
-    useFetchUtxosCallback,
-    usePrepareSendOrdinalsInscriptionCallback,
-    usePrepareSendOrdinalsInscriptionsCallback,
-    usePushOrdinalsTxCallback
+  useFetchUtxosCallback,
+  usePrepareSendOrdinalsInscriptionCallback,
+  usePrepareSendOrdinalsInscriptionsCallback,
+  usePushOrdinalsTxCallback
 } from '@/ui/state/transactions/hooks';
 import { colors } from '@/ui/theme/colors';
 import { fontSizes } from '@/ui/theme/font';

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { Account, AddressSummary, AppSummary, Inscription, InscriptionSummary, TxHistoryItem } from '@/shared/types';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -66,17 +69,18 @@ export const initialState: AccountsState = {
     btcSatoshis: 0,
     assetSatoshis: 0,
     // inscriptionCount: 0,
-    ordxFt: [],
+    token: [],
     ordinals: {
       count: 0,
     },
     name: [],
     exotic: [],
+    // runes: [],
     // atomicalsCount: 0,
     // brc20Count: 0,
     // brc20Count5Byte: 0,
     // arc20Count: 0,
-    runesCount: 0,
+    // runesCount: 0,
     loading: true
   }
 };
@@ -231,13 +235,14 @@ const slice = createSlice({
           // brc20Count: 0,
           // brc20Count5Byte: 0,
           // arc20Count: 0,
-          runesCount: 0,
-          ordxFt: [],
+          // runesCount: 0,
+          token: [],
           ordinals: {
             count: 0,
           },
           name: [],
           exotic: [],
+          // runes: [],
         };
       }
     });

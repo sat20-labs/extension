@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import { useMemo } from 'react';
 
@@ -104,14 +105,14 @@ export const Pagination = (props: PaginationProps) => {
               v.page == -1
                 ? undefined
                 : () => {
-                    if (pagination.currentPage == v.page) {
-                      return;
-                    }
-                    onChange({
-                      currentPage: v.page,
-                      pageSize: pagination.pageSize
-                    });
+                  if (pagination.currentPage == v.page) {
+                    return;
                   }
+                  onChange({
+                    currentPage: v.page,
+                    pageSize: pagination.pageSize
+                  });
+                }
             }
           />
         ))}

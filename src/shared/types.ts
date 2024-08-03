@@ -160,13 +160,13 @@ export interface UTXO {
     inscriptionNumber?: number;
     offset: number;
   }[];
-  atomicals: {
-    atomicalId: string;
-    atomicalNumber: number;
-    type: 'NFT' | 'FT';
-    ticker?: string;
-    atomicalValue?: number;
-  }[];
+  // atomicals: {
+  //   atomicalId: string;
+  //   atomicalNumber: number;
+  //   type: 'NFT' | 'FT';
+  //   ticker?: string;
+  //   atomicalValue?: number;
+  // }[];
 
   runes: {
     runeid: string;
@@ -372,7 +372,7 @@ export enum WebsiteState {
   SAFE
 }
 
-export interface OrdxFtSummary {
+export interface TokenSummary {
   name: string;
   balance: number;
 }
@@ -392,6 +392,10 @@ export interface ExoticSummary {
   balance: number;
 }
 
+export interface RuneSummary {
+  count: number;
+}
+
 export interface AddressSummary {
   address: string;
   totalSatoshis: number;
@@ -402,11 +406,12 @@ export interface AddressSummary {
   // brc20Count: number;
   // brc20Count5Byte: number;
   // arc20Count: number;
-  runesCount: number;
-  ordxFt: OrdxFtSummary[];
+  // runesCount: number;
+  token: TokenSummary[];
   ordinals: OrdinalsSummary;
   name: NameSummary[];
   exotic: ExoticSummary[];
+  // runes: RuneSummary[];
   loading?: boolean;
 }
 
@@ -489,7 +494,7 @@ export interface RareSat {
   }[];
 }
 
-export interface OrdxFtToken {
+export interface Token {
   ticker: string;
   utxo: string;
   amount: number;

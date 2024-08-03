@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /// fork from https://github.com/MetaMask/KeyringController/blob/master/index.js
 import * as bip39 from 'bip39';
 import encryptor from 'browser-passworder';

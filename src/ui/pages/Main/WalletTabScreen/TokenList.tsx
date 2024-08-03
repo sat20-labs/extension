@@ -12,36 +12,55 @@ import { LoadingOutlined } from '@ant-design/icons';
 
 import { useNavigate } from '../../MainRoute';
 
-export function TokenList() {
+export interface TokenProps {
+  ticker: string;
+}
+
+export function TokenList({ ticker }: TokenProps) {
   const navigate = useNavigate();
   const wallet = useWallet();
   const currentAccount = useCurrentAccount();
 
-  const [inscriptions, setInscriptions] = useState<Inscription[]>([]);
+  // const [tokenList, setTokenList] = useState<Token[]>([]);
+  const [inscriptionList, setInscriptionList] = useState<Inscription[]>([]);
   const [total, setTotal] = useState(-1);
   const [pagination, setPagination] = useState({ currentPage: 1, pageSize: 10 });
 
   const tools = useTools();
 
-  const fetchData = async () => {
+  const fetchData = async (ticker: string) => {
     try {
-      // tools.showLoading(true);
-      const { list, total } = await wallet.getOrdinalsInscriptions(
+      tools.showLoading(true);
+      const { list: tokenList, total: totalTokenCount } = await wallet.getTokenList(
         currentAccount.address,
+        ticker,
         pagination.currentPage,
         pagination.pageSize
       );
-      setInscriptions(list);
-      setTotal(total);
+      const inscriptionIdList: string[] = []
+      tokenList.forEach((data) => {
+        data.assets.forEach((asset) => {
+          inscriptionIdList.push(asset.inscriptionId)
+        });
+      })
+
+      const inscriptionList: Inscription[] = []
+      for (let i = 0; i < inscriptionIdList.length; i++) {
+        const inscription = await wallet.getInscriptionInfo(inscriptionIdList[i])
+        inscriptionList.push(inscription)
+      }
+
+      setInscriptionList(inscriptionList);
+      setTotal(totalTokenCount);
     } catch (e) {
       tools.toastError((e as Error).message);
     } finally {
-      // tools.showLoading(false);
+      tools.showLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(ticker);
   }, [pagination, currentAccount.address]);
 
   if (total === -1) {
@@ -63,7 +82,7 @@ export function TokenList() {
   return (
     <Column>
       <Row style={{ flexWrap: 'wrap' }} gap="lg">
-        {inscriptions.map((data, index) => (
+        {inscriptionList.map((data, index) => (
           <InscriptionPreview
             key={index}
             data={data}

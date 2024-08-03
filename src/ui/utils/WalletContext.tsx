@@ -23,10 +23,10 @@ import {
   InscriptionSummary,
   NetworkType,
   OrdinalsName,
-  OrdxFtToken,
   RareSat,
   RuneBalance,
   SignPsbtOptions,
+  Token,
   TokenBalance,
   TokenTransfer,
   TxHistoryItem,
@@ -364,7 +364,7 @@ export interface WalletController {
     ticker: string,
     currentPage: number,
     pageSize: number
-  ): Promise<{ currentPage: number; pageSize: number; total: number; list: OrdxFtToken[] }>;
+  ): Promise<{ currentPage: number; pageSize: number; total: number; list: Token[] }>;
 
   getRunesList(
     address: string,

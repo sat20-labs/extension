@@ -30,7 +30,7 @@ export function TokenList({ ticker }: TokenProps) {
 
   const fetchData = async (ticker: string) => {
     try {
-      tools.showLoading(true);
+      // tools.showLoading(true);
       const { list: tokenList, total: totalTokenCount } = await wallet.getTokenList(
         currentAccount.address,
         ticker,
@@ -55,7 +55,7 @@ export function TokenList({ ticker }: TokenProps) {
     } catch (e) {
       tools.toastError((e as Error).message);
     } finally {
-      tools.showLoading(false);
+      // tools.showLoading(false);
     }
   };
 

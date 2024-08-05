@@ -38,7 +38,7 @@ export function TokenList({ ticker }: TokenProps) {
         pagination.pageSize
       );
       const inscriptionIdList: string[] = []
-      tokenList.forEach((data) => {
+      tokenList?.forEach((data) => {
         data.assets.forEach((asset) => {
           inscriptionIdList.push(asset.inscriptionId)
         });

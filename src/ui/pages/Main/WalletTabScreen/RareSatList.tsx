@@ -9,7 +9,6 @@ import RareSatCard from '@/ui/components/RareSatCard';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import { useWallet } from '@/ui/utils';
 import { LoadingOutlined } from '@ant-design/icons';
-
 import { useNavigate } from '../../MainRoute';
 
 export function RareSatList() {
@@ -62,7 +61,7 @@ export function RareSatList() {
     <Column>
       <Row style={{ flexWrap: 'wrap' }} gap="sm">
         {rareSats.map((rareSat, index) => (
-            <RareSatCard
+          <RareSatCard
             key={index}
             data={rareSat}
             onClick={() => {

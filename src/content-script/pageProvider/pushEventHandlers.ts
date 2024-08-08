@@ -54,9 +54,9 @@ class PushEventHandlers {
     this._emit('accountsChanged', accounts);
   };
 
-  networkChanged = ({ network }) => {
+  networkChanged = (data) => {
     this.connect({});
-
+    const network = data.network || data.networkName;
     if (network !== this.provider._network) {
       this.provider._network = network;
       this._emit('networkChanged', network);

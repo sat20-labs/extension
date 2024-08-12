@@ -11,7 +11,7 @@ import { Button } from '@/ui/components/Button';
 import { DisableUnconfirmedsPopover } from '@/ui/components/DisableUnconfirmedPopover';
 import { NavTabBar } from '@/ui/components/NavTabBar';
 // import { NoticePopover } from '@/ui/components/NoticePopover';
-// import { UpgradePopover } from '@/ui/components/UpgradePopover';
+import { UpgradePopover } from '@/ui/components/UpgradePopover';
 import { getCurrentTab } from '@/ui/features/browser/tabs';
 import { useAccountBalance, useAddressSummary, useCurrentAccount } from '@/ui/state/accounts/hooks';
 // import { accountActions } from '@/ui/state/accounts/reducer';
@@ -333,13 +333,13 @@ export default function WalletTabScreen() {
             }}
           />
         )} */}
-        {/* {!versionInfo.skipped && (
+        {!versionInfo.skipped && (
           <UpgradePopover
             onClose={() => {
               skipVersion(versionInfo.newVersion);
             }}
           />
-        )} */}
+        )}
 
         {showDisableUnconfirmedUtxoNotice && (
           <DisableUnconfirmedsPopover onClose={() => setShowDisableUnconfirmedUtxoNotice(false)} />

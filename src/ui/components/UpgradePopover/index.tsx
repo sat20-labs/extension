@@ -58,7 +58,7 @@ export const UpgradePopover = ({ onClose }: { onClose: () => void }) => {
             full
             preset="primary"
             onClick={(e) => {
-              window.open('https://sat20.org/extension/update');
+              window.open('https://github.com/sat20-labs/extension/releases/');
             }}
           />
         </Row>

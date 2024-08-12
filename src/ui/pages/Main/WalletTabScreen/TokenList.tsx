@@ -9,7 +9,6 @@ import { Pagination } from '@/ui/components/Pagination';
 import { useCurrentAccount } from '@/ui/state/accounts/hooks';
 import { useWallet } from '@/ui/utils';
 import { LoadingOutlined } from '@ant-design/icons';
-
 import { useNavigate } from '../../MainRoute';
 
 export interface TokenProps {
@@ -37,18 +36,42 @@ export function TokenList({ ticker }: TokenProps) {
         pagination.currentPage,
         pagination.pageSize
       );
-      const inscriptionIdList: string[] = []
-      tokenList?.forEach((data) => {
-        data.assets.forEach((asset) => {
-          inscriptionIdList.push(asset.inscriptionId)
-        });
-      })
+      // const inscriptionIdList: string[] = []
+      // tokenList?.forEach((data) => {
+      //   data.assets.forEach((asset) => {
+      //     inscriptionIdList.push(asset.inscriptionId)
+      //   });
+      // })
+      // tokenList?.forEach((token) => {
+      //   inscriptionIdList.push(token.inscriptionId)
+      // })
 
       const inscriptionList: Inscription[] = []
-      for (let i = 0; i < inscriptionIdList.length; i++) {
-        const inscription = await wallet.getInscriptionInfo(inscriptionIdList[i])
+      // for (let i = 0; i < inscriptionIdList.length; i++) {
+      //   const inscription = await wallet.getInscriptionInfo(inscriptionIdList[i])
+      //   inscriptionList.push(inscription)
+      // }
+      tokenList?.forEach((token) => {
+        const inscription: Inscription = {
+          inscriptionId: token.inscriptionId,
+          inscriptionNumber: token.inscriptionNumber,
+          address: token.address,
+          outputValue: token.outputValue,
+          preview: token.preview,
+          content: token.content,
+          contentType: token.contentType,
+          contentLength: token.contentLength,
+          timestamp: token.timestamp,
+          genesisTransaction: token.genesisTransaction,
+          location: token.location,
+          output: token.output,
+          offset: token.offset,
+          contentBody: token.contentBody,
+          utxoHeight: token.utxoHeight,
+          utxoConfirmation: token.utxoConfirmation,
+        }
         inscriptionList.push(inscription)
-      }
+      })
 
       setInscriptionList(inscriptionList);
       setTotal(totalTokenCount);

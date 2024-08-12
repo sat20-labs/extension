@@ -191,6 +191,18 @@ export const RESTORE_WALLETS: { value: RestoreWalletType; name: string; addressT
     ]
   },
   {
+    value: RestoreWalletType.UNISAT,
+    name: 'Unisat Wallet',
+    addressTypes: [
+      AddressType.P2WPKH,
+      AddressType.P2SH_P2WPKH,
+      AddressType.P2TR,
+      AddressType.P2PKH,
+      AddressType.M44_P2WPKH,
+      AddressType.M44_P2TR
+    ]
+  },
+  {
     value: RestoreWalletType.SPARROW,
     name: 'Sparrow Wallet',
     addressTypes: [AddressType.P2PKH, AddressType.P2WPKH, AddressType.P2SH_P2WPKH, AddressType.P2TR]

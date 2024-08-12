@@ -23,6 +23,7 @@ export enum EnvironmentType {
 
 export enum RestoreWalletType {
   SAT20,
+  UNISAT,
   SPARROW,
   XVERSE,
   OW,
@@ -494,18 +495,52 @@ export interface RareSat {
   }[];
 }
 
+// export interface Token {
+//   ticker: string;
+//   utxo: string;
+//   amount: number;
+//   assetAmount: number;
+//   inscriptionId: string;
+//   inscriptionNumber: number;
+
+//   ranges: {
+//     start: number;
+//     size: number;
+//   }[]
+//   assets: {
+//     inscriptionId: string;
+//     inscriptionNumber: number;
+//     assetAmount: number;
+//     ranges: {
+//       start: number;
+//       size: number;
+//     }[]
+//   }[];
+// }
+
 export interface Token {
   ticker: string;
   utxo: string;
   amount: number;
+  inscriptionId: string;
+  inscriptionNumber: number;
   assetAmount: number;
-  assets: {
-    inscriptionId: string;
-    inscriptionNumber: number;
-    assetAmount: number;
-    ranges: {
-      start: number;
-      size: number;
-    }[]
-  }[];
+  ranges: {
+    start: number;
+    size: number;
+  }[]
+  address: string;
+  outputValue: number;
+  preview: string;
+  content: string;
+  contentType: string;
+  contentLength: number;
+  timestamp: number;
+  genesisTransaction: string;
+  location: string;
+  output: string;
+  offset: number;
+  contentBody: string;
+  utxoHeight: number;
+  utxoConfirmation: number;
 }

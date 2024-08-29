@@ -14,6 +14,8 @@ REQUIRED_NODE_VERSION="v16.10."
 NODE_VERSION=$(node -v)
 if [[ $NODE_VERSION != $REQUIRED_NODE_VERSION* ]]; then
     echo "Error: Node.js version must be $REQUIRED_NODE_VERSION.x"
+    echo "Please use the following command to switch Node.js version:"
+    echo "nvm use v16.10.0"
     exit 1
 fi
 

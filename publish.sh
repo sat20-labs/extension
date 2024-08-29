@@ -19,11 +19,13 @@ if [[ $NODE_VERSION != $REQUIRED_NODE_VERSION* ]]; then
     exit 1
 fi
 
-VERSION=$(jq -r '.version' package.json)
+RAW_VERSION=$(jq -r '.version' package.json)
 if [ -z "$VERSION" ]; then
     echo "Error: Unable to read version from package.json"
     exit 1
 fi
+
+VERSION="v$RAW_VERSION"
 
 REPO="sat20-labs/extension"
 ZIP_FILE="dist/sat20-chrome-mv3-$VERSION.zip"
@@ -31,11 +33,15 @@ ZIP_FILE="dist/sat20-chrome-mv3-$VERSION.zip"
 git checkout master
 git pull origin master
 
-yarn build:chrome:mv3
-
 if [ ! -f "$ZIP_FILE" ]; then
-    echo "Error: File $ZIP_FILE does not exist."
-    exit 1
+    yarn build:chrome:mv3
+
+    if [ ! -f "$ZIP_FILE" ]; then
+        echo "Error: File $ZIP_FILE does not exist."
+        exit 1
+    fi
+else
+    echo "File $ZIP_FILE already exists, skipping build process."
 fi
 
 git add .

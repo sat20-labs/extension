@@ -273,11 +273,11 @@ export const WALLETCONNECT_STATUS_MAP = {
 // export const NETWORK_TYPE_TESTNET4 = 'testnet4';
 
 export function GET_OPEN_API_HOST(env: string, prefix: string): string {
-  return `https://api${env}.ordx.space/${prefix}/extension`;
+  return `https://api${env}.sat20.org/${prefix}/extension`;
 }
 
-// export const OPENAPI_URL_MAINNET = 'https://apidev.ordx.space/mainnet/extension';
-// export const OPENAPI_URL_TESTNET = 'https://apidev.ordx.space/testnet4/extension';
+// export const OPENAPI_URL_MAINNET = 'https://apidev.sat20.org/mainnet/extension';
+// export const OPENAPI_URL_TESTNET = 'https://apidev.sat20.org/testnet4/extension';
 
 export const EVENTS = {
   broadcastToUI: 'broadcastToUI',

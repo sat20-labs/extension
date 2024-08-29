@@ -3,14 +3,12 @@
 set -e
 set -x
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <version>"
+if ! command -v gh &>/dev/null; then
+    echo "Error: GitHub CLI (gh) is not installed."
+    echo "Please install gh using the following command on macOS:"
+    echo "brew install gh"
     exit 1
 fi
-
-VERSION=$1
-REPO="sat20-labs/extension"
-ZIP_FILE="dist/sat20-chrome-mv3-$VERSION.zip"
 
 REQUIRED_NODE_VERSION="v16.10."
 NODE_VERSION=$(node -v)
@@ -19,8 +17,18 @@ if [[ $NODE_VERSION != $REQUIRED_NODE_VERSION* ]]; then
     exit 1
 fi
 
+VERSION=$(jq -r '.version' package.json)
+if [ -z "$VERSION" ]; then
+    echo "Error: Unable to read version from package.json"
+    exit 1
+fi
+
+REPO="sat20-labs/extension"
+ZIP_FILE="dist/sat20-chrome-mv3-$VERSION.zip"
+
 git checkout master
 git pull origin master
+
 yarn build:chrome:mv3
 
 if [ ! -f "$ZIP_FILE" ]; then

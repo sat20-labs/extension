@@ -20,7 +20,7 @@ if [[ $NODE_VERSION != $REQUIRED_NODE_VERSION* ]]; then
 fi
 
 RAW_VERSION=$(jq -r '.version' package.json)
-if [ -z "$VERSION" ]; then
+if [ -z "$RAW_VERSION" ]; then
     echo "Error: Unable to read version from package.json"
     exit 1
 fi

@@ -10,6 +10,13 @@ if ! command -v gh &>/dev/null; then
     exit 1
 fi
 
+if ! command -v jq &>/dev/null; then
+    echo "Error: jq is not installed."
+    echo "Please install jq using the following command on macOS:"
+    echo "brew install jq"
+    exit 1
+fi
+
 REQUIRED_NODE_VERSION="v16.10."
 NODE_VERSION=$(node -v)
 if [[ $NODE_VERSION != $REQUIRED_NODE_VERSION* ]]; then
@@ -45,8 +52,12 @@ else
 fi
 
 git add .
-git commit -m "feature: publish.sh for create tag"
-git push
+if ! git diff-index --quiet HEAD; then
+    git commit -m "feature: publish.sh for create tag"
+    git push
+else
+    echo "No changes to commit, skipping git commit and push."
+fi
 
 if git rev-parse "$VERSION" >/dev/null 2>&1; then
     echo "Local tag $VERSION already exists. Deleting it..."

@@ -74,6 +74,12 @@ git push origin "$VERSION"
 
 echo "Tag $VERSION created and pushed to origin."
 
+# 执行 gh auth login 进行身份验证
+if ! gh auth status &>/dev/null; then
+    echo "Authenticating with GitHub CLI..."
+    gh auth login
+fi
+
 gh release create "$VERSION" --repo "$REPO" --title "Release $VERSION" --notes "Release notes for $VERSION"
 
 gh release upload "$VERSION" "$ZIP_FILE" --repo "$REPO"
